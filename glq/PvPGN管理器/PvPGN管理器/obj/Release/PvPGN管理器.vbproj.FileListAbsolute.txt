@@ -1,0 +1,13 @@
+D:\GitHub\fullbnet\glq\PvPGN管理器\PvPGN管理器\bin\Release\PvPGN管理器.exe.config
+D:\GitHub\fullbnet\glq\PvPGN管理器\PvPGN管理器\bin\Release\PvPGN管理器.exe
+D:\GitHub\fullbnet\glq\PvPGN管理器\PvPGN管理器\bin\Release\PvPGN管理器.pdb
+D:\GitHub\fullbnet\glq\PvPGN管理器\PvPGN管理器\bin\Release\PvPGN管理器.xml
+D:\GitHub\fullbnet\glq\PvPGN管理器\PvPGN管理器\bin\Release\MySql.Data.dll
+D:\GitHub\fullbnet\glq\PvPGN管理器\PvPGN管理器\bin\Release\Google.ProtocolBuffers.dll
+D:\GitHub\fullbnet\glq\PvPGN管理器\PvPGN管理器\bin\Release\MySql.Data.xml
+D:\GitHub\fullbnet\glq\PvPGN管理器\PvPGN管理器\obj\Release\PvPGN管理器.Form1.resources
+D:\GitHub\fullbnet\glq\PvPGN管理器\PvPGN管理器\obj\Release\PvPGN管理器.Resources.resources
+D:\GitHub\fullbnet\glq\PvPGN管理器\PvPGN管理器\obj\Release\PvPGN管理器.vbproj.GenerateResource.Cache
+D:\GitHub\fullbnet\glq\PvPGN管理器\PvPGN管理器\obj\Release\PvPGN管理器.exe
+D:\GitHub\fullbnet\glq\PvPGN管理器\PvPGN管理器\obj\Release\PvPGN管理器.xml
+D:\GitHub\fullbnet\glq\PvPGN管理器\PvPGN管理器\obj\Release\PvPGN管理器.pdb
