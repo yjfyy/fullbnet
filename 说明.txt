@@ -2,3 +2,7 @@
 pvpgn版本 pvpgn-1.99.r578-win32-ALL.rar
 mysql版本 mysql-5.5.21-win32.zip
 mysql root pvpgn123456
+
+测试运行环境
+cn_windows_server_2012_r2_vl_with_update_x64_dvd_6052729.iso
+系统自带 .net 4.5
