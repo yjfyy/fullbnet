@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Form1
+Partial Class Form_main
     Inherits System.Windows.Forms.Form
 
     'Form 重写 Dispose，以清理组件列表。
@@ -1931,7 +1931,7 @@ Partial Class Form1
         Me.OpenFileDialog_mysqlbakfiles_name.Filter = "数据库文件|*.sql"
         Me.OpenFileDialog_mysqlbakfiles_name.InitialDirectory = "d:\pvpgn\databak"
         '
-        'Form1
+        'Form_main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -1945,8 +1945,8 @@ Partial Class Form1
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Name = "Form1"
-        Me.Text = "Form1"
+        Me.Name = "Form_main"
+        Me.Text = "PvPGN管理器"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)

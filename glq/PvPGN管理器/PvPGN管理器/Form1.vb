@@ -6,7 +6,7 @@ Imports System.Management
 Imports System.ServiceProcess
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 
-Public Class Form1
+Public Class Form_main
     Inherits System.Windows.Forms.Form
     Dim a0 As DateTime = #6/13/2010 1:00:00 PM#
     Dim a1 As DateTime = #6/13/2010 1:00:10 PM#
