@@ -168,11 +168,8 @@ Partial Class Form1
         Me.Button26 = New System.Windows.Forms.Button()
         Me.Button24 = New System.Windows.Forms.Button()
         Me.TabPage7 = New System.Windows.Forms.TabPage()
-        Me.Button_add_unset_mute_exp_date = New System.Windows.Forms.Button()
-        Me.Button_add_unset_lock_exp_date = New System.Windows.Forms.Button()
-        Me.Button_add_flags_exp_date = New System.Windows.Forms.Button()
+        Me.Label47 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button_add_flags = New System.Windows.Forms.Button()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.TextBox_sqlbak_name = New System.Windows.Forms.TextBox()
@@ -181,14 +178,18 @@ Partial Class Form1
         Me.Label24 = New System.Windows.Forms.Label()
         Me.Button_create_pvpgn_sql = New System.Windows.Forms.Button()
         Me.Label11 = New System.Windows.Forms.Label()
+        Me.Button_add_unset_mute_exp_date = New System.Windows.Forms.Button()
+        Me.Button_add_unset_lock_exp_date = New System.Windows.Forms.Button()
+        Me.Button_add_flags_exp_date = New System.Windows.Forms.Button()
+        Me.Button_add_flags = New System.Windows.Forms.Button()
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.timer_dingshirenwu = New System.Windows.Forms.Timer(Me.components)
         Me.Timer_exp_date = New System.Windows.Forms.Timer(Me.components)
-        Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.FolderBrowserDialog_diabloII_dir = New System.Windows.Forms.FolderBrowserDialog()
+        Me.OpenFileDialog_mysqlbakfiles_name = New System.Windows.Forms.OpenFileDialog()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -1716,11 +1717,8 @@ Partial Class Form1
         '
         'TabPage7
         '
-        Me.TabPage7.Controls.Add(Me.Button_add_unset_mute_exp_date)
-        Me.TabPage7.Controls.Add(Me.Button_add_unset_lock_exp_date)
-        Me.TabPage7.Controls.Add(Me.Button_add_flags_exp_date)
+        Me.TabPage7.Controls.Add(Me.Label47)
         Me.TabPage7.Controls.Add(Me.Button2)
-        Me.TabPage7.Controls.Add(Me.Button_add_flags)
         Me.TabPage7.Controls.Add(Me.Label26)
         Me.TabPage7.Controls.Add(Me.Label25)
         Me.TabPage7.Controls.Add(Me.TextBox_sqlbak_name)
@@ -1729,6 +1727,10 @@ Partial Class Form1
         Me.TabPage7.Controls.Add(Me.Label24)
         Me.TabPage7.Controls.Add(Me.Button_create_pvpgn_sql)
         Me.TabPage7.Controls.Add(Me.Label11)
+        Me.TabPage7.Controls.Add(Me.Button_add_unset_mute_exp_date)
+        Me.TabPage7.Controls.Add(Me.Button_add_unset_lock_exp_date)
+        Me.TabPage7.Controls.Add(Me.Button_add_flags_exp_date)
+        Me.TabPage7.Controls.Add(Me.Button_add_flags)
         Me.TabPage7.Location = New System.Drawing.Point(4, 22)
         Me.TabPage7.Name = "TabPage7"
         Me.TabPage7.Padding = New System.Windows.Forms.Padding(3)
@@ -1737,73 +1739,37 @@ Partial Class Form1
         Me.TabPage7.Text = "数据库管理"
         Me.TabPage7.UseVisualStyleBackColor = True
         '
-        'Button_add_unset_mute_exp_date
+        'Label47
         '
-        Me.Button_add_unset_mute_exp_date.Enabled = False
-        Me.Button_add_unset_mute_exp_date.Location = New System.Drawing.Point(429, 82)
-        Me.Button_add_unset_mute_exp_date.Name = "Button_add_unset_mute_exp_date"
-        Me.Button_add_unset_mute_exp_date.Size = New System.Drawing.Size(116, 23)
-        Me.Button_add_unset_mute_exp_date.TabIndex = 39
-        Me.Button_add_unset_mute_exp_date.Text = "添加禁言定时功能"
-        Me.Button_add_unset_mute_exp_date.UseVisualStyleBackColor = True
-        Me.Button_add_unset_mute_exp_date.Visible = False
-        '
-        'Button_add_unset_lock_exp_date
-        '
-        Me.Button_add_unset_lock_exp_date.Enabled = False
-        Me.Button_add_unset_lock_exp_date.Location = New System.Drawing.Point(427, 24)
-        Me.Button_add_unset_lock_exp_date.Name = "Button_add_unset_lock_exp_date"
-        Me.Button_add_unset_lock_exp_date.Size = New System.Drawing.Size(118, 23)
-        Me.Button_add_unset_lock_exp_date.TabIndex = 38
-        Me.Button_add_unset_lock_exp_date.Text = "添加锁定定时功能"
-        Me.Button_add_unset_lock_exp_date.UseVisualStyleBackColor = True
-        Me.Button_add_unset_lock_exp_date.Visible = False
-        '
-        'Button_add_flags_exp_date
-        '
-        Me.Button_add_flags_exp_date.Enabled = False
-        Me.Button_add_flags_exp_date.Location = New System.Drawing.Point(431, 111)
-        Me.Button_add_flags_exp_date.Name = "Button_add_flags_exp_date"
-        Me.Button_add_flags_exp_date.Size = New System.Drawing.Size(114, 23)
-        Me.Button_add_flags_exp_date.TabIndex = 37
-        Me.Button_add_flags_exp_date.Text = "添加形象定时功能"
-        Me.Button_add_flags_exp_date.UseVisualStyleBackColor = True
-        Me.Button_add_flags_exp_date.Visible = False
+        Me.Label47.AutoSize = True
+        Me.Label47.Location = New System.Drawing.Point(89, 130)
+        Me.Label47.Name = "Label47"
+        Me.Label47.Size = New System.Drawing.Size(329, 12)
+        Me.Label47.TabIndex = 40
+        Me.Label47.Text = "先在""备份文件名称：""处输入备份文件名称路径或浏览选择。"
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(282, 190)
+        Me.Button2.Location = New System.Drawing.Point(470, 170)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 36
         Me.Button2.Text = "浏览"
         Me.Button2.UseVisualStyleBackColor = True
         '
-        'Button_add_flags
-        '
-        Me.Button_add_flags.Enabled = False
-        Me.Button_add_flags.Location = New System.Drawing.Point(451, 53)
-        Me.Button_add_flags.Name = "Button_add_flags"
-        Me.Button_add_flags.Size = New System.Drawing.Size(94, 23)
-        Me.Button_add_flags.TabIndex = 35
-        Me.Button_add_flags.Text = "添加形象功能"
-        Me.Button_add_flags.UseVisualStyleBackColor = True
-        Me.Button_add_flags.Visible = False
-        '
         'Label26
         '
         Me.Label26.AutoSize = True
-        Me.Label26.Location = New System.Drawing.Point(15, 87)
+        Me.Label26.Location = New System.Drawing.Point(87, 81)
         Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(419, 60)
+        Me.Label26.Size = New System.Drawing.Size(419, 12)
         Me.Label26.TabIndex = 14
-        Me.Label26.Text = "1、备份还原数据库需要先连接数据库。" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "2、点备份数据库，会在sqlbak目录下生成当前时间点的备份文件。" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "   例如""pvpgnbak2013-05-16_2" &
-    "1.01.sql""" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "3、还原数据库时，在""备份文件名称：""处输入备份文件名称路径或浏览选择，" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "   再点还原数据库即可。"
+        Me.Label26.Text = "备份、还原数据库需要先连接数据库，默认备份路径为""D:\pvpgn\databak\""。"
         '
         'Label25
         '
         Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(29, 195)
+        Me.Label25.Location = New System.Drawing.Point(6, 174)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(89, 12)
         Me.Label25.TabIndex = 13
@@ -1811,15 +1777,15 @@ Partial Class Form1
         '
         'TextBox_sqlbak_name
         '
-        Me.TextBox_sqlbak_name.Location = New System.Drawing.Point(124, 192)
+        Me.TextBox_sqlbak_name.Location = New System.Drawing.Point(101, 171)
         Me.TextBox_sqlbak_name.Name = "TextBox_sqlbak_name"
-        Me.TextBox_sqlbak_name.Size = New System.Drawing.Size(135, 21)
+        Me.TextBox_sqlbak_name.Size = New System.Drawing.Size(363, 21)
         Me.TextBox_sqlbak_name.TabIndex = 12
         '
         'Button_res_pvpgn_sql
         '
         Me.Button_res_pvpgn_sql.Enabled = False
-        Me.Button_res_pvpgn_sql.Location = New System.Drawing.Point(371, 190)
+        Me.Button_res_pvpgn_sql.Location = New System.Drawing.Point(8, 125)
         Me.Button_res_pvpgn_sql.Name = "Button_res_pvpgn_sql"
         Me.Button_res_pvpgn_sql.Size = New System.Drawing.Size(75, 23)
         Me.Button_res_pvpgn_sql.TabIndex = 11
@@ -1829,7 +1795,7 @@ Partial Class Form1
         'Button_bak_pvpgn_sql
         '
         Me.Button_bak_pvpgn_sql.Enabled = False
-        Me.Button_bak_pvpgn_sql.Location = New System.Drawing.Point(458, 190)
+        Me.Button_bak_pvpgn_sql.Location = New System.Drawing.Point(6, 76)
         Me.Button_bak_pvpgn_sql.Name = "Button_bak_pvpgn_sql"
         Me.Button_bak_pvpgn_sql.Size = New System.Drawing.Size(75, 23)
         Me.Button_bak_pvpgn_sql.TabIndex = 10
@@ -1846,7 +1812,7 @@ Partial Class Form1
         '
         'Button_create_pvpgn_sql
         '
-        Me.Button_create_pvpgn_sql.Location = New System.Drawing.Point(204, 53)
+        Me.Button_create_pvpgn_sql.Location = New System.Drawing.Point(6, 27)
         Me.Button_create_pvpgn_sql.Name = "Button_create_pvpgn_sql"
         Me.Button_create_pvpgn_sql.Size = New System.Drawing.Size(142, 23)
         Me.Button_create_pvpgn_sql.TabIndex = 4
@@ -1857,11 +1823,55 @@ Partial Class Form1
         '
         Me.Label11.AutoSize = True
         Me.Label11.ForeColor = System.Drawing.Color.Red
-        Me.Label11.Location = New System.Drawing.Point(117, 9)
+        Me.Label11.Location = New System.Drawing.Point(154, 32)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(317, 12)
         Me.Label11.TabIndex = 5
         Me.Label11.Text = "重新安装数据库，会清除数据，重新安装前务必备份数据。"
+        '
+        'Button_add_unset_mute_exp_date
+        '
+        Me.Button_add_unset_mute_exp_date.Enabled = False
+        Me.Button_add_unset_mute_exp_date.Location = New System.Drawing.Point(429, 64)
+        Me.Button_add_unset_mute_exp_date.Name = "Button_add_unset_mute_exp_date"
+        Me.Button_add_unset_mute_exp_date.Size = New System.Drawing.Size(116, 23)
+        Me.Button_add_unset_mute_exp_date.TabIndex = 39
+        Me.Button_add_unset_mute_exp_date.Text = "添加禁言定时功能"
+        Me.Button_add_unset_mute_exp_date.UseVisualStyleBackColor = True
+        Me.Button_add_unset_mute_exp_date.Visible = False
+        '
+        'Button_add_unset_lock_exp_date
+        '
+        Me.Button_add_unset_lock_exp_date.Enabled = False
+        Me.Button_add_unset_lock_exp_date.Location = New System.Drawing.Point(427, 6)
+        Me.Button_add_unset_lock_exp_date.Name = "Button_add_unset_lock_exp_date"
+        Me.Button_add_unset_lock_exp_date.Size = New System.Drawing.Size(118, 23)
+        Me.Button_add_unset_lock_exp_date.TabIndex = 38
+        Me.Button_add_unset_lock_exp_date.Text = "添加锁定定时功能"
+        Me.Button_add_unset_lock_exp_date.UseVisualStyleBackColor = True
+        Me.Button_add_unset_lock_exp_date.Visible = False
+        '
+        'Button_add_flags_exp_date
+        '
+        Me.Button_add_flags_exp_date.Enabled = False
+        Me.Button_add_flags_exp_date.Location = New System.Drawing.Point(431, 93)
+        Me.Button_add_flags_exp_date.Name = "Button_add_flags_exp_date"
+        Me.Button_add_flags_exp_date.Size = New System.Drawing.Size(114, 23)
+        Me.Button_add_flags_exp_date.TabIndex = 37
+        Me.Button_add_flags_exp_date.Text = "添加形象定时功能"
+        Me.Button_add_flags_exp_date.UseVisualStyleBackColor = True
+        Me.Button_add_flags_exp_date.Visible = False
+        '
+        'Button_add_flags
+        '
+        Me.Button_add_flags.Enabled = False
+        Me.Button_add_flags.Location = New System.Drawing.Point(451, 35)
+        Me.Button_add_flags.Name = "Button_add_flags"
+        Me.Button_add_flags.Size = New System.Drawing.Size(94, 23)
+        Me.Button_add_flags.TabIndex = 35
+        Me.Button_add_flags.Text = "添加形象功能"
+        Me.Button_add_flags.UseVisualStyleBackColor = True
+        Me.Button_add_flags.Visible = False
         '
         'LinkLabel2
         '
@@ -1911,14 +1921,15 @@ Partial Class Form1
         Me.Timer_exp_date.Enabled = True
         Me.Timer_exp_date.Interval = 10800000
         '
-        'FolderBrowserDialog1
+        'FolderBrowserDialog_diabloII_dir
         '
-        Me.FolderBrowserDialog1.RootFolder = System.Environment.SpecialFolder.MyComputer
-        Me.FolderBrowserDialog1.ShowNewFolderButton = False
+        Me.FolderBrowserDialog_diabloII_dir.RootFolder = System.Environment.SpecialFolder.MyComputer
+        Me.FolderBrowserDialog_diabloII_dir.ShowNewFolderButton = False
         '
-        'OpenFileDialog1
+        'OpenFileDialog_mysqlbakfiles_name
         '
-        Me.OpenFileDialog1.Filter = "数据库文件|*.sql"
+        Me.OpenFileDialog_mysqlbakfiles_name.Filter = "数据库文件|*.sql"
+        Me.OpenFileDialog_mysqlbakfiles_name.InitialDirectory = "d:\pvpgn\databak"
         '
         'Form1
         '
@@ -2127,6 +2138,7 @@ Partial Class Form1
     Friend WithEvents Label8 As Label
     Friend WithEvents timer_dingshirenwu As Timer
     Friend WithEvents Timer_exp_date As Timer
-    Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
-    Friend WithEvents OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents FolderBrowserDialog_diabloII_dir As FolderBrowserDialog
+    Friend WithEvents OpenFileDialog_mysqlbakfiles_name As OpenFileDialog
+    Friend WithEvents Label47 As Label
 End Class

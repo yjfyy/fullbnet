@@ -24,6 +24,7 @@ Public Class Form1
     Dim flag5 As String = "0"
     Dim flag6 As String = "0"
     Dim flag7 As String = "0"
+    Dim d2ver As String = "0"
 
     Private Sub showbutton()
         Dim reg_path = "SOFTWARE\\PvPGN GLQ"
@@ -284,7 +285,7 @@ Public Class Form1
         'End Select
         '     End If
 
-        If DateString > "2016-3-30" Then
+        If DateString > "2018-3-30" Then
             Close()
         End If
         load_config()
@@ -437,7 +438,7 @@ Public Class Form1
 
     Private Sub Button24_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button24.Click
         d2gsdefconf()
-        Shell(".\d2gs\d2gssvc.exe -i", vbHide)
+        Shell("cmd /c d:\pvpgn\d2gs\" + d2ver + "\d2gssvc.exe -i", vbHide)
         MsgBox("安装完成")
     End Sub
 
@@ -460,14 +461,15 @@ Public Class Form1
         ProgressBar1.Visible = True
         ProgressBar1.Value = 0
         Dim i
-        Dim d2gsneedfiles(3) As String
+        Dim d2gsneedfiles(4) As String
         d2gsneedfiles(0) = "d2data.mpq"
         d2gsneedfiles(1) = "d2exp.mpq"
         d2gsneedfiles(2) = "d2speech.mpq"
         d2gsneedfiles(3) = "d2sfx.mpq"
-        For i = 0 To 3
+        d2gsneedfiles(4) = "patch_d2.mpq"
+        For i = 0 To 4
             If System.IO.File.Exists(TextBox_d2_path.Text + "\" + d2gsneedfiles(i)) Then
-                ProgressBar1.Value = ProgressBar1.Value + 20
+                ProgressBar1.Value = ProgressBar1.Value + 18
                 System.IO.File.Copy(TextBox_d2_path.Text + "\" + d2gsneedfiles(i), ".\d2gs\" + d2gsneedfiles(i), True)
             Else : MsgBox(d2gsneedfiles(i) + "没有找到")
             End If
@@ -537,21 +539,18 @@ Public Class Form1
 
 
     Private Sub Button35_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_res_pvpgn_sql.Click
-        If RadioButton_system_x86.Checked = True Then
-            Try
-                Shell("cmd /c ..\mysql_x86.exe --host=" + TextBox_sql_serverip.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " < " + TextBox_sqlbak_name.Text, AppWinStyle.Hide)
-                MessageBox.Show("还原数据成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Catch ex As Exception
-                MessageBox.Show(ex.Message)
-            End Try
+        If TextBox_sqlbak_name.Text = "" Then
+            MsgBox("请先选择需要还原的数据文件。")
         Else
             Try
-                Shell("cmd /c mysql_x64.exe --host=" + TextBox_sql_serverip.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " < " + TextBox_sqlbak_name.Text, AppWinStyle.Hide)
+                Shell("cmd /c d:\pvpgn\mysql\bin\mysql.exe --host=" + TextBox_sql_serverip.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " pvpgn < " + TextBox_sqlbak_name.Text, AppWinStyle.Hide, True)
                 MessageBox.Show("还原数据成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Catch ex As Exception
                 MessageBox.Show(ex.Message)
             End Try
         End If
+
+
     End Sub
 
     Private Sub Button36_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button36.Click
@@ -877,7 +876,7 @@ Public Class Form1
     End Sub
 
     Private Sub Button_create_pvpgn_sql_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_create_pvpgn_sql.Click
-        Shell("D:\pvpgn\mysql\remysql.bat", AppWinStyle.NormalFocus, True)
+        Shell("cmd /c D:\pvpgn\mysql\remysql.bat", AppWinStyle.NormalFocus, True)
         MsgBox("数据库重置完毕。")
 
         'Dim createpvpgnstr As String
@@ -1120,8 +1119,8 @@ Public Class Form1
     End Sub
 
     Private Sub Button1_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        FolderBrowserDialog1.ShowDialog()
-        TextBox_d2_path.Text = FolderBrowserDialog1.SelectedPath
+        FolderBrowserDialog_diabloII_dir.ShowDialog()
+        TextBox_d2_path.Text = FolderBrowserDialog_diabloII_dir.SelectedPath
 
     End Sub
 
@@ -1133,8 +1132,8 @@ Public Class Form1
 
 
     Private Sub Button2_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
-        OpenFileDialog1.ShowDialog()
-        TextBox_sqlbak_name.Text = OpenFileDialog1.FileName
+        OpenFileDialog_mysqlbakfiles_name.ShowDialog()
+        TextBox_sqlbak_name.Text = OpenFileDialog_mysqlbakfiles_name.FileName
     End Sub
 
     Private Sub d2gsver()
@@ -1172,6 +1171,9 @@ Public Class Form1
             End If
             If reg_config.GetValue("RadioButton_d2_110", "1") = "1" Then
                 RadioButton_d2_110.Checked = True
+                d2ver = "1.09c"
+            Else
+                d2ver = "1.13c"
             End If
             TextBox_acc_username.Text = reg_config.GetValue("Textbox_acc_username", "")
 
@@ -1286,7 +1288,7 @@ Public Class Form1
         bakdatestr = Format(Now, "yyyy-MM-dd_HH.mm")
 
         Try
-            Shell("d:\pvpgn\mysql\bin\mysqldump.exe --host=" + TextBox_sql_serverip.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " --databases pvpgn --result-file=d:\pvpgn\databak\sqlbak" + bakdatestr + ".sql", AppWinStyle.Hide, True)
+            Shell("cmd /c d:\pvpgn\mysql\bin\mysqldump.exe --host=" + TextBox_sql_serverip.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " --databases pvpgn --result-file=d:\pvpgn\databak\sqlbak" + bakdatestr + ".sql", AppWinStyle.Hide, True)
             MessageBox.Show("备份数据成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Catch ex As Exception
             MessageBox.Show(ex.Message)
@@ -1491,6 +1493,14 @@ Public Class Form1
     End Sub
 
     Private Sub Label11_Click(sender As Object, e As EventArgs) Handles Label11.Click
+
+    End Sub
+
+    Private Sub Label26_Click(sender As Object, e As EventArgs) Handles Label26.Click
+
+    End Sub
+
+    Private Sub Label47_Click(sender As Object, e As EventArgs) Handles Label47.Click
 
     End Sub
 End Class

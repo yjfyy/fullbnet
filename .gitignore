@@ -1,4 +1,4 @@
-# Windows image file caches
+﻿# Windows image file caches
 Thumbs.db
 ehthumbs.db
 
@@ -45,6 +45,16 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
-mysql/data/TuZi-PC.err
 mysql/data/TuZi-PC.pid
 mysql/data/TuZi-PC.err
+glq/PvPGN管理器/PvPGN管理器/bin/Debug/PvPGN管理器.exe
+glq/PvPGN管理器/PvPGN管理器/bin/Debug/PvPGN管理器.pdb
+glq/PvPGN管理器/PvPGN管理器/obj/Release/PvPGN管理器.pdb
+glq/PvPGN管理器/PvPGN管理器/bin/Release/PvPGN管理器.pdb
+glq/PvPGN管理器/PvPGN管理器/bin/Debug/PvPGN管理器.pdb
+glq/PvPGN管理器/PvPGN管理器/obj/Debug/PvPGN管理器.exe
+glq/PvPGN管理器/PvPGN管理器/obj/Release/PvPGN管理器.pdb
+glq/PvPGN管理器/PvPGN管理器/obj/Debug/PvPGN管理器.vbprojResolveAssemblyReference.cache
+glq/PvPGN管理器/PvPGN管理器/obj/Debug/PvPGN管理器.vbproj.FileListAbsolute.txt
+glq/PvPGN管理器/PvPGN管理器/obj/Debug/PvPGN管理器.pdb
+glq/PvPGN管理器/PvPGN管理器/bin/Release/PvPGN管理器.exe
