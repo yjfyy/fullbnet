@@ -438,20 +438,35 @@ Public Class Form_main
 
     Private Sub Button24_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button24.Click
         d2gsdefconf()
-        Shell("cmd /c d:\pvpgn\d2gs\" + d2ver + "\d2gssvc.exe -i", vbHide)
+        Shell("cmd /c d:\pvpgn\d2gs\" + d2ver + "\d2gssvc.exe -i", AppWinStyle.Hide, True)
         MsgBox("安装完成")
     End Sub
 
     Private Sub Button26_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button26.Click
         Dim ssd2gs As New ServiceController("d2gs")
         If ssd2gs.Status.Equals(ServiceControllerStatus.Running) Then
+
             MessageBox.Show("请停止D2GS服务后重试")
+
         Else
-            My.Computer.Registry.LocalMachine.DeleteSubKey("SOFTWARE\D2Server\D2GS")
-            My.Computer.Registry.LocalMachine.DeleteSubKey("SOFTWARE\D2Server")
-            Shell(".\d2gs\d2gssvc.exe -u", vbHide)
-            MessageBox.Show("卸载完成")
+
+            Try
+                My.Computer.Registry.LocalMachine.DeleteSubKey("SOFTWARE\D2Server\D2GS")
+                My.Computer.Registry.LocalMachine.DeleteSubKey("SOFTWARE\D2Server")
+            Catch ex As Exception
+                MsgBox("清除注册表失败")
+            End Try
+
+            Try
+                Shell("cmd /c d:\pvpgn\d2gs\" + d2ver + "\d2gssvc.exe -u", AppWinStyle.Hide, True)
+            Catch ex As Exception
+                MsgBox("卸载服务失败")
+            End Try
+
+            MsgBox("卸载完成")
+
         End If
+
     End Sub
 
 
@@ -1141,9 +1156,12 @@ Public Class Form_main
         If RadioButton_d2_109.Checked = True Then
             d2cs_server_string = "d2cs109"
             d2dbs_server_string = "d2dbs109"
+            d2ver = "1.09d"
+
         Else
             d2cs_server_string = "d2cs"
             d2dbs_server_string = "d2dbs"
+            d2ver = "1.13c"
         End If
     End Sub
 
@@ -1172,9 +1190,8 @@ Public Class Form_main
             End If
             If reg_config.GetValue("RadioButton_d2_110", "1") = "1" Then
                 RadioButton_d2_110.Checked = True
-                d2ver = "1.13c"
             Else
-                d2ver = "1.09d"
+
             End If
             TextBox_acc_username.Text = reg_config.GetValue("Textbox_acc_username", "")
 
