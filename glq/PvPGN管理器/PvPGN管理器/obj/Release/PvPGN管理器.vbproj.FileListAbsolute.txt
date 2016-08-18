@@ -11,4 +11,3 @@ D:\GitHub\fullbnet\glq\PvPGN管理器\PvPGN管理器\obj\Release\PvPGN管理器.
 D:\GitHub\fullbnet\glq\PvPGN管理器\PvPGN管理器\obj\Release\PvPGN管理器.exe
 D:\GitHub\fullbnet\glq\PvPGN管理器\PvPGN管理器\obj\Release\PvPGN管理器.xml
 D:\GitHub\fullbnet\glq\PvPGN管理器\PvPGN管理器\obj\Release\PvPGN管理器.pdb
-D:\GitHub\fullbnet\glq\PvPGN管理器\PvPGN管理器\obj\Release\PvPGN管理器.vbprojResolveAssemblyReference.cache

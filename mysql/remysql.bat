@@ -1,4 +1,4 @@
-@echo on
+@echo off
 cls
 net stop mysql
 echo "服务已停止。"
@@ -12,4 +12,3 @@ d:\pvpgn\mysql\bin\mysqld.exe -install
 echo "MySQL安装成功。"
 net start mysql
 echo "MySQL服务已启动。"
-pause

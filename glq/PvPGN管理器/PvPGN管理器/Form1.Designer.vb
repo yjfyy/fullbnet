@@ -178,7 +178,6 @@ Partial Class Form1
         Me.TextBox_sqlbak_name = New System.Windows.Forms.TextBox()
         Me.Button_res_pvpgn_sql = New System.Windows.Forms.Button()
         Me.Button_bak_pvpgn_sql = New System.Windows.Forms.Button()
-        Me.Button_del_pvpgn_sql = New System.Windows.Forms.Button()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.Button_create_pvpgn_sql = New System.Windows.Forms.Button()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -1727,7 +1726,6 @@ Partial Class Form1
         Me.TabPage7.Controls.Add(Me.TextBox_sqlbak_name)
         Me.TabPage7.Controls.Add(Me.Button_res_pvpgn_sql)
         Me.TabPage7.Controls.Add(Me.Button_bak_pvpgn_sql)
-        Me.TabPage7.Controls.Add(Me.Button_del_pvpgn_sql)
         Me.TabPage7.Controls.Add(Me.Label24)
         Me.TabPage7.Controls.Add(Me.Button_create_pvpgn_sql)
         Me.TabPage7.Controls.Add(Me.Label11)
@@ -1742,32 +1740,35 @@ Partial Class Form1
         'Button_add_unset_mute_exp_date
         '
         Me.Button_add_unset_mute_exp_date.Enabled = False
-        Me.Button_add_unset_mute_exp_date.Location = New System.Drawing.Point(375, 73)
+        Me.Button_add_unset_mute_exp_date.Location = New System.Drawing.Point(429, 82)
         Me.Button_add_unset_mute_exp_date.Name = "Button_add_unset_mute_exp_date"
         Me.Button_add_unset_mute_exp_date.Size = New System.Drawing.Size(116, 23)
         Me.Button_add_unset_mute_exp_date.TabIndex = 39
         Me.Button_add_unset_mute_exp_date.Text = "添加禁言定时功能"
         Me.Button_add_unset_mute_exp_date.UseVisualStyleBackColor = True
+        Me.Button_add_unset_mute_exp_date.Visible = False
         '
         'Button_add_unset_lock_exp_date
         '
         Me.Button_add_unset_lock_exp_date.Enabled = False
-        Me.Button_add_unset_lock_exp_date.Location = New System.Drawing.Point(251, 73)
+        Me.Button_add_unset_lock_exp_date.Location = New System.Drawing.Point(427, 24)
         Me.Button_add_unset_lock_exp_date.Name = "Button_add_unset_lock_exp_date"
         Me.Button_add_unset_lock_exp_date.Size = New System.Drawing.Size(118, 23)
         Me.Button_add_unset_lock_exp_date.TabIndex = 38
         Me.Button_add_unset_lock_exp_date.Text = "添加锁定定时功能"
         Me.Button_add_unset_lock_exp_date.UseVisualStyleBackColor = True
+        Me.Button_add_unset_lock_exp_date.Visible = False
         '
         'Button_add_flags_exp_date
         '
         Me.Button_add_flags_exp_date.Enabled = False
-        Me.Button_add_flags_exp_date.Location = New System.Drawing.Point(131, 73)
+        Me.Button_add_flags_exp_date.Location = New System.Drawing.Point(431, 111)
         Me.Button_add_flags_exp_date.Name = "Button_add_flags_exp_date"
         Me.Button_add_flags_exp_date.Size = New System.Drawing.Size(114, 23)
         Me.Button_add_flags_exp_date.TabIndex = 37
         Me.Button_add_flags_exp_date.Text = "添加形象定时功能"
         Me.Button_add_flags_exp_date.UseVisualStyleBackColor = True
+        Me.Button_add_flags_exp_date.Visible = False
         '
         'Button2
         '
@@ -1781,17 +1782,18 @@ Partial Class Form1
         'Button_add_flags
         '
         Me.Button_add_flags.Enabled = False
-        Me.Button_add_flags.Location = New System.Drawing.Point(31, 73)
+        Me.Button_add_flags.Location = New System.Drawing.Point(451, 53)
         Me.Button_add_flags.Name = "Button_add_flags"
         Me.Button_add_flags.Size = New System.Drawing.Size(94, 23)
         Me.Button_add_flags.TabIndex = 35
         Me.Button_add_flags.Text = "添加形象功能"
         Me.Button_add_flags.UseVisualStyleBackColor = True
+        Me.Button_add_flags.Visible = False
         '
         'Label26
         '
         Me.Label26.AutoSize = True
-        Me.Label26.Location = New System.Drawing.Point(34, 116)
+        Me.Label26.Location = New System.Drawing.Point(15, 87)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(419, 60)
         Me.Label26.TabIndex = 14
@@ -1834,17 +1836,6 @@ Partial Class Form1
         Me.Button_bak_pvpgn_sql.Text = "备份数据库"
         Me.Button_bak_pvpgn_sql.UseVisualStyleBackColor = True
         '
-        'Button_del_pvpgn_sql
-        '
-        Me.Button_del_pvpgn_sql.Enabled = False
-        Me.Button_del_pvpgn_sql.ForeColor = System.Drawing.Color.Red
-        Me.Button_del_pvpgn_sql.Location = New System.Drawing.Point(393, 19)
-        Me.Button_del_pvpgn_sql.Name = "Button_del_pvpgn_sql"
-        Me.Button_del_pvpgn_sql.Size = New System.Drawing.Size(146, 43)
-        Me.Button_del_pvpgn_sql.TabIndex = 9
-        Me.Button_del_pvpgn_sql.Text = "清空PvPGN数据（将删除所有用户数据，慎用）"
-        Me.Button_del_pvpgn_sql.UseVisualStyleBackColor = True
-        '
         'Label24
         '
         Me.Label24.AutoSize = True
@@ -1855,22 +1846,22 @@ Partial Class Form1
         '
         'Button_create_pvpgn_sql
         '
-        Me.Button_create_pvpgn_sql.Location = New System.Drawing.Point(31, 29)
+        Me.Button_create_pvpgn_sql.Location = New System.Drawing.Point(204, 53)
         Me.Button_create_pvpgn_sql.Name = "Button_create_pvpgn_sql"
-        Me.Button_create_pvpgn_sql.Size = New System.Drawing.Size(91, 23)
+        Me.Button_create_pvpgn_sql.Size = New System.Drawing.Size(142, 23)
         Me.Button_create_pvpgn_sql.TabIndex = 4
-        Me.Button_create_pvpgn_sql.Text = "初始化数据库"
+        Me.Button_create_pvpgn_sql.Text = "安装并初始化数据库"
         Me.Button_create_pvpgn_sql.UseVisualStyleBackColor = True
         '
         'Label11
         '
         Me.Label11.AutoSize = True
         Me.Label11.ForeColor = System.Drawing.Color.Red
-        Me.Label11.Location = New System.Drawing.Point(34, 9)
+        Me.Label11.Location = New System.Drawing.Point(117, 9)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(353, 12)
+        Me.Label11.Size = New System.Drawing.Size(317, 12)
         Me.Label11.TabIndex = 5
-        Me.Label11.Text = "数据库初始化步骤，需要严格按照说明中数据库初始化步骤进行。"
+        Me.Label11.Text = "重新安装数据库，会清除数据，重新安装前务必备份数据。"
         '
         'LinkLabel2
         '
@@ -2127,7 +2118,6 @@ Partial Class Form1
     Friend WithEvents TextBox_sqlbak_name As TextBox
     Friend WithEvents Button_res_pvpgn_sql As Button
     Friend WithEvents Button_bak_pvpgn_sql As Button
-    Friend WithEvents Button_del_pvpgn_sql As Button
     Friend WithEvents Label24 As Label
     Friend WithEvents Button_create_pvpgn_sql As Button
     Friend WithEvents Label11 As Label

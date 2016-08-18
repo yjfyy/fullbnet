@@ -72,7 +72,7 @@ Public Class Form1
                 '已经连接到pvpgn
             ElseIf TextBox_database_name.Text = "pvpgn" Then
                 Button_close_sql.Enabled = True
-                Button_del_pvpgn_sql.Enabled = True
+                'Button_del_pvpgn_sql.Enabled = True
                 Button_bak_pvpgn_sql.Enabled = True
                 Button_res_pvpgn_sql.Enabled = True
                 CheckBox_timer_backup.Enabled = True
@@ -113,7 +113,7 @@ Public Class Form1
         Else
             Button_close_sql.Enabled = False
             Button_create_pvpgn_sql.Enabled = False
-            Button_del_pvpgn_sql.Enabled = False
+            'Button_del_pvpgn_sql.Enabled = False
             Button_add_flags.Enabled = False
             Button_add_flags_exp_date.Enabled = False
             Button_add_unset_lock_exp_date.Enabled = False
@@ -860,25 +860,25 @@ Public Class Form1
     End Sub
 
     Private Sub Button_path_bnetdsql_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_add_flags.Click
-        Dim pathbnet As New MySqlCommand("ALTER TABLE `pvpgn_bnet` ADD COLUMN `flags_initial`  int(11) NULL;", conn)
-        pathbnet.ExecuteNonQuery()
-        MsgBox("数据库已修正，可以修改用户频道形象了")
+        'Dim pathbnet As New MySqlCommand("ALTER TABLE `pvpgn_bnet` ADD COLUMN `flags_initial`  int(11) NULL;", conn)
+        'pathbnet.ExecuteNonQuery()
+        'MsgBox("数据库已修正，可以修改用户频道形象了")
 
-        Dim reg_path = "SOFTWARE\\PvPGN GLQ"
-        Dim reg_config = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(reg_path, True)
-        If reg_config Is Nothing Then
-            reg_config = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(reg_path)
-        End If
-        If reg_config IsNot Nothing Then
-            reg_config.SetValue("添加形象功能", "1")
-        End If
-        reg_config.Close()
-        showbutton()
+        'Dim reg_path = "SOFTWARE\\PvPGN GLQ"
+        'Dim reg_config = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(reg_path, True)
+        'If reg_config Is Nothing Then
+        '    reg_config = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(reg_path)
+        'End If
+        'If reg_config IsNot Nothing Then
+        '    reg_config.SetValue("添加形象功能", "1")
+        'End If
+        'reg_config.Close()
+        'showbutton()
     End Sub
 
     Private Sub Button_create_pvpgn_sql_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_create_pvpgn_sql.Click
-        Shell("D:\pvpgn\mysql\remysql.bat", AppWinStyle.MaximizedFocus, True, 10000)
-
+        Shell("D:\pvpgn\mysql\remysql.bat", AppWinStyle.NormalFocus, True)
+        MsgBox("数据库重置完毕。")
 
         'Dim createpvpgnstr As String
         'createpvpgnstr = String.Format("create database pvpgn")
@@ -906,27 +906,27 @@ Public Class Form1
         'reg_config.Close()
     End Sub
 
-    Private Sub Button_del_pvpgn_sql_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_del_pvpgn_sql.Click
-        Dim deletepvpgnstr As String
-        deletepvpgnstr = String.Format("drop database pvpgn")
-        Dim deletepvpgn As New MySqlCommand(deletepvpgnstr, conn)
-        Try
-            deletepvpgn.ExecuteNonQuery()
-        Catch ex As MySql.Data.MySqlClient.MySqlException
-            MessageBox.Show(ex.Number)
-            MessageBox.Show(ex.Message)
-            Exit Sub
-        End Try
-        MsgBox("数据库已清除！")
-        Dim reg_path = "SOFTWARE\\PvPGN GLQ"
-        Dim reg_config = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(reg_path, True)
-        If reg_config Is Nothing Then
-            reg_config = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(reg_path)
-        End If
-        If reg_config IsNot Nothing Then
-            reg_config.SetValue("初始化数据库", "0")
-        End If
-        reg_config.Close()
+    Private Sub Button_del_pvpgn_sql_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        'Dim deletepvpgnstr As String
+        'deletepvpgnstr = String.Format("drop database pvpgn")
+        'Dim deletepvpgn As New MySqlCommand(deletepvpgnstr, conn)
+        'Try
+        '    deletepvpgn.ExecuteNonQuery()
+        'Catch ex As MySql.Data.MySqlClient.MySqlException
+        '    MessageBox.Show(ex.Number)
+        '    MessageBox.Show(ex.Message)
+        '    Exit Sub
+        'End Try
+        'MsgBox("数据库已清除！")
+        'Dim reg_path = "SOFTWARE\\PvPGN GLQ"
+        'Dim reg_config = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(reg_path, True)
+        'If reg_config Is Nothing Then
+        '    reg_config = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(reg_path)
+        'End If
+        'If reg_config IsNot Nothing Then
+        '    reg_config.SetValue("初始化数据库", "0")
+        'End If
+        'reg_config.Close()
     End Sub
 
 
@@ -1284,22 +1284,15 @@ Public Class Form1
     Private Sub Button_bak_pvpgn_sql_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_bak_pvpgn_sql.Click
         Dim bakdatestr As String
         bakdatestr = Format(Now, "yyyy-MM-dd_HH.mm")
-        If RadioButton_system_x86.Checked = True Then
-            Try
-                Shell("mysqldump_x86.exe --host=" + TextBox_sql_serverip.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " --databases pvpgn --result-file=.\sqlbak\pvpgnbak" + bakdatestr + ".sql", AppWinStyle.Hide)
-                MessageBox.Show("备份数据成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Catch ex As Exception
-                MessageBox.Show(ex.Message)
-            End Try
-        Else
-            Try
-                Shell("mysqldump_x64.exe --host=" + TextBox_sql_serverip.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " --databases pvpgn --result-file=.\sqlbak\pvpgnbak" + bakdatestr + ".sql", AppWinStyle.Hide)
-                MessageBox.Show("备份数据成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Catch ex As Exception
-                MessageBox.Show(ex.Message)
-            End Try
 
-        End If
+        Try
+            Shell("d:\pvpgn\mysql\bin\mysqldump.exe --host=" + TextBox_sql_serverip.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " --databases pvpgn --result-file=d:\pvpgn\databak\sqlbak" + bakdatestr + ".sql", AppWinStyle.Hide, True)
+            MessageBox.Show("备份数据成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+
+
     End Sub
 
     Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles timer_dingshirenwu.Tick
@@ -1444,58 +1437,60 @@ Public Class Form1
     End Sub
 
     Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_add_flags_exp_date.Click
-        Dim pathbnet As New MySqlCommand("ALTER TABLE `pvpgn_bnet` ADD COLUMN `flags_exp_date` date NULL;", conn)
-        pathbnet.ExecuteNonQuery()
-        MsgBox("数据库已添加频道形象定时功能。")
+        'Dim pathbnet As New MySqlCommand("ALTER TABLE `pvpgn_bnet` ADD COLUMN `flags_exp_date` date NULL;", conn)
+        'pathbnet.ExecuteNonQuery()
+        'MsgBox("数据库已添加频道形象定时功能。")
 
-        Dim reg_path = "SOFTWARE\\PvPGN GLQ"
-        Dim reg_config = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(reg_path, True)
-        If reg_config Is Nothing Then
-            reg_config = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(reg_path)
-        End If
-        If reg_config IsNot Nothing Then
-            reg_config.SetValue("添加形象定时功能", "1")
-        End If
-        reg_config.Close()
-        showbutton()
+        'Dim reg_path = "SOFTWARE\\PvPGN GLQ"
+        'Dim reg_config = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(reg_path, True)
+        'If reg_config Is Nothing Then
+        '    reg_config = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(reg_path)
+        'End If
+        'If reg_config IsNot Nothing Then
+        '    reg_config.SetValue("添加形象定时功能", "1")
+        'End If
+        'reg_config.Close()
+        'showbutton()
     End Sub
 
     Private Sub Button_add_unset_lock_exp_date_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_add_unset_lock_exp_date.Click
-        Dim pathbnet As New MySqlCommand("ALTER TABLE `pvpgn_bnet` ADD COLUMN `lockk_exp_date` date NULL;", conn)
-        pathbnet.ExecuteNonQuery()
-        MsgBox("数据库已添加锁定定时功能。")
+        'Dim pathbnet As New MySqlCommand("ALTER TABLE `pvpgn_bnet` ADD COLUMN `lockk_exp_date` date NULL;", conn)
+        'pathbnet.ExecuteNonQuery()
+        'MsgBox("数据库已添加锁定定时功能。")
 
-        Dim reg_path = "SOFTWARE\\PvPGN GLQ"
-        Dim reg_config = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(reg_path, True)
-        If reg_config Is Nothing Then
-            reg_config = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(reg_path)
-        End If
-        If reg_config IsNot Nothing Then
-            reg_config.SetValue("添加锁定定时功能", "1")
-        End If
-        reg_config.Close()
-        showbutton()
+        'Dim reg_path = "SOFTWARE\\PvPGN GLQ"
+        'Dim reg_config = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(reg_path, True)
+        'If reg_config Is Nothing Then
+        '    reg_config = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(reg_path)
+        'End If
+        'If reg_config IsNot Nothing Then
+        '    reg_config.SetValue("添加锁定定时功能", "1")
+        'End If
+        'reg_config.Close()
+        'showbutton()
     End Sub
 
     Private Sub Button_add_unset_mute_exp_date_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_add_unset_mute_exp_date.Click
-        Dim pathbnet As New MySqlCommand("ALTER TABLE `pvpgn_bnet` ADD COLUMN `mute_exp_date` date NULL;", conn)
-        pathbnet.ExecuteNonQuery()
-        MsgBox("数据库已添加禁言定时功能。")
-        Dim reg_path = "SOFTWARE\\PvPGN GLQ"
-        Dim reg_config = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(reg_path, True)
-        If reg_config Is Nothing Then
-            reg_config = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(reg_path)
-        End If
-        If reg_config IsNot Nothing Then
-            reg_config.SetValue("添加禁言定时功能", "1")
-        End If
-        reg_config.Close()
-        showbutton()
+        'Dim pathbnet As New MySqlCommand("ALTER TABLE `pvpgn_bnet` ADD COLUMN `mute_exp_date` date NULL;", conn)
+        'pathbnet.ExecuteNonQuery()
+        'MsgBox("数据库已添加禁言定时功能。")
+        'Dim reg_path = "SOFTWARE\\PvPGN GLQ"
+        'Dim reg_config = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(reg_path, True)
+        'If reg_config Is Nothing Then
+        '    reg_config = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(reg_path)
+        'End If
+        'If reg_config IsNot Nothing Then
+        '    reg_config.SetValue("添加禁言定时功能", "1")
+        'End If
+        'reg_config.Close()
+        'showbutton()
     End Sub
 
     Private Sub Button_con_to_sql_EnabledChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button_con_to_sql.EnabledChanged
         showbutton()
     End Sub
 
+    Private Sub Label11_Click(sender As Object, e As EventArgs) Handles Label11.Click
 
+    End Sub
 End Class
