@@ -11,3 +11,4 @@ D:\GitHub\fullbnet\glq\PvPGN管理器\PvPGN管理器\obj\Debug\PvPGN管理器.Fo
 D:\GitHub\fullbnet\glq\PvPGN管理器\PvPGN管理器\bin\Debug\MySql.Data.dll
 D:\GitHub\fullbnet\glq\PvPGN管理器\PvPGN管理器\bin\Debug\Google.ProtocolBuffers.dll
 D:\GitHub\fullbnet\glq\PvPGN管理器\PvPGN管理器\bin\Debug\MySql.Data.xml
+D:\GitHub\fullbnet\glq\PvPGN管理器\PvPGN管理器\obj\Debug\PvPGN管理器.vbprojResolveAssemblyReference.cache
