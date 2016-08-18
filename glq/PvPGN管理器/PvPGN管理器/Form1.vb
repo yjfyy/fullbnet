@@ -376,7 +376,8 @@ Public Class Form_main
 
     Private Sub Button23_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button23.Click
         'MessageBox.Show("安装开始后会出现CMD窗口，当显示""Installing Service""后关掉CMD窗口")
-        Shell("PvPGNConsole.exe -s install", vbHide)
+        Shell("cmd /c d:\pvpgn\PvPGNConsole.exe -s install", AppWinStyle.Hide, True)
+        Microsoft.Win32.Registry.SetValue("HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\pvpgn", "DependOnService", New String() {"MySQL"}, Microsoft.Win32.RegistryValueKind.MultiString)
         'MessageBox.Show(i)
         MessageBox.Show("PvPGN已安装")
     End Sub
@@ -540,7 +541,7 @@ Public Class Form_main
         'maxgames = CInt(TextBox10.Text)
         Dim d2gsregname As String = "HKEY_LOCAL_MACHINE\SOFTWARE\D2Server\D2GS"
         Dim gs_telnet_password_hash As String
-        Shell("cmd /c bnhash.exe " & TextBox_d2gsconfig_telnet_password.Text & " >temp.txt", AppWinStyle.Hide)
+        Shell("cmd /c d:\pvpgn\bnhash.exe " & TextBox_d2gsconfig_telnet_password.Text & " >temp.txt", AppWinStyle.Hide)
         Microsoft.Win32.Registry.SetValue(d2gsregname, "D2CSIP", TextBox_d2gsconfig_d2csip.Text)
         Microsoft.Win32.Registry.SetValue(d2gsregname, "D2DBSIP", TextBox_d2gsconfig_d2dbsip.Text)
         Microsoft.Win32.Registry.SetValue(d2gsregname, "MaxGames", TextBox_d2gsconfig_maxgame.Text, Microsoft.Win32.RegistryValueKind.DWord)
@@ -1448,7 +1449,7 @@ Public Class Form_main
 
 
     Private Sub Button_fix_pvpgn_server_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_fix_pvpgn_server.Click
-        Microsoft.Win32.Registry.SetValue("HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\pvpgn", "DependOnService", New String() {"MySQL56"}, Microsoft.Win32.RegistryValueKind.MultiString)
+
         MsgBox("修正成功")
     End Sub
 

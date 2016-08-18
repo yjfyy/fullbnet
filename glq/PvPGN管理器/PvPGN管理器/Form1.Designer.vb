@@ -1431,12 +1431,14 @@ Partial Class Form_main
         '
         'Button_fix_pvpgn_server
         '
+        Me.Button_fix_pvpgn_server.Enabled = False
         Me.Button_fix_pvpgn_server.Location = New System.Drawing.Point(56, 138)
         Me.Button_fix_pvpgn_server.Name = "Button_fix_pvpgn_server"
         Me.Button_fix_pvpgn_server.Size = New System.Drawing.Size(114, 42)
         Me.Button_fix_pvpgn_server.TabIndex = 12
         Me.Button_fix_pvpgn_server.Text = " 修正Windows不" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "能启动PvPGN服务"
         Me.Button_fix_pvpgn_server.UseVisualStyleBackColor = True
+        Me.Button_fix_pvpgn_server.Visible = False
         '
         'Button39
         '
