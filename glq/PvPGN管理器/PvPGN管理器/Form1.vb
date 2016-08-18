@@ -587,7 +587,7 @@ Public Class Form_main
         If ssd2cs.Status.Equals(ServiceControllerStatus.Running) Then
             MessageBox.Show("请停止D2CS服务后重试")
         Else
-            Shell("d2csConsole.exe -s uninstall", vbHide)
+            Shell("cmd /c " + d2cs_server_string + "Console.exe -s uninstall", AppWinStyle.Hide, True)
             'MessageBox.Show(i)
             MessageBox.Show("卸载完成")
         End If
@@ -599,7 +599,7 @@ Public Class Form_main
         If ssd2dbs.Status.Equals(ServiceControllerStatus.Running) Then
             MessageBox.Show("请停止D2DBS服务后重试")
         Else
-            Shell("d2dbsConsole.exe -s uninstall", vbHide)
+            Shell("cmd /c" + d2dbs_server_string + "Console.exe -s uninstall", vbHide)
             'MessageBox.Show(i)
             MessageBox.Show("卸载完成")
         End If
