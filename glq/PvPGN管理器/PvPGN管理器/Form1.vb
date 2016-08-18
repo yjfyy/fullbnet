@@ -877,36 +877,7 @@ Public Class Form1
     End Sub
 
     Private Sub Button_create_pvpgn_sql_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_create_pvpgn_sql.Click
-        stop_mysql_server()
-
-        Try
-            Shell("D:\pvpgn\mysql\bin\mysqld.exe -remove")
-            Try
-                FileSystem.RmDir("D:\pvpgn\mysql\data")
-                Try
-                    Shell（“D:\pvpgn\mysql\data.exe”）
-                    Try
-                        Shell("D:\pvpgn\mysql\bin\mysqld.exe -install")
-                    Catch ex As Exception
-                        MsgBox("安装MySQL出错。")
-                    End Try
-                Catch ex As Exception
-                    MsgBox("未能重建数据。")
-                End Try
-            Catch ex As Exception
-                MsgBox("未能删除旧数据。")
-            End Try
-        Catch ex As Exception
-            MsgBox("未能删除MySQL服务。")
-        End Try
-
-
-
-
-
-
-
-        run_mysql_server()
+        Shell("D:\pvpgn\mysql\remysql.bat", AppWinStyle.MaximizedFocus, True, 10000)
 
 
         'Dim createpvpgnstr As String
