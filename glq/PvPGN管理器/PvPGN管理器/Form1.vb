@@ -470,8 +470,9 @@ Public Class Form_main
         For i = 0 To 4
             If System.IO.File.Exists(TextBox_d2_path.Text + "\" + d2gsneedfiles(i)) Then
                 ProgressBar1.Value = ProgressBar1.Value + 18
-                System.IO.File.Copy(TextBox_d2_path.Text + "\" + d2gsneedfiles(i), ".\d2gs\" + d2gsneedfiles(i), True)
-            Else : MsgBox(d2gsneedfiles(i) + "没有找到")
+                System.IO.File.Copy(TextBox_d2_path.Text + "\" + d2gsneedfiles(i), "d:\pvpgn\d2gs\" + d2ver + "\" + d2gsneedfiles(i), True)
+            Else
+                MsgBox(d2gsneedfiles(i) + "没有找到")
             End If
         Next
         ProgressBar1.Value = 100
@@ -1171,9 +1172,9 @@ Public Class Form_main
             End If
             If reg_config.GetValue("RadioButton_d2_110", "1") = "1" Then
                 RadioButton_d2_110.Checked = True
-                d2ver = "1.09c"
-            Else
                 d2ver = "1.13c"
+            Else
+                d2ver = "1.09d"
             End If
             TextBox_acc_username.Text = reg_config.GetValue("Textbox_acc_username", "")
 

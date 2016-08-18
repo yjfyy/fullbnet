@@ -36,7 +36,7 @@ Partial Class Form_main
         Me.TextBox_sql_serverip = New System.Windows.Forms.TextBox()
         Me.Button_con_to_sql = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox_d2_ver = New System.Windows.Forms.GroupBox()
         Me.RadioButton_d2_110 = New System.Windows.Forms.RadioButton()
         Me.RadioButton_d2_109 = New System.Windows.Forms.RadioButton()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
@@ -191,7 +191,7 @@ Partial Class Form_main
         Me.FolderBrowserDialog_diabloII_dir = New System.Windows.Forms.FolderBrowserDialog()
         Me.OpenFileDialog_mysqlbakfiles_name = New System.Windows.Forms.OpenFileDialog()
         Me.GroupBox1.SuspendLayout()
-        Me.GroupBox3.SuspendLayout()
+        Me.GroupBox_d2_ver.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -330,16 +330,16 @@ Partial Class Form_main
         Me.Button3.Text = "恢复默认设置"
         Me.Button3.UseVisualStyleBackColor = True
         '
-        'GroupBox3
+        'GroupBox_d2_ver
         '
-        Me.GroupBox3.Controls.Add(Me.RadioButton_d2_110)
-        Me.GroupBox3.Controls.Add(Me.RadioButton_d2_109)
-        Me.GroupBox3.Location = New System.Drawing.Point(347, 130)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(224, 42)
-        Me.GroupBox3.TabIndex = 34
-        Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "暗黑版本"
+        Me.GroupBox_d2_ver.Controls.Add(Me.RadioButton_d2_110)
+        Me.GroupBox_d2_ver.Controls.Add(Me.RadioButton_d2_109)
+        Me.GroupBox_d2_ver.Location = New System.Drawing.Point(347, 130)
+        Me.GroupBox_d2_ver.Name = "GroupBox_d2_ver"
+        Me.GroupBox_d2_ver.Size = New System.Drawing.Size(224, 42)
+        Me.GroupBox_d2_ver.TabIndex = 34
+        Me.GroupBox_d2_ver.TabStop = False
+        Me.GroupBox_d2_ver.Text = "暗黑版本"
         '
         'RadioButton_d2_110
         '
@@ -357,10 +357,10 @@ Partial Class Form_main
         Me.RadioButton_d2_109.Checked = True
         Me.RadioButton_d2_109.Location = New System.Drawing.Point(42, 20)
         Me.RadioButton_d2_109.Name = "RadioButton_d2_109"
-        Me.RadioButton_d2_109.Size = New System.Drawing.Size(47, 16)
+        Me.RadioButton_d2_109.Size = New System.Drawing.Size(53, 16)
         Me.RadioButton_d2_109.TabIndex = 0
         Me.RadioButton_d2_109.TabStop = True
-        Me.RadioButton_d2_109.Text = "1.09"
+        Me.RadioButton_d2_109.Text = "1.09D"
         Me.RadioButton_d2_109.UseVisualStyleBackColor = True
         '
         'GroupBox2
@@ -1942,15 +1942,15 @@ Partial Class Form_main
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.GroupBox3)
+        Me.Controls.Add(Me.GroupBox_d2_ver)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "Form_main"
         Me.Text = "PvPGN管理器"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        Me.GroupBox3.ResumeLayout(False)
-        Me.GroupBox3.PerformLayout()
+        Me.GroupBox_d2_ver.ResumeLayout(False)
+        Me.GroupBox_d2_ver.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
@@ -1987,7 +1987,7 @@ Partial Class Form_main
     Friend WithEvents TextBox_sql_serverip As TextBox
     Friend WithEvents Button_con_to_sql As Button
     Friend WithEvents Button3 As Button
-    Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents GroupBox_d2_ver As GroupBox
     Friend WithEvents RadioButton_d2_110 As RadioButton
     Friend WithEvents RadioButton_d2_109 As RadioButton
     Friend WithEvents GroupBox2 As GroupBox
