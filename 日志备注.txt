@@ -37,3 +37,7 @@ D2Win.dll
 Fog.dll
 ijl11.dll
 Storm.dll
+
+win2003安装过程
+1，安装wic 32和64对应系统。
+2，
