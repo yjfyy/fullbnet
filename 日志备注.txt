@@ -16,13 +16,13 @@ cn_windows_server_2012_r2_vl_with_update_x64_dvd_6052729.iso
 系统自带 .net 4.5
 
 d2gs所需d2文件
+
 d2data.mpq
 d2exp.mpq
 d2sfx.mpq
 d2speech.mpq
 Patch_D2.mpq
-D2GS.exe
-D2GSSVC.exe
+
 D2Client.dll
 D2CMP.dll
 D2Common.dll
@@ -31,12 +31,15 @@ D2gfx.dll
 D2Lang.dll
 D2MCPClient.dll
 D2Net.dll
-d2server.dll
 D2sound.dll
 D2Win.dll
 Fog.dll
 ijl11.dll
 Storm.dll
+
+d2server.dll
+D2GS.exe
+D2GSSVC.exe
 
 win2003安装过程
 1，安装wic 32和64对应系统。

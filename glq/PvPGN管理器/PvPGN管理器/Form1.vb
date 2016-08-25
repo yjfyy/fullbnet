@@ -145,10 +145,10 @@ Public Class Form_main
             reg_config.SetValue("TextBox_sql_serverip", TextBox_sql_serverip.Text)
             reg_config.SetValue("TextBox_sql_root", TextBox_sql_root.Text)
             reg_config.SetValue("TextBox_database_name.Text", TextBox_database_name.Text)
-            If RadioButton_system_x64.Checked = True Then
-                reg_config.SetValue("RadioButton_system_x64", "1")
+            If RadioButton_win_ver_2012.Checked = True Then
+                reg_config.SetValue("RadioButton_win_ver_2012.Checked", "1")
             Else
-                reg_config.SetValue("RadioButton_system_x64", "0")
+                reg_config.SetValue("RadioButton_win_ver_2012.Checked", "0")
             End If
 
             If RadioButton_d2_110.Checked = True Then
@@ -504,6 +504,11 @@ Public Class Form_main
 
 
     Private Sub d2gsdefconf()
+        '兼容性
+        Dim jianrongxing As String = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers"
+        'Microsoft.Win32.Registry.SetValue(jianrongxing, "D:\pvpgn\d2gs\1.13c\D2GS.exe", "~ RUNASADMIN WIN7RTM")
+        Microsoft.Win32.Registry.SetValue(jianrongxing, "D:\pvpgn\d2gs\1.09d\D2GS.exe", "~ RUNASADMIN WIN7RTM")
+
         '32位兼容
         Dim d2gsregname As String = "HKEY_LOCAL_MACHINE\SOFTWARE\D2Server\D2GS"
         Microsoft.Win32.Registry.SetValue(d2gsregname, "", """Diablo II Close Game Server""")
@@ -588,10 +593,8 @@ Public Class Form_main
         Microsoft.Win32.Registry.SetValue(d2gsregname, "MaxGames", TextBox_d2gsconfig_maxgame.Text, Microsoft.Win32.RegistryValueKind.DWord)
         Microsoft.Win32.Registry.SetValue(d2gsregname, "MaxGameLife", TextBox_d2gsconfig_MaxGameLife.Text)
         Microsoft.Win32.Registry.SetValue(d2gsregname, "AdminPassword", gs_telnet_password_hash)
-
-        MsgBox("请重启D2GS，使新设置生效")
-
         My.Computer.FileSystem.DeleteFile("temp.txt")
+        MsgBox("请重启D2GS，使新设置生效")
     End Sub
 
 
@@ -1225,13 +1228,13 @@ Public Class Form_main
             TextBox_sql_serverip.Text = reg_config.GetValue("TextBox_sql_serverip", "127.0.0.1")
             TextBox_sql_root.Text = reg_config.GetValue("TextBox_sql_root", "root")
             TextBox_database_name.Text = reg_config.GetValue("TextBox_database_name.Text", "pvpgn")
-            If reg_config.GetValue("RadioButton_system_x64", "1") = "1" Then
-                RadioButton_system_x64.Checked = True
+            If reg_config.GetValue("RadioButton_win_ver_2012.Checked", "1") = "1" Then
+                RadioButton_win_ver_2012.Checked = True
             Else
-                RadioButton_system_x86.Checked = True
+                RadioButton_win_ver_2008.Checked = True
             End If
-            If reg_config.GetValue("RadioButton_d2_110", "1") = "1" Then
-                RadioButton_d2_110.Checked = True
+            If reg_config.GetValue("RadioButton_d2_110", "0") = "0" Then
+                RadioButton_d2_109.Checked = True
             Else
 
             End If
@@ -1358,6 +1361,165 @@ Public Class Form_main
     End Sub
 
     Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles timer_dingshirenwu.Tick
+        Dim time_hm As String
+        time_hm = Now.Hour.ToString + Now.Minute.ToString
+
+        '备份数据库
+        If CheckBox_timer_backup.Checked = True And CheckBox_timer_backup.Enabled = True And ComboBox_backup_h.Text + ComboBox_backup_m.Text = time_hm Then
+
+            Dim bakdatestr As String
+            bakdatestr = Format(Now, "yyyy-MM-dd_HH.mm")
+
+            Try
+                Shell("cmd /c d:\pvpgn\mysql\bin\mysqldump.exe --host=" + TextBox_sql_serverip.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " --databases pvpgn --result-file=d:\pvpgn\databak\sqlbak" + bakdatestr + ".sql", AppWinStyle.Hide, True)
+                'MessageBox.Show("备份数据成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Catch ex As Exception
+                'MessageBox.Show(ex.Message)
+            End Try
+
+        End If
+        '备份数据库结束
+
+        '锁定用户
+        If CheckBox_timer_autolock.Checked = True And CheckBox_timer_autolock.Enabled = True And ComboBox_auto_lock_houre.Text + ComboBox_auto_lock_m.Text = time_hm Then
+            Dim d1970 As New System.DateTime(1970, 1, 1, 0, 0, 0, 0)
+            Dim iSeconds As Long
+            iSeconds = (Now.Ticks - d1970.Ticks) / 10000000
+            Dim lock_day_to_m As Long
+            lock_day_to_m = Val(TextBox_auto_lock_day.Text) * 24 * 60 * 60
+            Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
+            Dim set_lockk_str As String
+            set_lockk_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_lockk`='1' WHERE ('{0}' - `acct_lastlogin_time` > '{1}') LIMIT 1000", iSeconds, lock_day_to_m)
+            Dim set_lockk As New MySqlCommand(set_lockk_str, conn)
+            selectpvpgn.ExecuteNonQuery()
+            set_lockk.ExecuteNonQuery()
+            Label_timer_zhuangtai.Text = "于" + time_hm + "执行锁定任务。"
+        End If
+
+        '锁定用户停止
+
+        '停止服务
+        If CheckBox_timer_stop_pvpgn.Checked = True And ComboBox_stop_pvpgn_houre.Text + ComboBox_stop_pvpgn_m.Text = time_hm Then
+            If CheckBox_pvpgn.Checked = True Then
+                Dim sspvpgn As New ServiceController("pvpgn")
+                Try
+                    If sspvpgn.Status <> ServiceControllerStatus.Stopped Then
+                        sspvpgn.Stop()
+                        sspvpgn.WaitForStatus(ServiceControllerStatus.Stopped, outtime)
+                        Label_timer_zhuangtai.Text = "于" + time_hm + "停止成功"
+                    End If
+                Catch ex As Exception
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "停止失败"
+                End Try
+            End If
+
+            If CheckBox_d2cs.Checked = True Then
+                Dim ssd2cs As New ServiceController(d2cs_server_string)
+                Try
+                    If ssd2cs.Status <> ServiceControllerStatus.Stopped Then
+                        ssd2cs.Stop()
+                        ssd2cs.WaitForStatus(ServiceControllerStatus.Stopped, outtime)
+                        Label_timer_zhuangtai.Text = "于" + time_hm + "停止成功"
+                    End If
+                Catch ex As Exception
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "停止失败"
+                End Try
+            End If
+
+            If CheckBox_d2dbs.Checked = True Then
+                Dim ssd2dbs As New ServiceController(d2dbs_server_string)
+                Try
+                    If ssd2dbs.Status <> ServiceControllerStatus.Stopped Then
+                        ssd2dbs.Stop()
+                        ssd2dbs.WaitForStatus(ServiceControllerStatus.Stopped, outtime)
+                        Label_timer_zhuangtai.Text = "于" + time_hm + "停止成功"
+                    End If
+                Catch ex As Exception
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "停止失败"
+                End Try
+            End If
+
+            If CheckBox_d2gs.Checked = True Then
+                Dim ssd2gs As New ServiceController("d2gs")
+                Try
+                    If ssd2gs.Status <> ServiceControllerStatus.Stopped Then
+                        ssd2gs.Stop()
+                        ssd2gs.WaitForStatus(ServiceControllerStatus.Stopped, outtime)
+                        Label_timer_zhuangtai.Text = "于" + time_hm + "停止成功"
+                    End If
+                Catch ex As Exception
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "停止失败"
+                End Try
+            End If
+            shuaxin()
+
+            If CheckBox_re_jisuanji.Checked = True Then
+                Shell("cmd /c shutdown.exe /r /t 30 /c ""PvPGN管理器定时重启"" /f", AppWinStyle.NormalFocus)
+            End If
+        End If
+        '停止服务结束
+
+        '启动服务
+        If CheckBox_timer_re_pvpgn.Checked = True And ComboBox_re_pvpgn_houre.Text + ComboBox_re_pvpgn_m.Text = time_hm Then
+            If CheckBox_pvpgn.Checked = True Then
+                Dim sspvpgn As New ServiceController("pvpgn")
+                Try
+                    sspvpgn.Start()
+                    sspvpgn.WaitForStatus(ServiceControllerStatus.Running, outtime)
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "启动成功"
+                Catch When sspvpgn.Status = ServiceControllerStatus.Running
+                    Exit Sub
+                Catch ex As Exception
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "停止失败"
+                    Exit Sub
+                End Try
+            End If
+
+            If CheckBox_d2cs.Checked = True Then
+                Dim ssd2cs As New ServiceController(d2cs_server_string)
+                Try
+                    ssd2cs.Start()
+                    ssd2cs.WaitForStatus(ServiceControllerStatus.Running, outtime)
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "启动成功"
+                Catch When ssd2cs.Status = ServiceControllerStatus.Running
+                    Exit Sub
+                Catch ex As Exception
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "启动失败"
+                    Exit Sub
+                End Try
+            End If
+
+            If CheckBox_d2dbs.Checked = True Then
+                Dim ssd2dbs As New ServiceController(d2dbs_server_string)
+                Try
+                    ssd2dbs.Start()
+                    ssd2dbs.WaitForStatus(ServiceControllerStatus.Running, outtime)
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "启动成功"
+                Catch When ssd2dbs.Status = ServiceControllerStatus.Running
+                    Exit Sub
+                Catch ex As Exception
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "启动失败"
+                    Exit Sub
+                End Try
+            End If
+
+            If CheckBox_d2gs.Checked = True Then
+                Dim ssd2gs As New ServiceController("d2gs")
+                Try
+                    ssd2gs.Start()
+                    ssd2gs.WaitForStatus(ServiceControllerStatus.Running, outtime)
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "启动成功"
+                Catch When ssd2gs.Status = ServiceControllerStatus.Running
+                    Exit Sub
+                Catch ex As Exception
+                    Label_timer_zhuangtai.Text = "于" + time_hm + "启动失败"
+                    Exit Sub
+                End Try
+            End If
+            shuaxin()
+        End If
+        '启动服务结束
+
 
     End Sub
 
@@ -1561,6 +1723,67 @@ Public Class Form_main
     End Sub
 
     Private Sub Label47_Click(sender As Object, e As EventArgs) Handles Label47.Click
+
+    End Sub
+
+    Private Sub CheckBox_timer_stop_pvpgn_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_timer_stop_pvpgn.CheckedChanged
+
+    End Sub
+
+    Private Sub Timer_exp_date_Tick(sender As Object, e As EventArgs) Handles Timer_exp_date.Tick
+        '自动断开，再重连数据库，避免mysql判断超时断开连接。
+        conn.Close()
+        If Not conn Is Nothing Then conn.Close()
+        Dim connStr As String
+        connStr = String.Format("server={0};user id={1}; password={2}; database={3}; pooling=false",
+    TextBox_sql_serverip.Text, TextBox_sql_root.Text, TextBox_sql_password.Text, TextBox_database_name.Text)
+        Try
+            conn = New MySqlConnection(connStr)
+            conn.Open()
+            Button_con_to_sql.Enabled = False
+            'GetDatabases()
+            'Catch ex As MySqlException
+            '
+        Catch ex As MySql.Data.MySqlClient.MySqlException
+            'Select Case ex.Number
+            ' Case 0
+            ' MessageBox.Show("账号密码不对")
+            ' Case 1042
+            '  MessageBox.Show("找不到服务器")
+
+            ' End Select
+            'MessageBox.Show(ex.Number)
+            'MessageBox.Show(ex.Message)
+        End Try
+        '自动断开再重连结束
+
+        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
+        '解除禁言
+        Dim set_unmute_str As String
+        set_unmute_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_mute`='0' WHERE (`mute_exp_date` <= '{0}') LIMIT 3000", Date.Now)
+        Dim set_unmute As New MySqlCommand(set_unmute_str, conn)
+        '解除锁定
+        Dim set_unlock_str As String
+        set_unlock_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_lockk`='0' WHERE (`lockk_exp_date` <= '{0}') LIMIT 3000", Date.Now)
+        Dim set_unlock As New MySqlCommand(set_unlock_str, conn)
+        '去除形象
+        Dim set_del_flags_str As String
+        set_del_flags_str = String.Format("UPDATE `pvpgn_bnet` SET `flags_initial`='0' WHERE (`flags_exp_date` <= '{0}') LIMIT 3000", Date.Now)
+        Dim set_del_flags As New MySqlCommand(set_del_flags_str, conn)
+        '执行
+        selectpvpgn.ExecuteNonQuery()
+        set_unmute.ExecuteNonQuery()
+        set_unlock.ExecuteNonQuery()
+        set_del_flags.ExecuteNonQuery()
+    End Sub
+
+    Private Sub Button_mysql_config_Click(sender As Object, e As EventArgs) Handles Button_mysql_config.Click
+        Try
+            Shell("d:\pvpgn\mysql\bin\MySQLInstanceConfig.exe")
+        Catch ex As Exception
+
+        End Try
+
 
     End Sub
 End Class
