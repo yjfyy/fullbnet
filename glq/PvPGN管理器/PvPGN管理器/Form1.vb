@@ -576,9 +576,11 @@ Public Class Form_main
     Private Sub Button32_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button32.Click
         'Dim maxgames As Integer
         'maxgames = CInt(TextBox10.Text)
+        '用bnpass.exe生成temp.txt文件，再把文件读取后截取hash，赋值给gs_telnet_password_hash变量
         Dim gs_telnet_password_hash As String
-        Shell("cmd /c d:\pvpgn\bnhash.exe " & TextBox_d2gsconfig_telnet_password.Text & " >temp.txt", AppWinStyle.Hide, True)
-        gs_telnet_password_hash = My.Computer.FileSystem.ReadAllText("temp.txt")
+        Shell("cmd /c d:\pvpgn\bnpass.exe " & TextBox_d2gsconfig_telnet_password.Text & " >temp.txt", AppWinStyle.Hide, True)
+        gs_telnet_password_hash = Mid(My.Computer.FileSystem.ReadAllText("temp.txt"), 26, 40)
+
         '32位兼容
         Dim d2gsregname As String = "HKEY_LOCAL_MACHINE\SOFTWARE\D2Server\D2GS"
         Microsoft.Win32.Registry.SetValue(d2gsregname, "D2CSIP", TextBox_d2gsconfig_d2csip.Text)
