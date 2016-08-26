@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Form_main
     Inherits System.Windows.Forms.Form
 
     'Form 重写 Dispose，以清理组件列表。
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Form_main
     '注意: 以下过程是 Windows 窗体设计器所必需的
     '可以使用 Windows 窗体设计器修改它。  
     '不要使用代码编辑器修改它。
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -37,11 +37,11 @@ Partial Class Form_main
         Me.Button_con_to_sql = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.GroupBox_d2_ver = New System.Windows.Forms.GroupBox()
-        Me.RadioButton_d2_110 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton_d2_113C = New System.Windows.Forms.RadioButton()
         Me.RadioButton_d2_109 = New System.Windows.Forms.RadioButton()
         Me.GroupBox_win_ver = New System.Windows.Forms.GroupBox()
         Me.RadioButton_win_ver_2012 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton_win_ver_2008 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton_win_ver_2003 = New System.Windows.Forms.RadioButton()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.Label46 = New System.Windows.Forms.Label()
@@ -151,7 +151,7 @@ Partial Class Form_main
         Me.TextBox_d2gsconfig_MaxGameLife = New System.Windows.Forms.TextBox()
         Me.TextBox_d2gsconfig_telnet_password = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.Button32 = New System.Windows.Forms.Button()
+        Me.Button_d2gs_config = New System.Windows.Forms.Button()
         Me.Label23 = New System.Windows.Forms.Label()
         Me.TextBox_d2gsconfig_maxgame = New System.Windows.Forms.TextBox()
         Me.TextBox_d2gsconfig_d2dbsip = New System.Windows.Forms.TextBox()
@@ -165,9 +165,13 @@ Partial Class Form_main
         Me.Label20 = New System.Windows.Forms.Label()
         Me.TextBox_d2_path = New System.Windows.Forms.TextBox()
         Me.Label19 = New System.Windows.Forms.Label()
-        Me.Button26 = New System.Windows.Forms.Button()
-        Me.Button24 = New System.Windows.Forms.Button()
+        Me.Button_d2gs_uninstall = New System.Windows.Forms.Button()
+        Me.Button_d2gs_install = New System.Windows.Forms.Button()
         Me.TabPage7 = New System.Windows.Forms.TabPage()
+        Me.Button_mysql_uninstall = New System.Windows.Forms.Button()
+        Me.Label50 = New System.Windows.Forms.Label()
+        Me.TextBox_mysql_password2 = New System.Windows.Forms.TextBox()
+        Me.TextBox_mysql_password1 = New System.Windows.Forms.TextBox()
         Me.Label49 = New System.Windows.Forms.Label()
         Me.Button_mysql_config = New System.Windows.Forms.Button()
         Me.Label47 = New System.Windows.Forms.Label()
@@ -178,7 +182,7 @@ Partial Class Form_main
         Me.Button_res_pvpgn_sql = New System.Windows.Forms.Button()
         Me.Button_bak_pvpgn_sql = New System.Windows.Forms.Button()
         Me.Label24 = New System.Windows.Forms.Label()
-        Me.Button_create_pvpgn_sql = New System.Windows.Forms.Button()
+        Me.Button_install_mysql = New System.Windows.Forms.Button()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Button_add_unset_mute_exp_date = New System.Windows.Forms.Button()
         Me.Button_add_unset_lock_exp_date = New System.Windows.Forms.Button()
@@ -335,7 +339,7 @@ Partial Class Form_main
         '
         'GroupBox_d2_ver
         '
-        Me.GroupBox_d2_ver.Controls.Add(Me.RadioButton_d2_110)
+        Me.GroupBox_d2_ver.Controls.Add(Me.RadioButton_d2_113C)
         Me.GroupBox_d2_ver.Controls.Add(Me.RadioButton_d2_109)
         Me.GroupBox_d2_ver.Location = New System.Drawing.Point(347, 130)
         Me.GroupBox_d2_ver.Name = "GroupBox_d2_ver"
@@ -344,16 +348,15 @@ Partial Class Form_main
         Me.GroupBox_d2_ver.TabStop = False
         Me.GroupBox_d2_ver.Text = "暗黑版本"
         '
-        'RadioButton_d2_110
+        'RadioButton_d2_113C
         '
-        Me.RadioButton_d2_110.AutoSize = True
-        Me.RadioButton_d2_110.Enabled = False
-        Me.RadioButton_d2_110.Location = New System.Drawing.Point(141, 20)
-        Me.RadioButton_d2_110.Name = "RadioButton_d2_110"
-        Me.RadioButton_d2_110.Size = New System.Drawing.Size(77, 16)
-        Me.RadioButton_d2_110.TabIndex = 1
-        Me.RadioButton_d2_110.Text = "1.10-1.13"
-        Me.RadioButton_d2_110.UseVisualStyleBackColor = True
+        Me.RadioButton_d2_113C.AutoSize = True
+        Me.RadioButton_d2_113C.Location = New System.Drawing.Point(141, 20)
+        Me.RadioButton_d2_113C.Name = "RadioButton_d2_113C"
+        Me.RadioButton_d2_113C.Size = New System.Drawing.Size(53, 16)
+        Me.RadioButton_d2_113C.TabIndex = 1
+        Me.RadioButton_d2_113C.Text = "1.13C"
+        Me.RadioButton_d2_113C.UseVisualStyleBackColor = True
         '
         'RadioButton_d2_109
         '
@@ -370,7 +373,7 @@ Partial Class Form_main
         'GroupBox_win_ver
         '
         Me.GroupBox_win_ver.Controls.Add(Me.RadioButton_win_ver_2012)
-        Me.GroupBox_win_ver.Controls.Add(Me.RadioButton_win_ver_2008)
+        Me.GroupBox_win_ver.Controls.Add(Me.RadioButton_win_ver_2003)
         Me.GroupBox_win_ver.Location = New System.Drawing.Point(12, 130)
         Me.GroupBox_win_ver.Name = "GroupBox_win_ver"
         Me.GroupBox_win_ver.Size = New System.Drawing.Size(217, 42)
@@ -390,15 +393,15 @@ Partial Class Form_main
         Me.RadioButton_win_ver_2012.Text = "Win2012"
         Me.RadioButton_win_ver_2012.UseVisualStyleBackColor = True
         '
-        'RadioButton_win_ver_2008
+        'RadioButton_win_ver_2003
         '
-        Me.RadioButton_win_ver_2008.AutoSize = True
-        Me.RadioButton_win_ver_2008.Location = New System.Drawing.Point(6, 20)
-        Me.RadioButton_win_ver_2008.Name = "RadioButton_win_ver_2008"
-        Me.RadioButton_win_ver_2008.Size = New System.Drawing.Size(101, 16)
-        Me.RadioButton_win_ver_2008.TabIndex = 31
-        Me.RadioButton_win_ver_2008.Text = "Win2008及以下"
-        Me.RadioButton_win_ver_2008.UseVisualStyleBackColor = True
+        Me.RadioButton_win_ver_2003.AutoSize = True
+        Me.RadioButton_win_ver_2003.Location = New System.Drawing.Point(6, 20)
+        Me.RadioButton_win_ver_2003.Name = "RadioButton_win_ver_2003"
+        Me.RadioButton_win_ver_2003.Size = New System.Drawing.Size(65, 16)
+        Me.RadioButton_win_ver_2003.TabIndex = 31
+        Me.RadioButton_win_ver_2003.Text = "Win2003"
+        Me.RadioButton_win_ver_2003.UseVisualStyleBackColor = True
         '
         'TabControl1
         '
@@ -1528,7 +1531,7 @@ Partial Class Form_main
         Me.TabPage6.Controls.Add(Me.TextBox_d2gsconfig_MaxGameLife)
         Me.TabPage6.Controls.Add(Me.TextBox_d2gsconfig_telnet_password)
         Me.TabPage6.Controls.Add(Me.Label6)
-        Me.TabPage6.Controls.Add(Me.Button32)
+        Me.TabPage6.Controls.Add(Me.Button_d2gs_config)
         Me.TabPage6.Controls.Add(Me.Label23)
         Me.TabPage6.Controls.Add(Me.TextBox_d2gsconfig_maxgame)
         Me.TabPage6.Controls.Add(Me.TextBox_d2gsconfig_d2dbsip)
@@ -1586,14 +1589,14 @@ Partial Class Form_main
         Me.Label6.TabIndex = 7
         Me.Label6.Text = "GS Telnet 密码："
         '
-        'Button32
+        'Button_d2gs_config
         '
-        Me.Button32.Location = New System.Drawing.Point(436, 164)
-        Me.Button32.Name = "Button32"
-        Me.Button32.Size = New System.Drawing.Size(75, 23)
-        Me.Button32.TabIndex = 6
-        Me.Button32.Text = "应用"
-        Me.Button32.UseVisualStyleBackColor = True
+        Me.Button_d2gs_config.Location = New System.Drawing.Point(436, 164)
+        Me.Button_d2gs_config.Name = "Button_d2gs_config"
+        Me.Button_d2gs_config.Size = New System.Drawing.Size(75, 23)
+        Me.Button_d2gs_config.TabIndex = 6
+        Me.Button_d2gs_config.Text = "应用"
+        Me.Button_d2gs_config.UseVisualStyleBackColor = True
         '
         'Label23
         '
@@ -1654,8 +1657,8 @@ Partial Class Form_main
         Me.TabPage5.Controls.Add(Me.Label20)
         Me.TabPage5.Controls.Add(Me.TextBox_d2_path)
         Me.TabPage5.Controls.Add(Me.Label19)
-        Me.TabPage5.Controls.Add(Me.Button26)
-        Me.TabPage5.Controls.Add(Me.Button24)
+        Me.TabPage5.Controls.Add(Me.Button_d2gs_uninstall)
+        Me.TabPage5.Controls.Add(Me.Button_d2gs_install)
         Me.TabPage5.Location = New System.Drawing.Point(4, 22)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
@@ -1718,26 +1721,30 @@ Partial Class Form_main
         Me.Label19.TabIndex = 11
         Me.Label19.Text = "安装D2GS之前，注意选择正确的服务器系统，及D2GS版本，否将GS服务将工作不正常。"
         '
-        'Button26
+        'Button_d2gs_uninstall
         '
-        Me.Button26.Location = New System.Drawing.Point(304, 136)
-        Me.Button26.Name = "Button26"
-        Me.Button26.Size = New System.Drawing.Size(75, 23)
-        Me.Button26.TabIndex = 10
-        Me.Button26.Text = "卸载D2GS"
-        Me.Button26.UseVisualStyleBackColor = True
+        Me.Button_d2gs_uninstall.Location = New System.Drawing.Point(304, 136)
+        Me.Button_d2gs_uninstall.Name = "Button_d2gs_uninstall"
+        Me.Button_d2gs_uninstall.Size = New System.Drawing.Size(75, 23)
+        Me.Button_d2gs_uninstall.TabIndex = 10
+        Me.Button_d2gs_uninstall.Text = "卸载D2GS"
+        Me.Button_d2gs_uninstall.UseVisualStyleBackColor = True
         '
-        'Button24
+        'Button_d2gs_install
         '
-        Me.Button24.Location = New System.Drawing.Point(157, 136)
-        Me.Button24.Name = "Button24"
-        Me.Button24.Size = New System.Drawing.Size(75, 23)
-        Me.Button24.TabIndex = 9
-        Me.Button24.Text = "安装D2GS"
-        Me.Button24.UseVisualStyleBackColor = True
+        Me.Button_d2gs_install.Location = New System.Drawing.Point(157, 136)
+        Me.Button_d2gs_install.Name = "Button_d2gs_install"
+        Me.Button_d2gs_install.Size = New System.Drawing.Size(75, 23)
+        Me.Button_d2gs_install.TabIndex = 9
+        Me.Button_d2gs_install.Text = "安装D2GS"
+        Me.Button_d2gs_install.UseVisualStyleBackColor = True
         '
         'TabPage7
         '
+        Me.TabPage7.Controls.Add(Me.Button_mysql_uninstall)
+        Me.TabPage7.Controls.Add(Me.Label50)
+        Me.TabPage7.Controls.Add(Me.TextBox_mysql_password2)
+        Me.TabPage7.Controls.Add(Me.TextBox_mysql_password1)
         Me.TabPage7.Controls.Add(Me.Label49)
         Me.TabPage7.Controls.Add(Me.Button_mysql_config)
         Me.TabPage7.Controls.Add(Me.Label47)
@@ -1748,7 +1755,7 @@ Partial Class Form_main
         Me.TabPage7.Controls.Add(Me.Button_res_pvpgn_sql)
         Me.TabPage7.Controls.Add(Me.Button_bak_pvpgn_sql)
         Me.TabPage7.Controls.Add(Me.Label24)
-        Me.TabPage7.Controls.Add(Me.Button_create_pvpgn_sql)
+        Me.TabPage7.Controls.Add(Me.Button_install_mysql)
         Me.TabPage7.Controls.Add(Me.Label11)
         Me.TabPage7.Controls.Add(Me.Button_add_unset_mute_exp_date)
         Me.TabPage7.Controls.Add(Me.Button_add_unset_lock_exp_date)
@@ -1762,22 +1769,56 @@ Partial Class Form_main
         Me.TabPage7.Text = "数据库管理"
         Me.TabPage7.UseVisualStyleBackColor = True
         '
+        'Button_mysql_uninstall
+        '
+        Me.Button_mysql_uninstall.Location = New System.Drawing.Point(470, 27)
+        Me.Button_mysql_uninstall.Name = "Button_mysql_uninstall"
+        Me.Button_mysql_uninstall.Size = New System.Drawing.Size(75, 23)
+        Me.Button_mysql_uninstall.TabIndex = 46
+        Me.Button_mysql_uninstall.Text = "卸载数据库"
+        Me.Button_mysql_uninstall.UseVisualStyleBackColor = True
+        '
+        'Label50
+        '
+        Me.Label50.AutoSize = True
+        Me.Label50.Location = New System.Drawing.Point(6, 77)
+        Me.Label50.Name = "Label50"
+        Me.Label50.Size = New System.Drawing.Size(65, 12)
+        Me.Label50.TabIndex = 45
+        Me.Label50.Text = "修改密码："
+        '
+        'TextBox_mysql_password2
+        '
+        Me.TextBox_mysql_password2.Location = New System.Drawing.Point(186, 74)
+        Me.TextBox_mysql_password2.Name = "TextBox_mysql_password2"
+        Me.TextBox_mysql_password2.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.TextBox_mysql_password2.Size = New System.Drawing.Size(100, 21)
+        Me.TextBox_mysql_password2.TabIndex = 44
+        '
+        'TextBox_mysql_password1
+        '
+        Me.TextBox_mysql_password1.Location = New System.Drawing.Point(77, 74)
+        Me.TextBox_mysql_password1.Name = "TextBox_mysql_password1"
+        Me.TextBox_mysql_password1.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.TextBox_mysql_password1.Size = New System.Drawing.Size(100, 21)
+        Me.TextBox_mysql_password1.TabIndex = 43
+        '
         'Label49
         '
         Me.Label49.AutoSize = True
-        Me.Label49.Location = New System.Drawing.Point(156, 77)
+        Me.Label49.Location = New System.Drawing.Point(305, 78)
         Me.Label49.Name = "Label49"
-        Me.Label49.Size = New System.Drawing.Size(269, 12)
+        Me.Label49.Size = New System.Drawing.Size(137, 12)
         Me.Label49.TabIndex = 42
-        Me.Label49.Text = "如无必要，请勿运行，需要修改请详细阅读说明。"
+        Me.Label49.Text = "修改密码后一定要牢记！"
         '
         'Button_mysql_config
         '
-        Me.Button_mysql_config.Location = New System.Drawing.Point(6, 72)
+        Me.Button_mysql_config.Location = New System.Drawing.Point(470, 72)
         Me.Button_mysql_config.Name = "Button_mysql_config"
-        Me.Button_mysql_config.Size = New System.Drawing.Size(142, 23)
+        Me.Button_mysql_config.Size = New System.Drawing.Size(75, 23)
         Me.Button_mysql_config.TabIndex = 41
-        Me.Button_mysql_config.Text = "数据库配置向导"
+        Me.Button_mysql_config.Text = "修改密码"
         Me.Button_mysql_config.UseVisualStyleBackColor = True
         '
         'Label47
@@ -1851,15 +1892,15 @@ Partial Class Form_main
         Me.Label24.Size = New System.Drawing.Size(0, 12)
         Me.Label24.TabIndex = 8
         '
-        'Button_create_pvpgn_sql
+        'Button_install_mysql
         '
-        Me.Button_create_pvpgn_sql.ForeColor = System.Drawing.Color.Red
-        Me.Button_create_pvpgn_sql.Location = New System.Drawing.Point(6, 27)
-        Me.Button_create_pvpgn_sql.Name = "Button_create_pvpgn_sql"
-        Me.Button_create_pvpgn_sql.Size = New System.Drawing.Size(142, 23)
-        Me.Button_create_pvpgn_sql.TabIndex = 4
-        Me.Button_create_pvpgn_sql.Text = "安装并初始化数据库"
-        Me.Button_create_pvpgn_sql.UseVisualStyleBackColor = True
+        Me.Button_install_mysql.ForeColor = System.Drawing.Color.Red
+        Me.Button_install_mysql.Location = New System.Drawing.Point(6, 27)
+        Me.Button_install_mysql.Name = "Button_install_mysql"
+        Me.Button_install_mysql.Size = New System.Drawing.Size(142, 23)
+        Me.Button_install_mysql.TabIndex = 4
+        Me.Button_install_mysql.Text = "安装并初始化数据库"
+        Me.Button_install_mysql.UseVisualStyleBackColor = True
         '
         'Label11
         '
@@ -1955,7 +1996,7 @@ Partial Class Form_main
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(155, 12)
         Me.Label8.TabIndex = 36
-        Me.Label8.Text = "Ver 0.27 Build 2016.08.25"
+        Me.Label8.Text = "Ver 0.27 Build 2016.08.26"
         '
         'timer_dingshirenwu
         '
@@ -2044,11 +2085,11 @@ Partial Class Form_main
     Friend WithEvents Button_con_to_sql As Button
     Friend WithEvents Button3 As Button
     Friend WithEvents GroupBox_d2_ver As GroupBox
-    Friend WithEvents RadioButton_d2_110 As RadioButton
+    Friend WithEvents RadioButton_d2_113C As RadioButton
     Friend WithEvents RadioButton_d2_109 As RadioButton
     Friend WithEvents GroupBox_win_ver As GroupBox
     Friend WithEvents RadioButton_win_ver_2012 As RadioButton
-    Friend WithEvents RadioButton_win_ver_2008 As RadioButton
+    Friend WithEvents RadioButton_win_ver_2003 As RadioButton
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents Label46 As Label
@@ -2158,7 +2199,7 @@ Partial Class Form_main
     Friend WithEvents TextBox_d2gsconfig_MaxGameLife As TextBox
     Friend WithEvents TextBox_d2gsconfig_telnet_password As TextBox
     Friend WithEvents Label6 As Label
-    Friend WithEvents Button32 As Button
+    Friend WithEvents Button_d2gs_config As Button
     Friend WithEvents Label23 As Label
     Friend WithEvents TextBox_d2gsconfig_maxgame As TextBox
     Friend WithEvents TextBox_d2gsconfig_d2dbsip As TextBox
@@ -2172,8 +2213,8 @@ Partial Class Form_main
     Friend WithEvents Label20 As Label
     Friend WithEvents TextBox_d2_path As TextBox
     Friend WithEvents Label19 As Label
-    Friend WithEvents Button26 As Button
-    Friend WithEvents Button24 As Button
+    Friend WithEvents Button_d2gs_uninstall As Button
+    Friend WithEvents Button_d2gs_install As Button
     Friend WithEvents TabPage7 As TabPage
     Friend WithEvents Button_add_unset_mute_exp_date As Button
     Friend WithEvents Button_add_unset_lock_exp_date As Button
@@ -2186,7 +2227,7 @@ Partial Class Form_main
     Friend WithEvents Button_res_pvpgn_sql As Button
     Friend WithEvents Button_bak_pvpgn_sql As Button
     Friend WithEvents Label24 As Label
-    Friend WithEvents Button_create_pvpgn_sql As Button
+    Friend WithEvents Button_install_mysql As Button
     Friend WithEvents Label11 As Label
     Friend WithEvents LinkLabel2 As LinkLabel
     Friend WithEvents LinkLabel1 As LinkLabel
@@ -2198,6 +2239,10 @@ Partial Class Form_main
     Friend WithEvents OpenFileDialog_mysqlbakfiles_name As OpenFileDialog
     Friend WithEvents Label47 As Label
     Friend WithEvents Label48 As Label
-    Friend WithEvents Label49 As Label
     Friend WithEvents Button_mysql_config As Button
+    Friend WithEvents TextBox_mysql_password2 As TextBox
+    Friend WithEvents TextBox_mysql_password1 As TextBox
+    Friend WithEvents Label49 As Label
+    Friend WithEvents Label50 As Label
+    Friend WithEvents Button_mysql_uninstall As Button
 End Class

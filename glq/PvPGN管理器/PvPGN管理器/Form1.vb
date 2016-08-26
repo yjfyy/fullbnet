@@ -17,6 +17,7 @@ Public Class Form_main
     Dim cb As MySqlCommandBuilder
     Dim d2cs_server_string As String
     Dim d2dbs_server_string As String
+    Dim os_ver As String
     Dim flag1 As String = "0"
     Dim flag2 As String = "0"
     Dim flag3 As String = "0"
@@ -65,11 +66,7 @@ Public Class Form_main
             TextBox_sql_serverip.ReadOnly = True
             '是否没有创建数据库
             If TextBox_database_name.Text = "" Then
-                If reg_config.GetValue("初始化数据库", "0") = "0" Then
-                    Button_create_pvpgn_sql.Enabled = True
-                Else
-                    Button_create_pvpgn_sql.Enabled = False
-                End If
+
                 '已经连接到pvpgn
             ElseIf TextBox_database_name.Text = "pvpgn" Then
                 Button_close_sql.Enabled = True
@@ -82,25 +79,25 @@ Public Class Form_main
                     reg_config = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(reg_path)
                 End If
                 If reg_config IsNot Nothing Then
-                    If reg_config.GetValue("添加形象功能", "0") = "0" And Button_create_pvpgn_sql.Enabled = False Then
+                    If reg_config.GetValue("添加形象功能", "0") = "0" Then
                         Button_add_flags.Enabled = True
                     Else
                         Button_add_flags.Enabled = False
                     End If
 
-                    If reg_config.GetValue("添加形象定时功能", "0") = "0" And Button_create_pvpgn_sql.Enabled = False Then
+                    If reg_config.GetValue("添加形象定时功能", "0") = "0" Then
                         Button_add_flags_exp_date.Enabled = True
                     Else
                         Button_add_flags_exp_date.Enabled = False
                     End If
 
-                    If reg_config.GetValue("添加锁定定时功能", "0") = "0" And Button_create_pvpgn_sql.Enabled = False Then
+                    If reg_config.GetValue("添加锁定定时功能", "0") = "0" Then
                         Button_add_unset_lock_exp_date.Enabled = True
                     Else
                         Button_add_unset_lock_exp_date.Enabled = False
                     End If
 
-                    If reg_config.GetValue("添加禁言定时功能", "0") = "0" And Button_create_pvpgn_sql.Enabled = False Then
+                    If reg_config.GetValue("添加禁言定时功能", "0") = "0" Then
                         Button_add_unset_mute_exp_date.Enabled = True
                     Else
                         Button_add_unset_mute_exp_date.Enabled = False
@@ -113,7 +110,7 @@ Public Class Form_main
             '状态为断开连接的话
         Else
             Button_close_sql.Enabled = False
-            Button_create_pvpgn_sql.Enabled = False
+
             'Button_del_pvpgn_sql.Enabled = False
             Button_add_flags.Enabled = False
             Button_add_flags_exp_date.Enabled = False
@@ -151,10 +148,10 @@ Public Class Form_main
                 reg_config.SetValue("RadioButton_win_ver_2012.Checked", "0")
             End If
 
-            If RadioButton_d2_110.Checked = True Then
-                reg_config.SetValue("RadioButton_d2_110", "1")
+            If RadioButton_d2_113C.Checked = True Then
+                reg_config.SetValue("RadioButton_d2_113C.Checked", "1")
             Else
-                reg_config.SetValue("RadioButton_d2_110", "0")
+                reg_config.SetValue("RadioButton_d2_113C.Checked", "0")
             End If
 
             reg_config.SetValue("TextBox_acc_username", TextBox_acc_username.Text)
@@ -295,7 +292,7 @@ Public Class Form_main
         If CheckBox_save_password.Checked = True Then
             If Not conn Is Nothing Then conn.Close()
             Dim connStr As String
-            connStr = String.Format("server={0};user id={1}; password={2}; database={3}; pooling=false",
+            connStr = String.Format("server={0};user id={1}; password={2}; database={3}; pooling=False",
         TextBox_sql_serverip.Text, TextBox_sql_root.Text, TextBox_sql_password.Text, TextBox_database_name.Text)
             Try
                 conn = New MySqlConnection(connStr)
@@ -326,7 +323,7 @@ Public Class Form_main
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_con_to_sql.Click
         If Not conn Is Nothing Then conn.Close()
         Dim connStr As String
-        connStr = String.Format("server={0};user id={1}; password={2}; database={3}; pooling=false",
+        connStr = String.Format("server={0};user id={1}; password={2}; database={3}; pooling=False",
     TextBox_sql_serverip.Text, TextBox_sql_root.Text, TextBox_sql_password.Text, TextBox_database_name.Text)
         Try
             conn = New MySqlConnection(connStr)
@@ -353,7 +350,7 @@ Public Class Form_main
 
 
     Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_del_user.Click
-        'Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 1000", conn)
+        'Dim selectpvpgn As New MySqlCommand("Select * FROM `pvpgn_bnet` LIMIT 0, 1000", conn)
         'Dim deluserstr As String
         'deluserstr = String.Format("DELETE FROM `pvpgn_bnet` WHERE (`username`='{0}') LIMIT 1", username.Text)
         'Dim deluser As New MySqlCommand(deluserstr, conn)
@@ -420,9 +417,6 @@ Public Class Form_main
         MessageBox.Show("已全部重启")
     End Sub
 
-
-
-
     Private Sub Button27_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button27.Click
         Shell("explorer.exe .\conf\", AppWinStyle.MaximizedFocus)
     End Sub
@@ -431,45 +425,6 @@ Public Class Form_main
         'Shell(".\d2gs\d2gs.reg", vbHide)
 
     End Sub
-
-    Private Sub Button26_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-    End Sub
-
-
-    Private Sub Button24_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button24.Click
-        d2gsdefconf()
-        Shell("cmd /c d:\pvpgn\d2gs\" + d2ver + "\d2gssvc.exe -i", AppWinStyle.Hide, True)
-        MsgBox("安装完成")
-    End Sub
-
-    Private Sub Button26_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button26.Click
-        Dim ssd2gs As New ServiceController("d2gs")
-        If ssd2gs.Status.Equals(ServiceControllerStatus.Running) Then
-
-            MessageBox.Show("请停止D2GS服务后重试")
-
-        Else
-
-            Try
-                My.Computer.Registry.LocalMachine.DeleteSubKey("SOFTWARE\D2Server\D2GS")
-                My.Computer.Registry.LocalMachine.DeleteSubKey("SOFTWARE\D2Server")
-            Catch ex As Exception
-                MsgBox("清除注册表失败")
-            End Try
-
-            Try
-                Shell("cmd /c d:\pvpgn\d2gs\" + d2ver + "\d2gssvc.exe -u", AppWinStyle.Hide, True)
-            Catch ex As Exception
-                MsgBox("卸载服务失败")
-            End Try
-
-            MsgBox("卸载完成")
-
-        End If
-
-    End Sub
-
 
     Private Sub Button31_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button31.Click
         Button31.Text = "正在复制"
@@ -498,16 +453,15 @@ Public Class Form_main
         Button31.Enabled = True
     End Sub
 
-
-
-
-
-
     Private Sub d2gsdefconf()
         '兼容性
-        Dim jianrongxing As String = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers"
-        'Microsoft.Win32.Registry.SetValue(jianrongxing, "D:\pvpgn\d2gs\1.13c\D2GS.exe", "~ RUNASADMIN WIN7RTM")
-        Microsoft.Win32.Registry.SetValue(jianrongxing, "D:\pvpgn\d2gs\1.09d\D2GS.exe", "~ RUNASADMIN WIN7RTM")
+        If os_ver = "win2012" Then
+            Dim jianrongxing As String = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers"
+            Microsoft.Win32.Registry.SetValue(jianrongxing, "D:\pvpgn\d2gs\" & d2ver & "\D2GS.exe", "~ RUNASADMIN WIN7RTM")
+            'Microsoft.Win32.Registry.SetValue(jianrongxing, "D:\pvpgn\d2gs\1.13c\D2GS.exe", "~ RUNASADMIN WIN7RTM")
+        Else
+
+        End If
 
         '32位兼容
         Dim d2gsregname As String = "HKEY_LOCAL_MACHINE\SOFTWARE\D2Server\D2GS"
@@ -572,33 +526,6 @@ Public Class Form_main
         Microsoft.Win32.Registry.SetValue(d2gsregname, "AutoUpdateTimeout", 3600, Microsoft.Win32.RegistryValueKind.DWord)
         Microsoft.Win32.Registry.SetValue(d2gsregname, "MaxPacketPerSecond", 1200, Microsoft.Win32.RegistryValueKind.DWord)
     End Sub
-
-    Private Sub Button32_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button32.Click
-        'Dim maxgames As Integer
-        'maxgames = CInt(TextBox10.Text)
-        '用bnpass.exe生成temp.txt文件，再把文件读取后截取hash，赋值给gs_telnet_password_hash变量
-        Dim gs_telnet_password_hash As String
-        Shell("cmd /c d:\pvpgn\bnpass.exe " & TextBox_d2gsconfig_telnet_password.Text & " >temp.txt", AppWinStyle.Hide, True)
-        gs_telnet_password_hash = Mid(My.Computer.FileSystem.ReadAllText("temp.txt"), 26, 40)
-
-        '32位兼容
-        Dim d2gsregname As String = "HKEY_LOCAL_MACHINE\SOFTWARE\D2Server\D2GS"
-        Microsoft.Win32.Registry.SetValue(d2gsregname, "D2CSIP", TextBox_d2gsconfig_d2csip.Text)
-        Microsoft.Win32.Registry.SetValue(d2gsregname, "D2DBSIP", TextBox_d2gsconfig_d2dbsip.Text)
-        Microsoft.Win32.Registry.SetValue(d2gsregname, "MaxGames", TextBox_d2gsconfig_maxgame.Text, Microsoft.Win32.RegistryValueKind.DWord)
-        Microsoft.Win32.Registry.SetValue(d2gsregname, "MaxGameLife", TextBox_d2gsconfig_MaxGameLife.Text)
-        Microsoft.Win32.Registry.SetValue(d2gsregname, "AdminPassword", gs_telnet_password_hash)
-        '64位兼容
-        d2gsregname = "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\D2Server\D2GS"
-        Microsoft.Win32.Registry.SetValue(d2gsregname, "D2CSIP", TextBox_d2gsconfig_d2csip.Text)
-        Microsoft.Win32.Registry.SetValue(d2gsregname, "D2DBSIP", TextBox_d2gsconfig_d2dbsip.Text)
-        Microsoft.Win32.Registry.SetValue(d2gsregname, "MaxGames", TextBox_d2gsconfig_maxgame.Text, Microsoft.Win32.RegistryValueKind.DWord)
-        Microsoft.Win32.Registry.SetValue(d2gsregname, "MaxGameLife", TextBox_d2gsconfig_MaxGameLife.Text)
-        Microsoft.Win32.Registry.SetValue(d2gsregname, "AdminPassword", gs_telnet_password_hash)
-        My.Computer.FileSystem.DeleteFile("temp.txt")
-        MsgBox("请重启D2GS，使新设置生效")
-    End Sub
-
 
 
     Private Sub Button35_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_res_pvpgn_sql.Click
@@ -617,15 +544,15 @@ Public Class Form_main
     End Sub
 
     Private Sub Button36_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button36.Click
-        Shell(d2cs_server_string + "Console.exe -s install", vbHide)
+        Shell("cmd /c d:\pvpgn\" & d2cs_server_string & "Console.exe -s install", vbHide, True)
         'MessageBox.Show(i)
-        MsgBox("D2CS已安装")
+        MsgBox(d2cs_server_string & "已安装")
     End Sub
 
     Private Sub Button37_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button37.Click
-        Shell(d2dbs_server_string + "Console.exe -s install", vbHide)
+        Shell("cmd /c d:\pvpgn\" & d2dbs_server_string + "Console.exe -s install", vbHide， True)
         'MessageBox.Show(i)
-        MsgBox("D2DBS已安装")
+        MsgBox(d2dbs_server_string & "D2DBS已安装")
     End Sub
 
     Private Sub Button38_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button38.Click
@@ -938,35 +865,7 @@ Public Class Form_main
         'showbutton()
     End Sub
 
-    Private Sub Button_create_pvpgn_sql_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_create_pvpgn_sql.Click
-        Shell("cmd /c D:\pvpgn\mysql\remysql.bat", AppWinStyle.NormalFocus, True)
-        MsgBox("数据库重置完毕。")
 
-        'Dim createpvpgnstr As String
-        'createpvpgnstr = String.Format("create database pvpgn")
-        'Dim createpvpgn As New MySqlCommand(createpvpgnstr, conn)
-        'Try
-        '    createpvpgn.ExecuteNonQuery()
-        'Catch ex As MySql.Data.MySqlClient.MySqlException
-        '    Select Case ex.Number
-        '        Case 1007
-        '            MessageBox.Show("请勿重复初始化数据库！")
-        '            Exit Sub
-        '    End Select
-        '    'MessageBox.Show(ex.Number)
-        '    'essageBox.Show(ex.Message)
-        'End Try
-        'MsgBox("数据库初始化成功！")
-        'Dim reg_path = "SOFTWARE\\PvPGN GLQ"
-        'Dim reg_config = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(reg_path, True)
-        'If reg_config Is Nothing Then
-        '    reg_config = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(reg_path)
-        'End If
-        'If reg_config IsNot Nothing Then
-        '    reg_config.SetValue("初始化数据库", "1")
-        'End If
-        'reg_config.Close()
-    End Sub
 
     Private Sub Button_del_pvpgn_sql_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         'Dim deletepvpgnstr As String
@@ -1212,9 +1111,7 @@ Public Class Form_main
         End If
     End Sub
 
-    Private Sub RadioButton_d2_110_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton_d2_110.CheckedChanged
-        d2gsver()
-    End Sub
+
 
     Private Sub Button18_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button18.Click
         TabPage3.Enabled = False
@@ -1230,101 +1127,112 @@ Public Class Form_main
             TextBox_sql_serverip.Text = reg_config.GetValue("TextBox_sql_serverip", "127.0.0.1")
             TextBox_sql_root.Text = reg_config.GetValue("TextBox_sql_root", "root")
             TextBox_database_name.Text = reg_config.GetValue("TextBox_database_name.Text", "pvpgn")
+
             If reg_config.GetValue("RadioButton_win_ver_2012.Checked", "1") = "1" Then
                 RadioButton_win_ver_2012.Checked = True
+                os_ver = "win2012"
             Else
-                RadioButton_win_ver_2008.Checked = True
+                RadioButton_win_ver_2003.Checked = True
+                os_ver = "win2003"
             End If
-            If reg_config.GetValue("RadioButton_d2_110", "0") = "0" Then
-                RadioButton_d2_109.Checked = True
-            Else
 
+            If reg_config.GetValue("RadioButton_d2_113C.Checked", "1") = "1" Then
+                RadioButton_d2_113C.Checked = True
+                d2cs_server_string = "d2cs"
+                d2dbs_server_string = "d2dbs"
+                d2ver = "1.13c"
+            Else
+                RadioButton_d2_109.Checked = True
+                d2cs_server_string = "d2cs109"
+                d2dbs_server_string = "d2dbs109"
+                d2ver = "1.09d"
             End If
+
             TextBox_acc_username.Text = reg_config.GetValue("Textbox_acc_username", "")
 
-            'flag_no7.Text = reg_config.GetValue("ComboBox_flags", "0x0 职业形象")
-            'If reg_config.GetValue("CheckBox_0x20", "1") = "1" Then
-            'CheckBox_0x20.Checked = True
-            'Else
-            'CheckBox_0x20.Checked = False
-            'End If
+                'flag_no7.Text = reg_config.GetValue("ComboBox_flags", "0x0 职业形象")
+                'If reg_config.GetValue("CheckBox_0x20", "1") = "1" Then
+                'CheckBox_0x20.Checked = True
+                'Else
+                'CheckBox_0x20.Checked = False
+                'End If
 
-            If reg_config.GetValue("CheckBox_pvpgn", "1") = "1" Then
-                CheckBox_pvpgn.Checked = True
-            Else
-                CheckBox_pvpgn.Checked = False
+                If reg_config.GetValue("CheckBox_pvpgn", "1") = "1" Then
+                    CheckBox_pvpgn.Checked = True
+                Else
+                    CheckBox_pvpgn.Checked = False
+                End If
+
+                If reg_config.GetValue("CheckBox_d2cs", "1") = "1" Then
+                    CheckBox_d2cs.Checked = True
+                Else
+                    CheckBox_d2cs.Checked = False
+                End If
+
+                If reg_config.GetValue("CheckBox_d2dbs", "1") = "1" Then
+                    CheckBox_d2dbs.Checked = True
+                Else
+                    CheckBox_d2dbs.Checked = False
+                End If
+
+                If reg_config.GetValue("CheckBox_d2gs", "1") = "1" Then
+                    CheckBox_d2gs.Checked = True
+                Else
+                    CheckBox_d2gs.Checked = False
+                End If
+
+                If reg_config.GetValue("CheckBox_timer_backup", "0") = "1" Then
+                    CheckBox_timer_backup.Checked = True
+                Else
+                    CheckBox_timer_backup.Checked = False
+                End If
+
+                If reg_config.GetValue("CheckBox_timer_stop_pvpgn", "0") = "1" Then
+                    CheckBox_timer_stop_pvpgn.Checked = True
+                Else
+                    CheckBox_timer_stop_pvpgn.Checked = False
+                End If
+
+                If reg_config.GetValue("CheckBox_re_jisuanji", "0") = "1" Then
+                    CheckBox_re_jisuanji.Checked = True
+                Else
+                    CheckBox_re_jisuanji.Checked = False
+                End If
+
+                If reg_config.GetValue("CheckBox_timer_re_pvpgn", "0") = "1" Then
+                    CheckBox_timer_re_pvpgn.Checked = True
+                Else
+                    CheckBox_timer_re_pvpgn.Checked = False
+                End If
+
+                If reg_config.GetValue("CheckBox_timer_autolock", "0") = "1" Then
+                    CheckBox_timer_autolock.Checked = True
+                Else
+                    CheckBox_timer_autolock.Checked = False
+                End If
+
+                If reg_config.GetValue("CheckBox_save_password", "0") = "1" Then
+                    CheckBox_save_password.Checked = True
+                    TextBox_sql_password.Text = reg_config.GetValue("TextBox_sql_password", "")
+                Else
+                    CheckBox_save_password.Checked = False
+                End If
+
+                TextBox_d2_path.Text = reg_config.GetValue("TextBox_d2_path", "")
+                TextBox_sqlbak_name.Text = reg_config.GetValue("TextBox_sqlbak_name", "")
+                ComboBox_backup_h.Text = reg_config.GetValue("ComboBox_backup_h", "4")
+                ComboBox_backup_m.Text = reg_config.GetValue("ComboBox_backup_m", "5")
+                ComboBox_stop_pvpgn_houre.Text = reg_config.GetValue("ComboBox_stop_pvpgn_houre", "4")
+                ComboBox_stop_pvpgn_m.Text = reg_config.GetValue("ComboBox_stop_pvpgn_m", "0")
+                ComboBox_re_pvpgn_houre.Text = reg_config.GetValue("ComboBox_re_pvpgn_houre", "4")
+                ComboBox_re_pvpgn_m.Text = reg_config.GetValue("ComboBox_re_pvpgn_m", "15")
+                ComboBox_auto_lock_houre.Text = reg_config.GetValue("ComboBox_auto_lock_houre", "4")
+                ComboBox_auto_lock_m.Text = reg_config.GetValue("ComboBox_auto_lock_m", "10")
+                TextBox_auto_lock_day.Text = reg_config.GetValue("TextBox_auto_lock_day", "30")
+                'regVersion.SetValue("Version", intVersion)
+
             End If
-
-            If reg_config.GetValue("CheckBox_d2cs", "1") = "1" Then
-                CheckBox_d2cs.Checked = True
-            Else
-                CheckBox_d2cs.Checked = False
-            End If
-
-            If reg_config.GetValue("CheckBox_d2dbs", "1") = "1" Then
-                CheckBox_d2dbs.Checked = True
-            Else
-                CheckBox_d2dbs.Checked = False
-            End If
-
-            If reg_config.GetValue("CheckBox_d2gs", "1") = "1" Then
-                CheckBox_d2gs.Checked = True
-            Else
-                CheckBox_d2gs.Checked = False
-            End If
-
-            If reg_config.GetValue("CheckBox_timer_backup", "0") = "1" Then
-                CheckBox_timer_backup.Checked = True
-            Else
-                CheckBox_timer_backup.Checked = False
-            End If
-
-            If reg_config.GetValue("CheckBox_timer_stop_pvpgn", "0") = "1" Then
-                CheckBox_timer_stop_pvpgn.Checked = True
-            Else
-                CheckBox_timer_stop_pvpgn.Checked = False
-            End If
-
-            If reg_config.GetValue("CheckBox_re_jisuanji", "0") = "1" Then
-                CheckBox_re_jisuanji.Checked = True
-            Else
-                CheckBox_re_jisuanji.Checked = False
-            End If
-
-            If reg_config.GetValue("CheckBox_timer_re_pvpgn", "0") = "1" Then
-                CheckBox_timer_re_pvpgn.Checked = True
-            Else
-                CheckBox_timer_re_pvpgn.Checked = False
-            End If
-
-            If reg_config.GetValue("CheckBox_timer_autolock", "0") = "1" Then
-                CheckBox_timer_autolock.Checked = True
-            Else
-                CheckBox_timer_autolock.Checked = False
-            End If
-
-            If reg_config.GetValue("CheckBox_save_password", "0") = "1" Then
-                CheckBox_save_password.Checked = True
-                TextBox_sql_password.Text = reg_config.GetValue("TextBox_sql_password", "")
-            Else
-                CheckBox_save_password.Checked = False
-            End If
-
-            TextBox_d2_path.Text = reg_config.GetValue("TextBox_d2_path", "")
-            TextBox_sqlbak_name.Text = reg_config.GetValue("TextBox_sqlbak_name", "")
-            ComboBox_backup_h.Text = reg_config.GetValue("ComboBox_backup_h", "4")
-            ComboBox_backup_m.Text = reg_config.GetValue("ComboBox_backup_m", "5")
-            ComboBox_stop_pvpgn_houre.Text = reg_config.GetValue("ComboBox_stop_pvpgn_houre", "4")
-            ComboBox_stop_pvpgn_m.Text = reg_config.GetValue("ComboBox_stop_pvpgn_m", "0")
-            ComboBox_re_pvpgn_houre.Text = reg_config.GetValue("ComboBox_re_pvpgn_houre", "4")
-            ComboBox_re_pvpgn_m.Text = reg_config.GetValue("ComboBox_re_pvpgn_m", "15")
-            ComboBox_auto_lock_houre.Text = reg_config.GetValue("ComboBox_auto_lock_houre", "4")
-            ComboBox_auto_lock_m.Text = reg_config.GetValue("ComboBox_auto_lock_m", "10")
-            TextBox_auto_lock_day.Text = reg_config.GetValue("TextBox_auto_lock_day", "30")
-            'regVersion.SetValue("Version", intVersion)
-
-        End If
-        reg_config.Close()
+            reg_config.Close()
         DateTimePicker_jinyan.Value = DateAdd("m", 1, Date.Now)
         DateTimePicker_suoding.Value = DateAdd("m", 1, Date.Now)
         DateTimePicker_xingxiang.Value = DateAdd("m", 1, Date.Now)
@@ -1780,14 +1688,186 @@ Public Class Form_main
     End Sub
 
     Private Sub Button_mysql_config_Click(sender As Object, e As EventArgs) Handles Button_mysql_config.Click
-        Try
-            Shell("d:\pvpgn\mysql\bin\MySQLInstanceConfig.exe")
-        Catch ex As Exception
-
-        End Try
+        If Button_con_to_sql.Enabled = True Then
+            MsgBox("请先连接数据库。")
+        Else
+            If TextBox_mysql_password1.Text = "" Or TextBox_mysql_password2.Text = "" Or TextBox_mysql_password1.Text <> TextBox_mysql_password2.Text Then
+                MsgBox("两次输入的密码不相同，或为空")
+            Else
+                Shell("cmd /c d:\pvpgn\mysql\bin\mysqladmin.exe -uroot -p" & TextBox_sql_password.Text & " password " & TextBox_mysql_password1.Text)
+                TextBox_mysql_password1.Text = ""
+                TextBox_mysql_password2.Text = ""
+                '相当于断开按钮
+                conn.Close()
+                Button_con_to_sql.Enabled = True
+                showbutton()
+                '
+                MsgBox("修改完毕，请尝试用新密码连接测试是否成功。")
+            End If
+        End If
 
 
     End Sub
 
+    Private Sub TextBox_mysql_password1_TextChanged(sender As Object, e As EventArgs) Handles TextBox_mysql_password1.TextChanged
 
+    End Sub
+
+    Private Sub Button_install_mysql_Click(sender As Object, e As EventArgs) Handles Button_install_mysql.Click
+        '相当于断开按钮
+        Try
+            conn.Close()
+            Button_con_to_sql.Enabled = True
+            showbutton()
+        Catch ex As Exception
+
+        End Try
+
+        '
+
+        Shell("cmd /c D:\pvpgn\mysql\instsql.bat", AppWinStyle.NormalFocus, True)
+        MsgBox("数据库重置完毕。")
+
+        'Dim createpvpgnstr As String
+        'createpvpgnstr = String.Format("create database pvpgn")
+        'Dim createpvpgn As New MySqlCommand(createpvpgnstr, conn)
+        'Try
+        '    createpvpgn.ExecuteNonQuery()
+        'Catch ex As MySql.Data.MySqlClient.MySqlException
+        '    Select Case ex.Number
+        '        Case 1007
+        '            MessageBox.Show("请勿重复初始化数据库！")
+        '            Exit Sub
+        '    End Select
+        '    'MessageBox.Show(ex.Number)
+        '    'essageBox.Show(ex.Message)
+        'End Try
+        'MsgBox("数据库初始化成功！")
+        'Dim reg_path = "SOFTWARE\\PvPGN GLQ"
+        'Dim reg_config = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(reg_path, True)
+        'If reg_config Is Nothing Then
+        '    reg_config = Microsoft.Win32.Registry.LocalMachine.CreateSubKey(reg_path)
+        'End If
+        'If reg_config IsNot Nothing Then
+        '    reg_config.SetValue("初始化数据库", "1")
+        'End If
+        'reg_config.Close()
+    End Sub
+
+    Private Sub Button4_Click_1(sender As Object, e As EventArgs) Handles Button_mysql_uninstall.Click
+        '相当于断开按钮
+        Try
+            conn.Close()
+            Button_con_to_sql.Enabled = True
+            showbutton()
+        Catch ex As Exception
+
+        End Try
+
+        Shell("cmd /c D:\pvpgn\mysql\remove.bat", AppWinStyle.NormalFocus, True)
+        MsgBox("数据库卸载完毕。")
+    End Sub
+
+    Private Sub RadioButton_d2_109_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_d2_109.CheckedChanged
+        d2gsver()
+    End Sub
+
+    Private Sub RadioButton_d2_113C_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_d2_113C.CheckedChanged
+        d2gsver()
+    End Sub
+
+    Private Sub Button_d2gs_install_Click(sender As Object, e As EventArgs) Handles Button_d2gs_install.Click
+        d2gsdefconf()
+        Shell("cmd /c d:\pvpgn\d2gs\" + d2ver + "\d2gssvc.exe -i", AppWinStyle.Hide, True)
+        MsgBox("安装完成")
+    End Sub
+
+    Private Sub Button_d2gs_uninstall_Click(sender As Object, e As EventArgs) Handles Button_d2gs_uninstall.Click
+        Dim ssd2gs As New ServiceController("d2gs")
+        Try
+            If ssd2gs.Status = ServiceControllerStatus.Running Then
+
+                MessageBox.Show("请停止D2GS服务后重试")
+
+            Else
+
+                Try
+                    My.Computer.Registry.LocalMachine.DeleteSubKey("SOFTWARE\D2Server\D2GS")
+                Catch ex As Exception
+                    'MsgBox("清除注册表失败")
+                End Try
+                Try
+                    My.Computer.Registry.LocalMachine.DeleteSubKey("SOFTWARE\Wow6432Node\D2Server\D2GS")
+                Catch ex As Exception
+                End Try
+                Try
+                    My.Computer.Registry.LocalMachine.DeleteSubKey("SOFTWARE\D2Server")
+                Catch ex As Exception
+                End Try
+                Try
+                    My.Computer.Registry.LocalMachine.DeleteSubKey("SOFTWARE\Wow6432Node\D2Server")
+                Catch ex As Exception
+                End Try
+                Try
+                    My.Computer.Registry.LocalMachine.OpenSubKey("SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers", True).DeleteValue("D:\pvpgn\d2gs\" & d2ver & "\D2GS.exe")
+                Catch ex As Exception
+                End Try
+
+                Try
+                    Shell("cmd /c d:\pvpgn\d2gs\" + d2ver + "\d2gssvc.exe -u", AppWinStyle.Hide, True)
+                    MsgBox("卸载完成")
+                Catch ex As Exception
+                    MsgBox("卸载服务失败")
+                End Try
+
+            End If
+
+        Catch ex As Exception
+            MsgBox("D2GS没有安装")
+        End Try
+
+    End Sub
+
+    Private Sub RadioButton_win_ver_2003_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_win_ver_2003.CheckedChanged
+        If RadioButton_win_ver_2012.Checked = True Then
+            os_ver = "win2012"
+        Else
+            os_ver = "win2003"
+        End If
+    End Sub
+
+    Private Sub RadioButton_win_ver_2012_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_win_ver_2012.CheckedChanged
+        If RadioButton_win_ver_2012.Checked = True Then
+            os_ver = "win2012"
+        Else
+            os_ver = "win2003"
+        End If
+    End Sub
+
+    Private Sub Button_d2gs_config_Click(sender As Object, e As EventArgs) Handles Button_d2gs_config.Click
+        'Dim maxgames As Integer
+        'maxgames = CInt(TextBox10.Text)
+        '用bnpass.exe生成temp.txt文件，再把文件读取后截取hash，赋值给gs_telnet_password_hash变量
+        Dim gs_telnet_password_hash As String
+        Shell("cmd /c d:\pvpgn\bnpass.exe " & TextBox_d2gsconfig_telnet_password.Text & " >temp.txt", AppWinStyle.Hide, True)
+        gs_telnet_password_hash = Mid(My.Computer.FileSystem.ReadAllText("temp.txt"), 26, 40)
+        My.Computer.FileSystem.DeleteFile("temp.txt")
+
+        '32位兼容
+        Dim d2gsregname As String = "HKEY_LOCAL_MACHINE\SOFTWARE\D2Server\D2GS"
+        Microsoft.Win32.Registry.SetValue(d2gsregname, "D2CSIP", TextBox_d2gsconfig_d2csip.Text)
+        Microsoft.Win32.Registry.SetValue(d2gsregname, "D2DBSIP", TextBox_d2gsconfig_d2dbsip.Text)
+        Microsoft.Win32.Registry.SetValue(d2gsregname, "MaxGames", TextBox_d2gsconfig_maxgame.Text, Microsoft.Win32.RegistryValueKind.DWord)
+        Microsoft.Win32.Registry.SetValue(d2gsregname, "MaxGameLife", TextBox_d2gsconfig_MaxGameLife.Text)
+        Microsoft.Win32.Registry.SetValue(d2gsregname, "AdminPassword", gs_telnet_password_hash)
+        '64位兼容
+        d2gsregname = "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\D2Server\D2GS"
+        Microsoft.Win32.Registry.SetValue(d2gsregname, "D2CSIP", TextBox_d2gsconfig_d2csip.Text)
+        Microsoft.Win32.Registry.SetValue(d2gsregname, "D2DBSIP", TextBox_d2gsconfig_d2dbsip.Text)
+        Microsoft.Win32.Registry.SetValue(d2gsregname, "MaxGames", TextBox_d2gsconfig_maxgame.Text, Microsoft.Win32.RegistryValueKind.DWord)
+        Microsoft.Win32.Registry.SetValue(d2gsregname, "MaxGameLife", TextBox_d2gsconfig_MaxGameLife.Text)
+        Microsoft.Win32.Registry.SetValue(d2gsregname, "AdminPassword", gs_telnet_password_hash)
+
+        MsgBox("请重启D2GS，使新设置生效")
+    End Sub
 End Class
