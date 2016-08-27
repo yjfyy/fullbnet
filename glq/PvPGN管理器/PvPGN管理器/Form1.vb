@@ -381,15 +381,7 @@ Public Class Form_main
         MessageBox.Show("PvPGN已安装")
     End Sub
 
-    Private Sub Button25_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_pvpgn_uninstall.Click
-        Dim sspvpgn As New ServiceController("pvpgn")
-        If sspvpgn.Status.Equals(ServiceControllerStatus.Running) Then
-            MessageBox.Show("请停止PvPGN后重试")
-        Else
-            Shell("PvPGNConsole.exe -s uninstall", vbHide)
-            MessageBox.Show("卸载完成")
-        End If
-    End Sub
+
 
     'Private Sub Button17_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
     '    Dim sspvpgn As New ServiceController("pvpgn")
@@ -549,28 +541,9 @@ Public Class Form_main
         MsgBox(d2dbs_server_string & "D2DBS已安装")
     End Sub
 
-    Private Sub Button38_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_d2cs_uninstall.Click
-        Dim ssd2cs As New ServiceController(d2cs_server_string)
-        If ssd2cs.Status.Equals(ServiceControllerStatus.Running) Then
-            MessageBox.Show("请停止D2CS服务后重试")
-        Else
-            Shell("cmd /c " + d2cs_server_string + "Console.exe -s uninstall", AppWinStyle.Hide, True)
-            'MessageBox.Show(i)
-            MessageBox.Show("卸载完成")
-        End If
-    End Sub
 
-    Private Sub Button39_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_d2dbs_uninstall.Click
-        Dim ssd2dbs As New ServiceController(d2dbs_server_string)
 
-        If ssd2dbs.Status.Equals(ServiceControllerStatus.Running) Then
-            MessageBox.Show("请停止D2DBS服务后重试")
-        Else
-            Shell("cmd /c" + d2dbs_server_string + "Console.exe -s uninstall", vbHide)
-            'MessageBox.Show(i)
-            MessageBox.Show("卸载完成")
-        End If
-    End Sub
+
 
 
     'Public Sub stop_pvpgn_server()
@@ -704,6 +677,7 @@ Public Class Form_main
     ''End Sub
 
     Private Sub Button_restart_pvpgn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_pvpgn_restart.Click
+        Label_server_pvpgn_status.Text = "正在重启"
         Button_pvpgn_restart.Text = "正在重启"
         Button_pvpgn_restart.Enabled = False
 
@@ -711,7 +685,7 @@ Public Class Form_main
         server_stop(server_name)
         server_run(server_name)
 
-        'Label_server_pvpgn_status.Text = server_status
+
         shuaxin()
 
         Button_pvpgn_restart.Enabled = Enabled
@@ -723,6 +697,7 @@ Public Class Form_main
         'run_d2cs_server()
         'MessageBox.Show("重启指令执行完毕。")
         'shuaxin()
+        Label_server_d2cs_status.Text = "正在重启"
         Button_d2cs_restart.Text = "正在重启"
         Button_d2cs_restart.Enabled = False
 
@@ -743,6 +718,7 @@ Public Class Form_main
         'run_d2dbs_server()
         'MessageBox.Show("重启指令执行完毕。")
         'shuaxin()
+        Label_server_d2dbs_status.Text = "正在重启"
         Button_d2dbs_restart.Text = "正在重启"
         Button_d2dbs_restart.Enabled = False
 
@@ -762,6 +738,7 @@ Public Class Form_main
         'run_d2gs_server()
         'MessageBox.Show("重启指令执行完毕。")
         'shuaxin()
+        Label_server_d2gs_status.Text = "正在重启"
         Button_d2gs_restart.Text = "正在重启"
         Button_d2gs_restart.Enabled = False
 
@@ -781,6 +758,7 @@ Public Class Form_main
         'stop_pvpgn_server()
         'MessageBox.Show("停止指令执行完毕。")
         'shuaxin()
+        Label_server_pvpgn_status.Text = "正在停止"
         Button_pvpgn_stop.Text = "正在停止"
         Button_pvpgn_stop.Enabled = False
 
@@ -790,14 +768,15 @@ Public Class Form_main
         'Label_server_pvpgn_status.Text = server_status
         shuaxin()
 
-        Button_pvpgn_restart.Enabled = Enabled
-        Button_pvpgn_restart.Text = "停止"
+        Button_pvpgn_stop.Enabled = Enabled
+        Button_pvpgn_stop.Text = "停止"
     End Sub
 
     Private Sub Button_stop_d2cs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_d2cs_stop.Click
         'stop_d2cs_server()
         'MessageBox.Show("停止指令执行完毕。")
         'shuaxin()
+        Label_server_d2cs_status.Text = "正在停止"
         Button_d2cs_stop.Text = "正在停止"
         Button_d2cs_stop.Enabled = False
 
@@ -806,14 +785,15 @@ Public Class Form_main
 
         shuaxin()
 
-        Button_d2cs_restart.Enabled = Enabled
-        Button_d2cs_restart.Text = "停止"
+        Button_d2cs_stop.Enabled = Enabled
+        Button_d2cs_stop.Text = "停止"
     End Sub
 
     Private Sub Button_stop_d2dbs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_d2dbs_stop.Click
         'stop_d2dbs_server()
         'MessageBox.Show("停止指令执行完毕。")
         'shuaxin()
+        Label_server_d2dbs_status.Text = "正在停止"
         Button_d2dbs_stop.Text = "正在停止"
         Button_d2dbs_stop.Enabled = False
 
@@ -822,14 +802,15 @@ Public Class Form_main
 
         shuaxin()
 
-        Button_d2dbs_restart.Enabled = Enabled
-        Button_d2dbs_restart.Text = "停止"
+        Button_d2dbs_stop.Enabled = Enabled
+        Button_d2dbs_stop.Text = "停止"
     End Sub
 
     Private Sub Button_stop_d2gs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_d2gs_stop.Click
         'stop_d2gs_server()
         'MessageBox.Show("停止指令执行完毕。")
         'shuaxin()
+        Label_server_d2gs_status.Text = "正在停止"
         Button_d2gs_stop.Text = "正在停止"
         Button_d2gs_stop.Enabled = False
 
@@ -838,35 +819,39 @@ Public Class Form_main
 
         shuaxin()
 
-        Button_d2gs_restart.Enabled = Enabled
-        Button_d2gs_restart.Text = "停止"
+        Button_d2gs_stop.Enabled = Enabled
+        Button_d2gs_stop.Text = "停止"
 
     End Sub
 
     Private Sub Button_stop_select_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_select_server_stop.Click
+
         Button_select_server_stop.Text = "正在停止"
         Button_select_server_stop.Enabled = False
         If CheckBox_pvpgn.Checked Then
             'stop_pvpgn_server()
-
+            Label_server_pvpgn_status.Text = "正在停止"
             server_name = "pvpgn"
             server_stop(server_name)
         End If
 
         If CheckBox_d2cs.Checked Then
             'stop_d2cs_server()
+            Label_server_d2cs_status.Text = "正在停止"
             server_name = d2cs_server_string
             server_stop(server_name)
         End If
 
         If CheckBox_d2dbs.Checked Then
             'stop_d2dbs_server()
+            Label_server_d2dbs_status.Text = "正在停止"
             server_name = d2dbs_server_string
             server_stop(server_name)
         End If
 
         If CheckBox_d2gs.Checked Then
             'stop_d2gs_server()
+            Label_server_d2gs_status.Text = "正在停止"
             server_name = "d2gs"
             server_stop(server_name)
         End If
@@ -883,6 +868,7 @@ Public Class Form_main
         If CheckBox_pvpgn.Checked = True Then
             'stop_pvpgn_server()
             'run_pvpgn_server()
+            Label_server_pvpgn_status.Text = "正在重启"
             server_name = "pvpgn"
             server_stop(server_name)
             server_run(server_name)
@@ -892,6 +878,7 @@ Public Class Form_main
         If CheckBox_d2cs.Checked = True Then
             'stop_d2cs_server()
             'run_d2cs_server()
+            Label_server_d2cs_status.Text = "正在重启"
             server_name = d2cs_server_string
             server_stop(server_name)
             server_run(server_name)
@@ -900,6 +887,7 @@ Public Class Form_main
         If CheckBox_d2dbs.Checked = True Then
             'stop_d2dbs_server()
             'run_d2dbs_server()
+            Label_server_d2dbs_status.Text = "正在重启"
             server_name = d2dbs_server_string
             server_stop(server_name)
             server_run(server_name)
@@ -908,6 +896,7 @@ Public Class Form_main
         If CheckBox_d2gs.Checked = True Then
             'stop_d2gs_server()
             'run_d2gs_server()
+            Label_server_d2gs_status.Text = "正在重启"
             server_name = "d2gs"
             server_stop(server_name)
             server_run(server_name)
@@ -1054,7 +1043,7 @@ Public Class Form_main
                     Label_server_pvpgn_status.Text = "已停止"
             End Select
         Catch ex As Exception
-
+            Label_server_pvpgn_status.Text = "状态未知"
         End Try
 
         Try
@@ -1065,7 +1054,7 @@ Public Class Form_main
                     Label_server_d2cs_status.Text = "已停止"
             End Select
         Catch ex As Exception
-
+            Label_server_pvpgn_status.Text = "状态未知"
         End Try
 
         Try
@@ -1076,7 +1065,7 @@ Public Class Form_main
                     Label_server_d2dbs_status.Text = "已停止"
             End Select
         Catch ex As Exception
-
+            Label_server_pvpgn_status.Text = "状态未知"
         End Try
 
         Try
@@ -1087,7 +1076,7 @@ Public Class Form_main
                     Label_server_d2gs_status.Text = "已停止"
             End Select
         Catch ex As Exception
-
+            Label_server_pvpgn_status.Text = "状态未知"
         End Try
     End Sub
 
@@ -1383,6 +1372,7 @@ Public Class Form_main
     End Sub
 
     Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles timer_dingshirenwu.Tick
+        shuaxin()
         Dim time_hm As String
         time_hm = Now.Hour.ToString + Now.Minute.ToString
 
@@ -1884,7 +1874,7 @@ Public Class Form_main
         Try
             If ssd2gs.Status = ServiceControllerStatus.Running Then
 
-                MessageBox.Show("请停止D2GS服务后重试")
+                MsgBox("请停止D2GS服务后重试")
 
             Else
 
@@ -2009,20 +1999,91 @@ Public Class Form_main
 
 
 
-    Private Sub Button_test_Click(sender As Object, e As EventArgs) Handles Button_test.Click
-        server_name = "d2gs"
-        server_stop(server_name)
-        MsgBox(server_status)
-        'Message.Create(server_status, server_status, "wparm", "lparam")
 
-
-    End Sub
-
-    Private Sub GroupBox_win_ver_Enter(sender As Object, e As EventArgs) Handles GroupBox_win_ver.Enter
-
-    End Sub
 
     Private Sub Button_pvpgn_config_modify_Click(sender As Object, e As EventArgs) Handles Button_pvpgn_config_modify.Click
         Shell("explorer.exe d:\pvpgn\conf\", AppWinStyle.MaximizedFocus)
+    End Sub
+
+    Private Sub Button_pvpgn_uninstall_Click(sender As Object, e As EventArgs) Handles Button_pvpgn_uninstall.Click
+        Dim server_pvpgn_status As New ServiceController("pvpgn")
+        Try
+
+            If server_pvpgn_status.Status = ServiceControllerStatus.Running Then
+
+                MsgBox("请停止pvpgn服务后重试")
+
+            Else
+
+                Try
+                    Shell("d:\pvpgn\PvPGNConsole.exe -s uninstall", AppWinStyle.Hide, True)
+                    MsgBox("卸载完成")
+                Catch ex As Exception
+                    MsgBox("卸载服务失败")
+                End Try
+
+            End If
+
+        Catch ex As Exception
+
+            MsgBox("D2GS没有安装")
+
+        End Try
+
+    End Sub
+
+    Private Sub Button_d2cs_uninstall_Click(sender As Object, e As EventArgs) Handles Button_d2cs_uninstall.Click
+        Dim server_d2cs_status As New ServiceController(d2cs_server_string)
+        Try
+
+            If server_d2cs_status.Status = ServiceControllerStatus.Running Then
+
+                MsgBox("请停止d2cs服务后重试")
+
+            Else
+
+                Try
+                    Shell("cmd /c d:\pvpgn\" & d2cs_server_string & "Console.exe -s uninstall", AppWinStyle.Hide, True)
+                    MsgBox("卸载完成")
+                Catch ex As Exception
+                    MsgBox("卸载服务失败")
+                End Try
+
+            End If
+
+        Catch ex As Exception
+
+            MsgBox("d2cs没有安装")
+
+        End Try
+
+
+    End Sub
+
+    Private Sub Button_d2dbs_uninstall_Click(sender As Object, e As EventArgs) Handles Button_d2dbs_uninstall.Click
+        Dim server_d2dbs_status As New ServiceController(d2dbs_server_string)
+        Try
+
+            If server_d2dbs_status.Status = ServiceControllerStatus.Running Then
+
+                MsgBox("请停止d2dbs服务后重试")
+
+            Else
+
+                Try
+                    Shell("cmd /c d:\pvpgn\" & d2dbs_server_string & "Console.exe -s uninstall", AppWinStyle.Hide, True)
+                    MsgBox("卸载完成")
+                Catch ex As Exception
+                    MsgBox("卸载服务失败")
+                End Try
+
+            End If
+
+        Catch ex As Exception
+
+            MsgBox("d2dbs没有安装")
+
+        End Try
+
     End Sub
 End Class

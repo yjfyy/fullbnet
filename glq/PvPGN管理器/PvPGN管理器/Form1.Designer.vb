@@ -1997,7 +1997,7 @@ Partial Class Form_main
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(155, 12)
         Me.Label8.TabIndex = 36
-        Me.Label8.Text = "Ver 0.27 Build 2016.08.26"
+        Me.Label8.Text = "Ver 0.28 Build 2016.08.27"
         '
         'timer_dingshirenwu
         '
@@ -2030,12 +2030,14 @@ Partial Class Form_main
         '
         'Button_test
         '
-        Me.Button_test.Location = New System.Drawing.Point(336, 434)
+        Me.Button_test.Enabled = False
+        Me.Button_test.Location = New System.Drawing.Point(336, 432)
         Me.Button_test.Name = "Button_test"
         Me.Button_test.Size = New System.Drawing.Size(75, 23)
         Me.Button_test.TabIndex = 41
-        Me.Button_test.Text = "测试"
+        Me.Button_test.Text = "Button1"
         Me.Button_test.UseVisualStyleBackColor = True
+        Me.Button_test.Visible = False
         '
         'Form_main
         '
