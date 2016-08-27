@@ -35,7 +35,7 @@ Partial Class Form_main
         Me.TextBox_sql_root = New System.Windows.Forms.TextBox()
         Me.TextBox_sql_serverip = New System.Windows.Forms.TextBox()
         Me.Button_con_to_sql = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Button_glq_config_restart = New System.Windows.Forms.Button()
         Me.GroupBox_d2_ver = New System.Windows.Forms.GroupBox()
         Me.RadioButton_d2_113C = New System.Windows.Forms.RadioButton()
         Me.RadioButton_d2_109 = New System.Windows.Forms.RadioButton()
@@ -81,21 +81,21 @@ Partial Class Form_main
         Me.CheckBox_d2dbs = New System.Windows.Forms.CheckBox()
         Me.CheckBox_d2cs = New System.Windows.Forms.CheckBox()
         Me.CheckBox_pvpgn = New System.Windows.Forms.CheckBox()
-        Me.Button_refurbish = New System.Windows.Forms.Button()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.Button_stop_select = New System.Windows.Forms.Button()
-        Me.Button_stop_d2gs = New System.Windows.Forms.Button()
-        Me.Button_stop_d2dbs = New System.Windows.Forms.Button()
-        Me.Button_stop_d2cs = New System.Windows.Forms.Button()
-        Me.Button_stop_pvpgn = New System.Windows.Forms.Button()
-        Me.Button_restart_select = New System.Windows.Forms.Button()
-        Me.Button_restart_d2gs = New System.Windows.Forms.Button()
-        Me.Button_restart_d2dbs = New System.Windows.Forms.Button()
-        Me.Button_restart_d2cs = New System.Windows.Forms.Button()
-        Me.Button_restart_pvpgn = New System.Windows.Forms.Button()
+        Me.Button_refresh = New System.Windows.Forms.Button()
+        Me.Label_server_d2gs_status = New System.Windows.Forms.Label()
+        Me.Label_server_d2dbs_status = New System.Windows.Forms.Label()
+        Me.Label_server_d2cs_status = New System.Windows.Forms.Label()
+        Me.Label_server_pvpgn_status = New System.Windows.Forms.Label()
+        Me.Button_select_server_stop = New System.Windows.Forms.Button()
+        Me.Button_d2gs_stop = New System.Windows.Forms.Button()
+        Me.Button_d2dbs_stop = New System.Windows.Forms.Button()
+        Me.Button_d2cs_stop = New System.Windows.Forms.Button()
+        Me.Button_pvpgn_stop = New System.Windows.Forms.Button()
+        Me.Button_select_server_restart = New System.Windows.Forms.Button()
+        Me.Button_d2gs_restart = New System.Windows.Forms.Button()
+        Me.Button_d2dbs_restart = New System.Windows.Forms.Button()
+        Me.Button_d2cs_restart = New System.Windows.Forms.Button()
+        Me.Button_pvpgn_restart = New System.Windows.Forms.Button()
         Me.TabPage8 = New System.Windows.Forms.TabPage()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.TextBox_auto_lock_day = New System.Windows.Forms.TextBox()
@@ -131,20 +131,20 @@ Partial Class Form_main
         Me.Button30 = New System.Windows.Forms.Button()
         Me.Button29 = New System.Windows.Forms.Button()
         Me.Button28 = New System.Windows.Forms.Button()
-        Me.Button27 = New System.Windows.Forms.Button()
+        Me.Button_pvpgn_config_modify = New System.Windows.Forms.Button()
         Me.Button21 = New System.Windows.Forms.Button()
         Me.Button20 = New System.Windows.Forms.Button()
         Me.Button19 = New System.Windows.Forms.Button()
         Me.Button18 = New System.Windows.Forms.Button()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.Button_fix_pvpgn_server = New System.Windows.Forms.Button()
-        Me.Button39 = New System.Windows.Forms.Button()
-        Me.Button38 = New System.Windows.Forms.Button()
-        Me.Button37 = New System.Windows.Forms.Button()
-        Me.Button36 = New System.Windows.Forms.Button()
-        Me.Button25 = New System.Windows.Forms.Button()
+        Me.Button_d2dbs_uninstall = New System.Windows.Forms.Button()
+        Me.Button_d2cs_uninstall = New System.Windows.Forms.Button()
+        Me.Button_d2dbs_install = New System.Windows.Forms.Button()
+        Me.Button_d2cs_install = New System.Windows.Forms.Button()
+        Me.Button_pvpgn_uninstall = New System.Windows.Forms.Button()
         Me.Label14 = New System.Windows.Forms.Label()
-        Me.Button23 = New System.Windows.Forms.Button()
+        Me.Button_pvpgn_install = New System.Windows.Forms.Button()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
@@ -159,9 +159,9 @@ Partial Class Form_main
         Me.Label22 = New System.Windows.Forms.Label()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button_d2dir_brower = New System.Windows.Forms.Button()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
-        Me.Button31 = New System.Windows.Forms.Button()
+        Me.Button_d2files_copy = New System.Windows.Forms.Button()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.TextBox_d2_path = New System.Windows.Forms.TextBox()
         Me.Label19 = New System.Windows.Forms.Label()
@@ -173,14 +173,14 @@ Partial Class Form_main
         Me.TextBox_mysql_password2 = New System.Windows.Forms.TextBox()
         Me.TextBox_mysql_password1 = New System.Windows.Forms.TextBox()
         Me.Label49 = New System.Windows.Forms.Label()
-        Me.Button_mysql_config = New System.Windows.Forms.Button()
+        Me.Button_mysql_password_modify = New System.Windows.Forms.Button()
         Me.Label47 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.TextBox_sqlbak_name = New System.Windows.Forms.TextBox()
-        Me.Button_res_pvpgn_sql = New System.Windows.Forms.Button()
-        Me.Button_bak_pvpgn_sql = New System.Windows.Forms.Button()
+        Me.Button_mysql_data_restore = New System.Windows.Forms.Button()
+        Me.Button_mysql_data_backup = New System.Windows.Forms.Button()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.Button_install_mysql = New System.Windows.Forms.Button()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -197,6 +197,7 @@ Partial Class Form_main
         Me.FolderBrowserDialog_diabloII_dir = New System.Windows.Forms.FolderBrowserDialog()
         Me.OpenFileDialog_mysqlbakfiles_name = New System.Windows.Forms.OpenFileDialog()
         Me.Label48 = New System.Windows.Forms.Label()
+        Me.Button_test = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox_d2_ver.SuspendLayout()
         Me.GroupBox_win_ver.SuspendLayout()
@@ -328,14 +329,14 @@ Partial Class Form_main
         Me.Button_con_to_sql.Text = "连接"
         Me.Button_con_to_sql.UseVisualStyleBackColor = True
         '
-        'Button3
+        'Button_glq_config_restart
         '
-        Me.Button3.Location = New System.Drawing.Point(235, 143)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(97, 23)
-        Me.Button3.TabIndex = 32
-        Me.Button3.Text = "恢复默认设置"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.Button_glq_config_restart.Location = New System.Drawing.Point(235, 143)
+        Me.Button_glq_config_restart.Name = "Button_glq_config_restart"
+        Me.Button_glq_config_restart.Size = New System.Drawing.Size(97, 23)
+        Me.Button_glq_config_restart.TabIndex = 32
+        Me.Button_glq_config_restart.Text = "恢复默认设置"
+        Me.Button_glq_config_restart.UseVisualStyleBackColor = True
         '
         'GroupBox_d2_ver
         '
@@ -761,21 +762,21 @@ Partial Class Form_main
         Me.TabPage2.Controls.Add(Me.CheckBox_d2dbs)
         Me.TabPage2.Controls.Add(Me.CheckBox_d2cs)
         Me.TabPage2.Controls.Add(Me.CheckBox_pvpgn)
-        Me.TabPage2.Controls.Add(Me.Button_refurbish)
-        Me.TabPage2.Controls.Add(Me.Label18)
-        Me.TabPage2.Controls.Add(Me.Label17)
-        Me.TabPage2.Controls.Add(Me.Label16)
-        Me.TabPage2.Controls.Add(Me.Label15)
-        Me.TabPage2.Controls.Add(Me.Button_stop_select)
-        Me.TabPage2.Controls.Add(Me.Button_stop_d2gs)
-        Me.TabPage2.Controls.Add(Me.Button_stop_d2dbs)
-        Me.TabPage2.Controls.Add(Me.Button_stop_d2cs)
-        Me.TabPage2.Controls.Add(Me.Button_stop_pvpgn)
-        Me.TabPage2.Controls.Add(Me.Button_restart_select)
-        Me.TabPage2.Controls.Add(Me.Button_restart_d2gs)
-        Me.TabPage2.Controls.Add(Me.Button_restart_d2dbs)
-        Me.TabPage2.Controls.Add(Me.Button_restart_d2cs)
-        Me.TabPage2.Controls.Add(Me.Button_restart_pvpgn)
+        Me.TabPage2.Controls.Add(Me.Button_refresh)
+        Me.TabPage2.Controls.Add(Me.Label_server_d2gs_status)
+        Me.TabPage2.Controls.Add(Me.Label_server_d2dbs_status)
+        Me.TabPage2.Controls.Add(Me.Label_server_d2cs_status)
+        Me.TabPage2.Controls.Add(Me.Label_server_pvpgn_status)
+        Me.TabPage2.Controls.Add(Me.Button_select_server_stop)
+        Me.TabPage2.Controls.Add(Me.Button_d2gs_stop)
+        Me.TabPage2.Controls.Add(Me.Button_d2dbs_stop)
+        Me.TabPage2.Controls.Add(Me.Button_d2cs_stop)
+        Me.TabPage2.Controls.Add(Me.Button_pvpgn_stop)
+        Me.TabPage2.Controls.Add(Me.Button_select_server_restart)
+        Me.TabPage2.Controls.Add(Me.Button_d2gs_restart)
+        Me.TabPage2.Controls.Add(Me.Button_d2dbs_restart)
+        Me.TabPage2.Controls.Add(Me.Button_d2cs_restart)
+        Me.TabPage2.Controls.Add(Me.Button_pvpgn_restart)
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
@@ -868,141 +869,141 @@ Partial Class Form_main
         Me.CheckBox_pvpgn.Text = "指定"
         Me.CheckBox_pvpgn.UseVisualStyleBackColor = True
         '
-        'Button_refurbish
+        'Button_refresh
         '
-        Me.Button_refurbish.Location = New System.Drawing.Point(435, 159)
-        Me.Button_refurbish.Name = "Button_refurbish"
-        Me.Button_refurbish.Size = New System.Drawing.Size(75, 23)
-        Me.Button_refurbish.TabIndex = 14
-        Me.Button_refurbish.Text = "刷新"
-        Me.Button_refurbish.UseVisualStyleBackColor = True
+        Me.Button_refresh.Location = New System.Drawing.Point(435, 159)
+        Me.Button_refresh.Name = "Button_refresh"
+        Me.Button_refresh.Size = New System.Drawing.Size(75, 23)
+        Me.Button_refresh.TabIndex = 14
+        Me.Button_refresh.Text = "刷新"
+        Me.Button_refresh.UseVisualStyleBackColor = True
         '
-        'Label18
+        'Label_server_d2gs_status
         '
-        Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(340, 164)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(53, 12)
-        Me.Label18.TabIndex = 13
-        Me.Label18.Text = "状态未知"
+        Me.Label_server_d2gs_status.AutoSize = True
+        Me.Label_server_d2gs_status.Location = New System.Drawing.Point(340, 164)
+        Me.Label_server_d2gs_status.Name = "Label_server_d2gs_status"
+        Me.Label_server_d2gs_status.Size = New System.Drawing.Size(53, 12)
+        Me.Label_server_d2gs_status.TabIndex = 13
+        Me.Label_server_d2gs_status.Text = "状态未知"
         '
-        'Label17
+        'Label_server_d2dbs_status
         '
-        Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(244, 164)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(53, 12)
-        Me.Label17.TabIndex = 12
-        Me.Label17.Text = "状态未知"
+        Me.Label_server_d2dbs_status.AutoSize = True
+        Me.Label_server_d2dbs_status.Location = New System.Drawing.Point(244, 164)
+        Me.Label_server_d2dbs_status.Name = "Label_server_d2dbs_status"
+        Me.Label_server_d2dbs_status.Size = New System.Drawing.Size(53, 12)
+        Me.Label_server_d2dbs_status.TabIndex = 12
+        Me.Label_server_d2dbs_status.Text = "状态未知"
         '
-        'Label16
+        'Label_server_d2cs_status
         '
-        Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(136, 164)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(53, 12)
-        Me.Label16.TabIndex = 11
-        Me.Label16.Text = "状态未知"
+        Me.Label_server_d2cs_status.AutoSize = True
+        Me.Label_server_d2cs_status.Location = New System.Drawing.Point(136, 164)
+        Me.Label_server_d2cs_status.Name = "Label_server_d2cs_status"
+        Me.Label_server_d2cs_status.Size = New System.Drawing.Size(53, 12)
+        Me.Label_server_d2cs_status.TabIndex = 11
+        Me.Label_server_d2cs_status.Text = "状态未知"
         '
-        'Label15
+        'Label_server_pvpgn_status
         '
-        Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(43, 164)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(53, 12)
-        Me.Label15.TabIndex = 10
-        Me.Label15.Text = "状态未知"
+        Me.Label_server_pvpgn_status.AutoSize = True
+        Me.Label_server_pvpgn_status.Location = New System.Drawing.Point(43, 164)
+        Me.Label_server_pvpgn_status.Name = "Label_server_pvpgn_status"
+        Me.Label_server_pvpgn_status.Size = New System.Drawing.Size(53, 12)
+        Me.Label_server_pvpgn_status.TabIndex = 10
+        Me.Label_server_pvpgn_status.Text = "状态未知"
         '
-        'Button_stop_select
+        'Button_select_server_stop
         '
-        Me.Button_stop_select.Location = New System.Drawing.Point(435, 117)
-        Me.Button_stop_select.Name = "Button_stop_select"
-        Me.Button_stop_select.Size = New System.Drawing.Size(93, 23)
-        Me.Button_stop_select.TabIndex = 9
-        Me.Button_stop_select.Text = "停止指定服务"
-        Me.Button_stop_select.UseVisualStyleBackColor = True
+        Me.Button_select_server_stop.Location = New System.Drawing.Point(435, 117)
+        Me.Button_select_server_stop.Name = "Button_select_server_stop"
+        Me.Button_select_server_stop.Size = New System.Drawing.Size(93, 23)
+        Me.Button_select_server_stop.TabIndex = 9
+        Me.Button_select_server_stop.Text = "停止指定服务"
+        Me.Button_select_server_stop.UseVisualStyleBackColor = True
         '
-        'Button_stop_d2gs
+        'Button_d2gs_stop
         '
-        Me.Button_stop_d2gs.Location = New System.Drawing.Point(329, 117)
-        Me.Button_stop_d2gs.Name = "Button_stop_d2gs"
-        Me.Button_stop_d2gs.Size = New System.Drawing.Size(75, 23)
-        Me.Button_stop_d2gs.TabIndex = 8
-        Me.Button_stop_d2gs.Text = "停止"
-        Me.Button_stop_d2gs.UseVisualStyleBackColor = True
+        Me.Button_d2gs_stop.Location = New System.Drawing.Point(329, 117)
+        Me.Button_d2gs_stop.Name = "Button_d2gs_stop"
+        Me.Button_d2gs_stop.Size = New System.Drawing.Size(75, 23)
+        Me.Button_d2gs_stop.TabIndex = 8
+        Me.Button_d2gs_stop.Text = "停止"
+        Me.Button_d2gs_stop.UseVisualStyleBackColor = True
         '
-        'Button_stop_d2dbs
+        'Button_d2dbs_stop
         '
-        Me.Button_stop_d2dbs.Location = New System.Drawing.Point(230, 117)
-        Me.Button_stop_d2dbs.Name = "Button_stop_d2dbs"
-        Me.Button_stop_d2dbs.Size = New System.Drawing.Size(75, 23)
-        Me.Button_stop_d2dbs.TabIndex = 7
-        Me.Button_stop_d2dbs.Text = "停止"
-        Me.Button_stop_d2dbs.UseVisualStyleBackColor = True
+        Me.Button_d2dbs_stop.Location = New System.Drawing.Point(230, 117)
+        Me.Button_d2dbs_stop.Name = "Button_d2dbs_stop"
+        Me.Button_d2dbs_stop.Size = New System.Drawing.Size(75, 23)
+        Me.Button_d2dbs_stop.TabIndex = 7
+        Me.Button_d2dbs_stop.Text = "停止"
+        Me.Button_d2dbs_stop.UseVisualStyleBackColor = True
         '
-        'Button_stop_d2cs
+        'Button_d2cs_stop
         '
-        Me.Button_stop_d2cs.Location = New System.Drawing.Point(131, 117)
-        Me.Button_stop_d2cs.Name = "Button_stop_d2cs"
-        Me.Button_stop_d2cs.Size = New System.Drawing.Size(75, 23)
-        Me.Button_stop_d2cs.TabIndex = 6
-        Me.Button_stop_d2cs.Text = "停止"
-        Me.Button_stop_d2cs.UseVisualStyleBackColor = True
+        Me.Button_d2cs_stop.Location = New System.Drawing.Point(131, 117)
+        Me.Button_d2cs_stop.Name = "Button_d2cs_stop"
+        Me.Button_d2cs_stop.Size = New System.Drawing.Size(75, 23)
+        Me.Button_d2cs_stop.TabIndex = 6
+        Me.Button_d2cs_stop.Text = "停止"
+        Me.Button_d2cs_stop.UseVisualStyleBackColor = True
         '
-        'Button_stop_pvpgn
+        'Button_pvpgn_stop
         '
-        Me.Button_stop_pvpgn.Location = New System.Drawing.Point(32, 117)
-        Me.Button_stop_pvpgn.Name = "Button_stop_pvpgn"
-        Me.Button_stop_pvpgn.Size = New System.Drawing.Size(75, 23)
-        Me.Button_stop_pvpgn.TabIndex = 5
-        Me.Button_stop_pvpgn.Text = "停止"
-        Me.Button_stop_pvpgn.UseVisualStyleBackColor = True
+        Me.Button_pvpgn_stop.Location = New System.Drawing.Point(32, 117)
+        Me.Button_pvpgn_stop.Name = "Button_pvpgn_stop"
+        Me.Button_pvpgn_stop.Size = New System.Drawing.Size(75, 23)
+        Me.Button_pvpgn_stop.TabIndex = 5
+        Me.Button_pvpgn_stop.Text = "停止"
+        Me.Button_pvpgn_stop.UseVisualStyleBackColor = True
         '
-        'Button_restart_select
+        'Button_select_server_restart
         '
-        Me.Button_restart_select.Location = New System.Drawing.Point(435, 78)
-        Me.Button_restart_select.Name = "Button_restart_select"
-        Me.Button_restart_select.Size = New System.Drawing.Size(93, 23)
-        Me.Button_restart_select.TabIndex = 4
-        Me.Button_restart_select.Text = "重启指定服务"
-        Me.Button_restart_select.UseVisualStyleBackColor = True
+        Me.Button_select_server_restart.Location = New System.Drawing.Point(435, 78)
+        Me.Button_select_server_restart.Name = "Button_select_server_restart"
+        Me.Button_select_server_restart.Size = New System.Drawing.Size(93, 23)
+        Me.Button_select_server_restart.TabIndex = 4
+        Me.Button_select_server_restart.Text = "重启指定服务"
+        Me.Button_select_server_restart.UseVisualStyleBackColor = True
         '
-        'Button_restart_d2gs
+        'Button_d2gs_restart
         '
-        Me.Button_restart_d2gs.Location = New System.Drawing.Point(329, 78)
-        Me.Button_restart_d2gs.Name = "Button_restart_d2gs"
-        Me.Button_restart_d2gs.Size = New System.Drawing.Size(75, 23)
-        Me.Button_restart_d2gs.TabIndex = 3
-        Me.Button_restart_d2gs.Text = "重启"
-        Me.Button_restart_d2gs.UseVisualStyleBackColor = True
+        Me.Button_d2gs_restart.Location = New System.Drawing.Point(329, 78)
+        Me.Button_d2gs_restart.Name = "Button_d2gs_restart"
+        Me.Button_d2gs_restart.Size = New System.Drawing.Size(75, 23)
+        Me.Button_d2gs_restart.TabIndex = 3
+        Me.Button_d2gs_restart.Text = "重启"
+        Me.Button_d2gs_restart.UseVisualStyleBackColor = True
         '
-        'Button_restart_d2dbs
+        'Button_d2dbs_restart
         '
-        Me.Button_restart_d2dbs.Location = New System.Drawing.Point(230, 78)
-        Me.Button_restart_d2dbs.Name = "Button_restart_d2dbs"
-        Me.Button_restart_d2dbs.Size = New System.Drawing.Size(75, 23)
-        Me.Button_restart_d2dbs.TabIndex = 2
-        Me.Button_restart_d2dbs.Tag = ""
-        Me.Button_restart_d2dbs.Text = "重启"
-        Me.Button_restart_d2dbs.UseVisualStyleBackColor = True
+        Me.Button_d2dbs_restart.Location = New System.Drawing.Point(230, 78)
+        Me.Button_d2dbs_restart.Name = "Button_d2dbs_restart"
+        Me.Button_d2dbs_restart.Size = New System.Drawing.Size(75, 23)
+        Me.Button_d2dbs_restart.TabIndex = 2
+        Me.Button_d2dbs_restart.Tag = ""
+        Me.Button_d2dbs_restart.Text = "重启"
+        Me.Button_d2dbs_restart.UseVisualStyleBackColor = True
         '
-        'Button_restart_d2cs
+        'Button_d2cs_restart
         '
-        Me.Button_restart_d2cs.Location = New System.Drawing.Point(131, 78)
-        Me.Button_restart_d2cs.Name = "Button_restart_d2cs"
-        Me.Button_restart_d2cs.Size = New System.Drawing.Size(75, 23)
-        Me.Button_restart_d2cs.TabIndex = 1
-        Me.Button_restart_d2cs.Text = "重启"
-        Me.Button_restart_d2cs.UseVisualStyleBackColor = True
+        Me.Button_d2cs_restart.Location = New System.Drawing.Point(131, 78)
+        Me.Button_d2cs_restart.Name = "Button_d2cs_restart"
+        Me.Button_d2cs_restart.Size = New System.Drawing.Size(75, 23)
+        Me.Button_d2cs_restart.TabIndex = 1
+        Me.Button_d2cs_restart.Text = "重启"
+        Me.Button_d2cs_restart.UseVisualStyleBackColor = True
         '
-        'Button_restart_pvpgn
+        'Button_pvpgn_restart
         '
-        Me.Button_restart_pvpgn.Location = New System.Drawing.Point(32, 79)
-        Me.Button_restart_pvpgn.Name = "Button_restart_pvpgn"
-        Me.Button_restart_pvpgn.Size = New System.Drawing.Size(75, 23)
-        Me.Button_restart_pvpgn.TabIndex = 0
-        Me.Button_restart_pvpgn.Text = "重启"
-        Me.Button_restart_pvpgn.UseVisualStyleBackColor = True
+        Me.Button_pvpgn_restart.Location = New System.Drawing.Point(32, 79)
+        Me.Button_pvpgn_restart.Name = "Button_pvpgn_restart"
+        Me.Button_pvpgn_restart.Size = New System.Drawing.Size(75, 23)
+        Me.Button_pvpgn_restart.TabIndex = 0
+        Me.Button_pvpgn_restart.Text = "重启"
+        Me.Button_pvpgn_restart.UseVisualStyleBackColor = True
         '
         'TabPage8
         '
@@ -1337,7 +1338,7 @@ Partial Class Form_main
         Me.TabPage3.Controls.Add(Me.Button30)
         Me.TabPage3.Controls.Add(Me.Button29)
         Me.TabPage3.Controls.Add(Me.Button28)
-        Me.TabPage3.Controls.Add(Me.Button27)
+        Me.TabPage3.Controls.Add(Me.Button_pvpgn_config_modify)
         Me.TabPage3.Controls.Add(Me.Button21)
         Me.TabPage3.Controls.Add(Me.Button20)
         Me.TabPage3.Controls.Add(Me.Button19)
@@ -1380,14 +1381,14 @@ Partial Class Form_main
         Me.Button28.Text = "bnmotd.txt"
         Me.Button28.UseVisualStyleBackColor = True
         '
-        'Button27
+        'Button_pvpgn_config_modify
         '
-        Me.Button27.Location = New System.Drawing.Point(417, 64)
-        Me.Button27.Name = "Button27"
-        Me.Button27.Size = New System.Drawing.Size(61, 64)
-        Me.Button27.TabIndex = 4
-        Me.Button27.Text = "打开conf目录"
-        Me.Button27.UseVisualStyleBackColor = True
+        Me.Button_pvpgn_config_modify.Location = New System.Drawing.Point(417, 64)
+        Me.Button_pvpgn_config_modify.Name = "Button_pvpgn_config_modify"
+        Me.Button_pvpgn_config_modify.Size = New System.Drawing.Size(61, 64)
+        Me.Button_pvpgn_config_modify.TabIndex = 4
+        Me.Button_pvpgn_config_modify.Text = "打开conf目录"
+        Me.Button_pvpgn_config_modify.UseVisualStyleBackColor = True
         '
         'Button21
         '
@@ -1432,13 +1433,13 @@ Partial Class Form_main
         'TabPage4
         '
         Me.TabPage4.Controls.Add(Me.Button_fix_pvpgn_server)
-        Me.TabPage4.Controls.Add(Me.Button39)
-        Me.TabPage4.Controls.Add(Me.Button38)
-        Me.TabPage4.Controls.Add(Me.Button37)
-        Me.TabPage4.Controls.Add(Me.Button36)
-        Me.TabPage4.Controls.Add(Me.Button25)
+        Me.TabPage4.Controls.Add(Me.Button_d2dbs_uninstall)
+        Me.TabPage4.Controls.Add(Me.Button_d2cs_uninstall)
+        Me.TabPage4.Controls.Add(Me.Button_d2dbs_install)
+        Me.TabPage4.Controls.Add(Me.Button_d2cs_install)
+        Me.TabPage4.Controls.Add(Me.Button_pvpgn_uninstall)
         Me.TabPage4.Controls.Add(Me.Label14)
-        Me.TabPage4.Controls.Add(Me.Button23)
+        Me.TabPage4.Controls.Add(Me.Button_pvpgn_install)
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
@@ -1459,50 +1460,50 @@ Partial Class Form_main
         Me.Button_fix_pvpgn_server.UseVisualStyleBackColor = False
         Me.Button_fix_pvpgn_server.Visible = False
         '
-        'Button39
+        'Button_d2dbs_uninstall
         '
-        Me.Button39.Location = New System.Drawing.Point(400, 100)
-        Me.Button39.Name = "Button39"
-        Me.Button39.Size = New System.Drawing.Size(75, 23)
-        Me.Button39.TabIndex = 11
-        Me.Button39.Text = "卸载D2DBS"
-        Me.Button39.UseVisualStyleBackColor = True
+        Me.Button_d2dbs_uninstall.Location = New System.Drawing.Point(400, 100)
+        Me.Button_d2dbs_uninstall.Name = "Button_d2dbs_uninstall"
+        Me.Button_d2dbs_uninstall.Size = New System.Drawing.Size(75, 23)
+        Me.Button_d2dbs_uninstall.TabIndex = 11
+        Me.Button_d2dbs_uninstall.Text = "卸载D2DBS"
+        Me.Button_d2dbs_uninstall.UseVisualStyleBackColor = True
         '
-        'Button38
+        'Button_d2cs_uninstall
         '
-        Me.Button38.Location = New System.Drawing.Point(238, 100)
-        Me.Button38.Name = "Button38"
-        Me.Button38.Size = New System.Drawing.Size(75, 23)
-        Me.Button38.TabIndex = 10
-        Me.Button38.Text = "卸载D2CS"
-        Me.Button38.UseVisualStyleBackColor = True
+        Me.Button_d2cs_uninstall.Location = New System.Drawing.Point(238, 100)
+        Me.Button_d2cs_uninstall.Name = "Button_d2cs_uninstall"
+        Me.Button_d2cs_uninstall.Size = New System.Drawing.Size(75, 23)
+        Me.Button_d2cs_uninstall.TabIndex = 10
+        Me.Button_d2cs_uninstall.Text = "卸载D2CS"
+        Me.Button_d2cs_uninstall.UseVisualStyleBackColor = True
         '
-        'Button37
+        'Button_d2dbs_install
         '
-        Me.Button37.Location = New System.Drawing.Point(400, 53)
-        Me.Button37.Name = "Button37"
-        Me.Button37.Size = New System.Drawing.Size(75, 23)
-        Me.Button37.TabIndex = 9
-        Me.Button37.Text = "安装D2DBS"
-        Me.Button37.UseVisualStyleBackColor = True
+        Me.Button_d2dbs_install.Location = New System.Drawing.Point(400, 53)
+        Me.Button_d2dbs_install.Name = "Button_d2dbs_install"
+        Me.Button_d2dbs_install.Size = New System.Drawing.Size(75, 23)
+        Me.Button_d2dbs_install.TabIndex = 9
+        Me.Button_d2dbs_install.Text = "安装D2DBS"
+        Me.Button_d2dbs_install.UseVisualStyleBackColor = True
         '
-        'Button36
+        'Button_d2cs_install
         '
-        Me.Button36.Location = New System.Drawing.Point(238, 53)
-        Me.Button36.Name = "Button36"
-        Me.Button36.Size = New System.Drawing.Size(75, 23)
-        Me.Button36.TabIndex = 8
-        Me.Button36.Text = "安装D2CS"
-        Me.Button36.UseVisualStyleBackColor = True
+        Me.Button_d2cs_install.Location = New System.Drawing.Point(238, 53)
+        Me.Button_d2cs_install.Name = "Button_d2cs_install"
+        Me.Button_d2cs_install.Size = New System.Drawing.Size(75, 23)
+        Me.Button_d2cs_install.TabIndex = 8
+        Me.Button_d2cs_install.Text = "安装D2CS"
+        Me.Button_d2cs_install.UseVisualStyleBackColor = True
         '
-        'Button25
+        'Button_pvpgn_uninstall
         '
-        Me.Button25.Location = New System.Drawing.Point(76, 100)
-        Me.Button25.Name = "Button25"
-        Me.Button25.Size = New System.Drawing.Size(75, 23)
-        Me.Button25.TabIndex = 7
-        Me.Button25.Text = "卸载PvPGN"
-        Me.Button25.UseVisualStyleBackColor = True
+        Me.Button_pvpgn_uninstall.Location = New System.Drawing.Point(76, 100)
+        Me.Button_pvpgn_uninstall.Name = "Button_pvpgn_uninstall"
+        Me.Button_pvpgn_uninstall.Size = New System.Drawing.Size(75, 23)
+        Me.Button_pvpgn_uninstall.TabIndex = 7
+        Me.Button_pvpgn_uninstall.Text = "卸载PvPGN"
+        Me.Button_pvpgn_uninstall.UseVisualStyleBackColor = True
         '
         'Label14
         '
@@ -1515,14 +1516,14 @@ Partial Class Form_main
         Me.Label14.Text = "请确认此工具在PvPGN目录下。推荐安装后，先配置conf，再重启计算机。"
         Me.Label14.Visible = False
         '
-        'Button23
+        'Button_pvpgn_install
         '
-        Me.Button23.Location = New System.Drawing.Point(76, 53)
-        Me.Button23.Name = "Button23"
-        Me.Button23.Size = New System.Drawing.Size(75, 23)
-        Me.Button23.TabIndex = 4
-        Me.Button23.Text = "安装PvPGN"
-        Me.Button23.UseVisualStyleBackColor = True
+        Me.Button_pvpgn_install.Location = New System.Drawing.Point(76, 53)
+        Me.Button_pvpgn_install.Name = "Button_pvpgn_install"
+        Me.Button_pvpgn_install.Size = New System.Drawing.Size(75, 23)
+        Me.Button_pvpgn_install.TabIndex = 4
+        Me.Button_pvpgn_install.Text = "安装PvPGN"
+        Me.Button_pvpgn_install.UseVisualStyleBackColor = True
         '
         'TabPage6
         '
@@ -1651,9 +1652,9 @@ Partial Class Form_main
         '
         'TabPage5
         '
-        Me.TabPage5.Controls.Add(Me.Button1)
+        Me.TabPage5.Controls.Add(Me.Button_d2dir_brower)
         Me.TabPage5.Controls.Add(Me.ProgressBar1)
-        Me.TabPage5.Controls.Add(Me.Button31)
+        Me.TabPage5.Controls.Add(Me.Button_d2files_copy)
         Me.TabPage5.Controls.Add(Me.Label20)
         Me.TabPage5.Controls.Add(Me.TextBox_d2_path)
         Me.TabPage5.Controls.Add(Me.Label19)
@@ -1667,14 +1668,14 @@ Partial Class Form_main
         Me.TabPage5.Text = "安装D2GS"
         Me.TabPage5.UseVisualStyleBackColor = True
         '
-        'Button1
+        'Button_d2dir_brower
         '
-        Me.Button1.Location = New System.Drawing.Point(371, 28)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 17
-        Me.Button1.Text = "浏览"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Button_d2dir_brower.Location = New System.Drawing.Point(371, 28)
+        Me.Button_d2dir_brower.Name = "Button_d2dir_brower"
+        Me.Button_d2dir_brower.Size = New System.Drawing.Size(75, 23)
+        Me.Button_d2dir_brower.TabIndex = 17
+        Me.Button_d2dir_brower.Text = "浏览"
+        Me.Button_d2dir_brower.UseVisualStyleBackColor = True
         '
         'ProgressBar1
         '
@@ -1685,14 +1686,14 @@ Partial Class Form_main
         Me.ProgressBar1.TabIndex = 15
         Me.ProgressBar1.Visible = False
         '
-        'Button31
+        'Button_d2files_copy
         '
-        Me.Button31.Location = New System.Drawing.Point(371, 65)
-        Me.Button31.Name = "Button31"
-        Me.Button31.Size = New System.Drawing.Size(91, 23)
-        Me.Button31.TabIndex = 14
-        Me.Button31.Text = "复制所需文件"
-        Me.Button31.UseVisualStyleBackColor = True
+        Me.Button_d2files_copy.Location = New System.Drawing.Point(371, 65)
+        Me.Button_d2files_copy.Name = "Button_d2files_copy"
+        Me.Button_d2files_copy.Size = New System.Drawing.Size(91, 23)
+        Me.Button_d2files_copy.TabIndex = 14
+        Me.Button_d2files_copy.Text = "复制所需文件"
+        Me.Button_d2files_copy.UseVisualStyleBackColor = True
         '
         'Label20
         '
@@ -1746,14 +1747,14 @@ Partial Class Form_main
         Me.TabPage7.Controls.Add(Me.TextBox_mysql_password2)
         Me.TabPage7.Controls.Add(Me.TextBox_mysql_password1)
         Me.TabPage7.Controls.Add(Me.Label49)
-        Me.TabPage7.Controls.Add(Me.Button_mysql_config)
+        Me.TabPage7.Controls.Add(Me.Button_mysql_password_modify)
         Me.TabPage7.Controls.Add(Me.Label47)
         Me.TabPage7.Controls.Add(Me.Button2)
         Me.TabPage7.Controls.Add(Me.Label26)
         Me.TabPage7.Controls.Add(Me.Label25)
         Me.TabPage7.Controls.Add(Me.TextBox_sqlbak_name)
-        Me.TabPage7.Controls.Add(Me.Button_res_pvpgn_sql)
-        Me.TabPage7.Controls.Add(Me.Button_bak_pvpgn_sql)
+        Me.TabPage7.Controls.Add(Me.Button_mysql_data_restore)
+        Me.TabPage7.Controls.Add(Me.Button_mysql_data_backup)
         Me.TabPage7.Controls.Add(Me.Label24)
         Me.TabPage7.Controls.Add(Me.Button_install_mysql)
         Me.TabPage7.Controls.Add(Me.Label11)
@@ -1812,14 +1813,14 @@ Partial Class Form_main
         Me.Label49.TabIndex = 42
         Me.Label49.Text = "修改密码后一定要牢记！"
         '
-        'Button_mysql_config
+        'Button_mysql_password_modify
         '
-        Me.Button_mysql_config.Location = New System.Drawing.Point(470, 72)
-        Me.Button_mysql_config.Name = "Button_mysql_config"
-        Me.Button_mysql_config.Size = New System.Drawing.Size(75, 23)
-        Me.Button_mysql_config.TabIndex = 41
-        Me.Button_mysql_config.Text = "修改密码"
-        Me.Button_mysql_config.UseVisualStyleBackColor = True
+        Me.Button_mysql_password_modify.Location = New System.Drawing.Point(470, 72)
+        Me.Button_mysql_password_modify.Name = "Button_mysql_password_modify"
+        Me.Button_mysql_password_modify.Size = New System.Drawing.Size(75, 23)
+        Me.Button_mysql_password_modify.TabIndex = 41
+        Me.Button_mysql_password_modify.Text = "修改密码"
+        Me.Button_mysql_password_modify.UseVisualStyleBackColor = True
         '
         'Label47
         '
@@ -1864,25 +1865,25 @@ Partial Class Form_main
         Me.TextBox_sqlbak_name.Size = New System.Drawing.Size(270, 21)
         Me.TextBox_sqlbak_name.TabIndex = 12
         '
-        'Button_res_pvpgn_sql
+        'Button_mysql_data_restore
         '
-        Me.Button_res_pvpgn_sql.Enabled = False
-        Me.Button_res_pvpgn_sql.Location = New System.Drawing.Point(470, 180)
-        Me.Button_res_pvpgn_sql.Name = "Button_res_pvpgn_sql"
-        Me.Button_res_pvpgn_sql.Size = New System.Drawing.Size(75, 23)
-        Me.Button_res_pvpgn_sql.TabIndex = 11
-        Me.Button_res_pvpgn_sql.Text = "还原数据库"
-        Me.Button_res_pvpgn_sql.UseVisualStyleBackColor = True
+        Me.Button_mysql_data_restore.Enabled = False
+        Me.Button_mysql_data_restore.Location = New System.Drawing.Point(470, 180)
+        Me.Button_mysql_data_restore.Name = "Button_mysql_data_restore"
+        Me.Button_mysql_data_restore.Size = New System.Drawing.Size(75, 23)
+        Me.Button_mysql_data_restore.TabIndex = 11
+        Me.Button_mysql_data_restore.Text = "还原数据库"
+        Me.Button_mysql_data_restore.UseVisualStyleBackColor = True
         '
-        'Button_bak_pvpgn_sql
+        'Button_mysql_data_backup
         '
-        Me.Button_bak_pvpgn_sql.Enabled = False
-        Me.Button_bak_pvpgn_sql.Location = New System.Drawing.Point(470, 112)
-        Me.Button_bak_pvpgn_sql.Name = "Button_bak_pvpgn_sql"
-        Me.Button_bak_pvpgn_sql.Size = New System.Drawing.Size(75, 23)
-        Me.Button_bak_pvpgn_sql.TabIndex = 10
-        Me.Button_bak_pvpgn_sql.Text = "备份数据库"
-        Me.Button_bak_pvpgn_sql.UseVisualStyleBackColor = True
+        Me.Button_mysql_data_backup.Enabled = False
+        Me.Button_mysql_data_backup.Location = New System.Drawing.Point(470, 112)
+        Me.Button_mysql_data_backup.Name = "Button_mysql_data_backup"
+        Me.Button_mysql_data_backup.Size = New System.Drawing.Size(75, 23)
+        Me.Button_mysql_data_backup.TabIndex = 10
+        Me.Button_mysql_data_backup.Text = "备份数据库"
+        Me.Button_mysql_data_backup.UseVisualStyleBackColor = True
         '
         'Label24
         '
@@ -2027,18 +2028,28 @@ Partial Class Form_main
         Me.Label48.TabIndex = 40
         Me.Label48.Text = "Email to:"
         '
+        'Button_test
+        '
+        Me.Button_test.Location = New System.Drawing.Point(336, 434)
+        Me.Button_test.Name = "Button_test"
+        Me.Button_test.Size = New System.Drawing.Size(75, 23)
+        Me.Button_test.TabIndex = 41
+        Me.Button_test.Text = "测试"
+        Me.Button_test.UseVisualStyleBackColor = True
+        '
         'Form_main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(584, 458)
+        Me.Controls.Add(Me.Button_test)
         Me.Controls.Add(Me.Label48)
         Me.Controls.Add(Me.LinkLabel2)
         Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.TabControl1)
-        Me.Controls.Add(Me.Button3)
+        Me.Controls.Add(Me.Button_glq_config_restart)
         Me.Controls.Add(Me.GroupBox_d2_ver)
         Me.Controls.Add(Me.GroupBox_win_ver)
         Me.Controls.Add(Me.GroupBox1)
@@ -2083,7 +2094,7 @@ Partial Class Form_main
     Friend WithEvents TextBox_sql_root As TextBox
     Friend WithEvents TextBox_sql_serverip As TextBox
     Friend WithEvents Button_con_to_sql As Button
-    Friend WithEvents Button3 As Button
+    Friend WithEvents Button_glq_config_restart As Button
     Friend WithEvents GroupBox_d2_ver As GroupBox
     Friend WithEvents RadioButton_d2_113C As RadioButton
     Friend WithEvents RadioButton_d2_109 As RadioButton
@@ -2129,21 +2140,21 @@ Partial Class Form_main
     Friend WithEvents CheckBox_d2dbs As CheckBox
     Friend WithEvents CheckBox_d2cs As CheckBox
     Friend WithEvents CheckBox_pvpgn As CheckBox
-    Friend WithEvents Button_refurbish As Button
-    Friend WithEvents Label18 As Label
-    Friend WithEvents Label17 As Label
-    Friend WithEvents Label16 As Label
-    Friend WithEvents Label15 As Label
-    Friend WithEvents Button_stop_select As Button
-    Friend WithEvents Button_stop_d2gs As Button
-    Friend WithEvents Button_stop_d2dbs As Button
-    Friend WithEvents Button_stop_d2cs As Button
-    Friend WithEvents Button_stop_pvpgn As Button
-    Friend WithEvents Button_restart_select As Button
-    Friend WithEvents Button_restart_d2gs As Button
-    Friend WithEvents Button_restart_d2dbs As Button
-    Friend WithEvents Button_restart_d2cs As Button
-    Friend WithEvents Button_restart_pvpgn As Button
+    Friend WithEvents Button_refresh As Button
+    Friend WithEvents Label_server_d2gs_status As Label
+    Friend WithEvents Label_server_d2dbs_status As Label
+    Friend WithEvents Label_server_d2cs_status As Label
+    Friend WithEvents Label_server_pvpgn_status As Label
+    Friend WithEvents Button_select_server_stop As Button
+    Friend WithEvents Button_d2gs_stop As Button
+    Friend WithEvents Button_d2dbs_stop As Button
+    Friend WithEvents Button_d2cs_stop As Button
+    Friend WithEvents Button_pvpgn_stop As Button
+    Friend WithEvents Button_select_server_restart As Button
+    Friend WithEvents Button_d2gs_restart As Button
+    Friend WithEvents Button_d2dbs_restart As Button
+    Friend WithEvents Button_d2cs_restart As Button
+    Friend WithEvents Button_pvpgn_restart As Button
     Friend WithEvents TabPage8 As TabPage
     Friend WithEvents CheckBox1 As CheckBox
     Friend WithEvents TextBox_auto_lock_day As TextBox
@@ -2179,20 +2190,20 @@ Partial Class Form_main
     Friend WithEvents Button30 As Button
     Friend WithEvents Button29 As Button
     Friend WithEvents Button28 As Button
-    Friend WithEvents Button27 As Button
+    Friend WithEvents Button_pvpgn_config_modify As Button
     Friend WithEvents Button21 As Button
     Friend WithEvents Button20 As Button
     Friend WithEvents Button19 As Button
     Friend WithEvents Button18 As Button
     Friend WithEvents TabPage4 As TabPage
     Friend WithEvents Button_fix_pvpgn_server As Button
-    Friend WithEvents Button39 As Button
-    Friend WithEvents Button38 As Button
-    Friend WithEvents Button37 As Button
-    Friend WithEvents Button36 As Button
-    Friend WithEvents Button25 As Button
+    Friend WithEvents Button_d2dbs_uninstall As Button
+    Friend WithEvents Button_d2cs_uninstall As Button
+    Friend WithEvents Button_d2dbs_install As Button
+    Friend WithEvents Button_d2cs_install As Button
+    Friend WithEvents Button_pvpgn_uninstall As Button
     Friend WithEvents Label14 As Label
-    Friend WithEvents Button23 As Button
+    Friend WithEvents Button_pvpgn_install As Button
     Friend WithEvents TabPage6 As TabPage
     Friend WithEvents Label13 As Label
     Friend WithEvents Label12 As Label
@@ -2207,9 +2218,9 @@ Partial Class Form_main
     Friend WithEvents Label22 As Label
     Friend WithEvents Label21 As Label
     Friend WithEvents TabPage5 As TabPage
-    Friend WithEvents Button1 As Button
+    Friend WithEvents Button_d2dir_brower As Button
     Friend WithEvents ProgressBar1 As ProgressBar
-    Friend WithEvents Button31 As Button
+    Friend WithEvents Button_d2files_copy As Button
     Friend WithEvents Label20 As Label
     Friend WithEvents TextBox_d2_path As TextBox
     Friend WithEvents Label19 As Label
@@ -2224,8 +2235,8 @@ Partial Class Form_main
     Friend WithEvents Label26 As Label
     Friend WithEvents Label25 As Label
     Friend WithEvents TextBox_sqlbak_name As TextBox
-    Friend WithEvents Button_res_pvpgn_sql As Button
-    Friend WithEvents Button_bak_pvpgn_sql As Button
+    Friend WithEvents Button_mysql_data_restore As Button
+    Friend WithEvents Button_mysql_data_backup As Button
     Friend WithEvents Label24 As Label
     Friend WithEvents Button_install_mysql As Button
     Friend WithEvents Label11 As Label
@@ -2239,10 +2250,11 @@ Partial Class Form_main
     Friend WithEvents OpenFileDialog_mysqlbakfiles_name As OpenFileDialog
     Friend WithEvents Label47 As Label
     Friend WithEvents Label48 As Label
-    Friend WithEvents Button_mysql_config As Button
+    Friend WithEvents Button_mysql_password_modify As Button
     Friend WithEvents TextBox_mysql_password2 As TextBox
     Friend WithEvents TextBox_mysql_password1 As TextBox
     Friend WithEvents Label49 As Label
     Friend WithEvents Label50 As Label
     Friend WithEvents Button_mysql_uninstall As Button
+    Friend WithEvents Button_test As Button
 End Class

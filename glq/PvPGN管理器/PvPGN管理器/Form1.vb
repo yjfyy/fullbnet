@@ -9,7 +9,7 @@ Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Public Class Form_main
     Inherits System.Windows.Forms.Form
     Dim a0 As DateTime = #6/13/2010 1:00:00 PM#
-    Dim a1 As DateTime = #6/13/2010 1:00:10 PM#
+    Dim a1 As DateTime = #6/13/2010 1:00:20 PM#
     Dim outtime As TimeSpan = a1 - a0
     Dim conn As MySqlConnection
     Dim data As DataTable
@@ -26,6 +26,8 @@ Public Class Form_main
     Dim flag6 As String = "0"
     Dim flag7 As String = "0"
     Dim d2ver As String = "0"
+    Dim server_status As String
+    Dim server_name As String
 
     Private Sub showbutton()
         Dim reg_path = "SOFTWARE\\PvPGN GLQ"
@@ -71,8 +73,8 @@ Public Class Form_main
             ElseIf TextBox_database_name.Text = "pvpgn" Then
                 Button_close_sql.Enabled = True
                 'Button_del_pvpgn_sql.Enabled = True
-                Button_bak_pvpgn_sql.Enabled = True
-                Button_res_pvpgn_sql.Enabled = True
+                Button_mysql_data_backup.Enabled = True
+                Button_mysql_data_restore.Enabled = True
                 CheckBox_timer_backup.Enabled = True
                 CheckBox_timer_autolock.Enabled = True
                 If reg_config Is Nothing Then
@@ -116,8 +118,8 @@ Public Class Form_main
             Button_add_flags_exp_date.Enabled = False
             Button_add_unset_lock_exp_date.Enabled = False
             Button_add_unset_mute_exp_date.Enabled = False
-            Button_res_pvpgn_sql.Enabled = False
-            Button_bak_pvpgn_sql.Enabled = False
+            Button_mysql_data_restore.Enabled = False
+            Button_mysql_data_backup.Enabled = False
 
             TextBox_sql_serverip.ReadOnly = False
             TextBox_sql_root.ReadOnly = False
@@ -371,7 +373,7 @@ Public Class Form_main
 
     End Sub
 
-    Private Sub Button23_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button23.Click
+    Private Sub Button23_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_pvpgn_install.Click
         'MessageBox.Show("安装开始后会出现CMD窗口，当显示""Installing Service""后关掉CMD窗口")
         Shell("cmd /c d:\pvpgn\PvPGNConsole.exe -s install", AppWinStyle.Hide, True)
         Microsoft.Win32.Registry.SetValue("HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\pvpgn", "DependOnService", New String() {"MySQL"}, Microsoft.Win32.RegistryValueKind.MultiString)
@@ -379,7 +381,7 @@ Public Class Form_main
         MessageBox.Show("PvPGN已安装")
     End Sub
 
-    Private Sub Button25_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button25.Click
+    Private Sub Button25_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_pvpgn_uninstall.Click
         Dim sspvpgn As New ServiceController("pvpgn")
         If sspvpgn.Status.Equals(ServiceControllerStatus.Running) Then
             MessageBox.Show("请停止PvPGN后重试")
@@ -389,46 +391,38 @@ Public Class Form_main
         End If
     End Sub
 
-    Private Sub Button17_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim sspvpgn As New ServiceController("pvpgn")
-        sspvpgn.Refresh()
-        MessageBox.Show("已重启")
-    End Sub
+    'Private Sub Button17_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    '    Dim sspvpgn As New ServiceController("pvpgn")
+    '    sspvpgn.Refresh()
+    '    MessageBox.Show("已重启")
+    'End Sub
 
-    Private Sub Button18_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim ssd2cs As New ServiceController("d2cs")
-        ssd2cs.Refresh()
-        MessageBox.Show("已重启")
-    End Sub
+    'Private Sub Button18_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    '    Dim ssd2cs As New ServiceController("d2cs")
+    '    ssd2cs.Refresh()
+    '    MessageBox.Show("已重启")
+    'End Sub
 
-    Private Sub Button19_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim ssd2dbs As New ServiceController("d2dbs")
-        ssd2dbs.Refresh()
-        MessageBox.Show("已重启")
-    End Sub
+    'Private Sub Button19_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    '    Dim ssd2dbs As New ServiceController("d2dbs")
+    '    ssd2dbs.Refresh()
+    '    MessageBox.Show("已重启")
+    'End Sub
 
-    Private Sub Button21_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim sspvpgn As New ServiceController("pvpgn")
-        Dim ssd2cs As New ServiceController("d2cs")
-        Dim ssd2dbs As New ServiceController("d2dbs")
-        sspvpgn.Refresh()
-        ssd2cs.Refresh()
-        ssd2dbs.Refresh()
-        MessageBox.Show("已全部重启")
-    End Sub
+    'Private Sub Button21_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    '    Dim sspvpgn As New ServiceController("pvpgn")
+    '    Dim ssd2cs As New ServiceController("d2cs")
+    '    Dim ssd2dbs As New ServiceController("d2dbs")
+    '    sspvpgn.Refresh()
+    '    ssd2cs.Refresh()
+    '    ssd2dbs.Refresh()
+    '    MessageBox.Show("已全部重启")
+    'End Sub
 
-    Private Sub Button27_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button27.Click
-        Shell("explorer.exe .\conf\", AppWinStyle.MaximizedFocus)
-    End Sub
 
-    Private Sub Button24_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        'Shell(".\d2gs\d2gs.reg", vbHide)
-
-    End Sub
-
-    Private Sub Button31_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button31.Click
-        Button31.Text = "正在复制"
-        Button31.Enabled = False
+    Private Sub Button31_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_d2files_copy.Click
+        Button_d2files_copy.Text = "正在复制"
+        Button_d2files_copy.Enabled = False
         ProgressBar1.Visible = True
         ProgressBar1.Value = 0
         Dim i
@@ -448,9 +442,9 @@ Public Class Form_main
         Next
         ProgressBar1.Value = 100
         ProgressBar1.Visible = False
-        Button31.Text = "复制所需文件"
+        Button_d2files_copy.Text = "复制所需文件"
         MsgBox("复制完成")
-        Button31.Enabled = True
+        Button_d2files_copy.Enabled = True
     End Sub
 
     Private Sub d2gsdefconf()
@@ -528,7 +522,7 @@ Public Class Form_main
     End Sub
 
 
-    Private Sub Button35_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_res_pvpgn_sql.Click
+    Private Sub Button35_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_mysql_data_restore.Click
         If TextBox_sqlbak_name.Text = "" Then
             MsgBox("请先选择需要还原的数据文件。")
         Else
@@ -543,19 +537,19 @@ Public Class Form_main
 
     End Sub
 
-    Private Sub Button36_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button36.Click
+    Private Sub Button36_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_d2cs_install.Click
         Shell("cmd /c d:\pvpgn\" & d2cs_server_string & "Console.exe -s install", vbHide, True)
         'MessageBox.Show(i)
         MsgBox(d2cs_server_string & "已安装")
     End Sub
 
-    Private Sub Button37_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button37.Click
+    Private Sub Button37_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_d2dbs_install.Click
         Shell("cmd /c d:\pvpgn\" & d2dbs_server_string + "Console.exe -s install", vbHide， True)
         'MessageBox.Show(i)
         MsgBox(d2dbs_server_string & "D2DBS已安装")
     End Sub
 
-    Private Sub Button38_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button38.Click
+    Private Sub Button38_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_d2cs_uninstall.Click
         Dim ssd2cs As New ServiceController(d2cs_server_string)
         If ssd2cs.Status.Equals(ServiceControllerStatus.Running) Then
             MessageBox.Show("请停止D2CS服务后重试")
@@ -566,7 +560,7 @@ Public Class Form_main
         End If
     End Sub
 
-    Private Sub Button39_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button39.Click
+    Private Sub Button39_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_d2dbs_uninstall.Click
         Dim ssd2dbs As New ServiceController(d2dbs_server_string)
 
         If ssd2dbs.Status.Equals(ServiceControllerStatus.Running) Then
@@ -579,235 +573,353 @@ Public Class Form_main
     End Sub
 
 
-    Public Sub stop_pvpgn_server()
-        Dim sspvpgn As New ServiceController("pvpgn")
-        Try
-            If sspvpgn.Status <> ServiceControllerStatus.Stopped Then
-                sspvpgn.Stop()
-                sspvpgn.WaitForStatus(ServiceControllerStatus.Stopped, outtime)
-            End If
-        Catch ex As Exception
-            MsgBox("PvPGN未能停止，请重试，多次重试仍然不行请重启计算机")
-        End Try
-    End Sub
-    Public Sub stop_mysql_server()
-        Dim ssmysql As New ServiceController("mysql")
-        Try
-            If ssmysql.Status <> ServiceControllerStatus.Stopped Then
-                ssmysql.Stop()
-                ssmysql.WaitForStatus(ServiceControllerStatus.Stopped, outtime)
-            End If
-        Catch ex As Exception
-            MsgBox("MySQL未能停止，请重试，多次重试仍然不行请重启计算机")
-        End Try
-    End Sub
+    'Public Sub stop_pvpgn_server()
+    '    Dim sspvpgn As New ServiceController("pvpgn")
+    '    Try
+    '        If sspvpgn.Status <> ServiceControllerStatus.Stopped Then
+    '            sspvpgn.Stop()
+    '            sspvpgn.WaitForStatus(ServiceControllerStatus.Stopped, outtime)
+    '        End If
+    '    Catch ex As Exception
+    '        MsgBox("PvPGN未能停止，请重试，多次重试仍然不行请重启计算机")
+    '    End Try
+    'End Sub
+    'Public Sub stop_mysql_server()
+    '    Dim ssmysql As New ServiceController("mysql")
+    '    Try
+    '        If ssmysql.Status <> ServiceControllerStatus.Stopped Then
+    '            ssmysql.Stop()
+    '            ssmysql.WaitForStatus(ServiceControllerStatus.Stopped, outtime)
+    '        End If
+    '    Catch ex As Exception
+    '        MsgBox("MySQL未能停止，请重试，多次重试仍然不行请重启计算机")
+    '    End Try
+    'End Sub
 
-    Public Sub run_pvpgn_server()
-        Dim sspvpgn As New ServiceController("pvpgn")
-        Try
-            sspvpgn.Start()
-            sspvpgn.WaitForStatus(ServiceControllerStatus.Running, outtime)
-        Catch When sspvpgn.Status = ServiceControllerStatus.Running
-            MessageBox.Show("PvPGN正在运行，不能重复启动")
-            Exit Sub
-        Catch ex As Exception
-            MessageBox.Show("不能启动PvPGN,请检查bnet.conf各项配置")
-            Exit Sub
-        End Try
-    End Sub
+    'Public Sub run_pvpgn_server()
+    '    Dim sspvpgn As New ServiceController("pvpgn")
+    '    Try
+    '        sspvpgn.Start()
+    '        sspvpgn.WaitForStatus(ServiceControllerStatus.Running, outtime)
+    '    Catch When sspvpgn.Status = ServiceControllerStatus.Running
+    '        MessageBox.Show("PvPGN正在运行，不能重复启动")
+    '        Exit Sub
+    '    Catch ex As Exception
+    '        MessageBox.Show("不能启动PvPGN,请检查bnet.conf各项配置")
+    '        Exit Sub
+    '    End Try
+    'End Sub
 
-    Public Sub run_mysql_server()
-        Dim rsmysql As New ServiceController("MySQL")
-        Try
-            rsmysql.Start()
-            rsmysql.WaitForStatus(ServiceControllerStatus.Running, outtime)
-        Catch When rsmysql.Status = ServiceControllerStatus.Running
-            MessageBox.Show("MySQL正在运行，不要重复启动。")
-            Exit Sub
-        Catch ex As Exception
-            MessageBox.Show("不能启动MySQL服务，请重试。")
-            Exit Sub
-        End Try
-    End Sub
+    'Public Sub run_mysql_server()
+    '    Dim rsmysql As New ServiceController("MySQL")
+    '    Try
+    '        rsmysql.Start()
+    '        rsmysql.WaitForStatus(ServiceControllerStatus.Running, outtime)
+    '    Catch When rsmysql.Status = ServiceControllerStatus.Running
+    '        MessageBox.Show("MySQL正在运行，不要重复启动。")
+    '        Exit Sub
+    '    Catch ex As Exception
+    '        MessageBox.Show("不能启动MySQL服务，请重试。")
+    '        Exit Sub
+    '    End Try
+    'End Sub
 
-    Public Sub stop_d2cs_server()
-        Dim ssd2cs As New ServiceController(d2cs_server_string)
-        Try
-            If ssd2cs.Status <> ServiceControllerStatus.Stopped Then
+    'Public Sub stop_d2cs_server()
+    '    Dim ssd2cs As New ServiceController(d2cs_server_string)
+    '    Try
+    '        If ssd2cs.Status <> ServiceControllerStatus.Stopped Then
 
-                ssd2cs.Stop()
-                ssd2cs.WaitForStatus(ServiceControllerStatus.Stopped, outtime)
-            End If
-        Catch ex As Exception
-            MsgBox("D2CS未能停止，请重试，多次重试仍然不行请重启计算机")
-        End Try
-    End Sub
+    '            ssd2cs.Stop()
+    '            ssd2cs.WaitForStatus(ServiceControllerStatus.Stopped, outtime)
+    '        End If
+    '    Catch ex As Exception
+    '        MsgBox("D2CS未能停止，请重试，多次重试仍然不行请重启计算机")
+    '    End Try
+    'End Sub
 
-    Public Sub run_d2cs_server()
-        Dim ssd2cs As New ServiceController(d2cs_server_string)
-        Try
-            ssd2cs.Start()
-            ssd2cs.WaitForStatus(ServiceControllerStatus.Running, outtime)
-        Catch When ssd2cs.Status = ServiceControllerStatus.Running
-            MessageBox.Show("D2CS正在运行，不能重复启动")
-            Exit Sub
-        Catch ex As Exception
-            MessageBox.Show("不能启动D2CS,请检查d2cs.conf各项配置")
-            Exit Sub
-        End Try
-    End Sub
+    'Public Sub run_d2cs_server()
+    '    Dim ssd2cs As New ServiceController(d2cs_server_string)
+    '    Try
+    '        ssd2cs.Start()
+    '        ssd2cs.WaitForStatus(ServiceControllerStatus.Running, outtime)
+    '    Catch When ssd2cs.Status = ServiceControllerStatus.Running
+    '        MessageBox.Show("D2CS正在运行，不能重复启动")
+    '        Exit Sub
+    '    Catch ex As Exception
+    '        MessageBox.Show("不能启动D2CS,请检查d2cs.conf各项配置")
+    '        Exit Sub
+    '    End Try
+    'End Sub
 
-    Public Sub stop_d2dbs_server()
-        Dim ssd2dbs As New ServiceController(d2dbs_server_string)
-        Try
-            If ssd2dbs.Status <> ServiceControllerStatus.Stopped Then
-                ssd2dbs.Stop()
-                ssd2dbs.WaitForStatus(ServiceControllerStatus.Stopped, outtime)
-            End If
-        Catch ex As Exception
-            MsgBox("D2DBS未能停止，请重试，多次重试仍然不行请重启计算机")
-        End Try
-    End Sub
+    'Public Sub stop_d2dbs_server()
+    '    Dim ssd2dbs As New ServiceController(d2dbs_server_string)
+    '    Try
+    '        If ssd2dbs.Status <> ServiceControllerStatus.Stopped Then
+    '            ssd2dbs.Stop()
+    '            ssd2dbs.WaitForStatus(ServiceControllerStatus.Stopped, outtime)
+    '        End If
+    '    Catch ex As Exception
+    '        MsgBox("D2DBS未能停止，请重试，多次重试仍然不行请重启计算机")
+    '    End Try
+    'End Sub
 
-    Public Sub run_d2dbs_server()
-        Dim ssd2dbs As New ServiceController(d2dbs_server_string)
-        Try
-            ssd2dbs.Start()
-            ssd2dbs.WaitForStatus(ServiceControllerStatus.Running, outtime)
-        Catch When ssd2dbs.Status = ServiceControllerStatus.Running
-            MessageBox.Show("D2DBS正在运行，不能重复启动")
-            Exit Sub
-        Catch ex As Exception
-            MessageBox.Show("不能启动D2DBS,请检查d2dbs.conf各项配置")
-            Exit Sub
-        End Try
-    End Sub
+    'Public Sub run_d2dbs_server()
+    '    Dim ssd2dbs As New ServiceController(d2dbs_server_string)
+    '    Try
+    '        ssd2dbs.Start()
+    '        ssd2dbs.WaitForStatus(ServiceControllerStatus.Running, outtime)
+    '    Catch When ssd2dbs.Status = ServiceControllerStatus.Running
+    '        MessageBox.Show("D2DBS正在运行，不能重复启动")
+    '        Exit Sub
+    '    Catch ex As Exception
+    '        MessageBox.Show("不能启动D2DBS,请检查d2dbs.conf各项配置")
+    '        Exit Sub
+    '    End Try
+    'End Sub
 
-    Public Sub stop_d2gs_server()
-        Dim ssd2gs As New ServiceController("d2gs")
-        Try
-            If ssd2gs.Status <> ServiceControllerStatus.Stopped Then
-                ssd2gs.Stop()
-                ssd2gs.WaitForStatus(ServiceControllerStatus.Stopped, outtime)
-            End If
-        Catch ex As Exception
-            MsgBox("D2GS未能停止，请重试，多次重试仍然不行请重启计算机")
-        End Try
-    End Sub
+    'Public Sub stop_d2gs_server()
+    '    Dim ssd2gs As New ServiceController("d2gs")
+    '    Try
+    '        If ssd2gs.Status <> ServiceControllerStatus.Stopped Then
+    '            ssd2gs.Stop()
+    '            ssd2gs.WaitForStatus(ServiceControllerStatus.Stopped, outtime)
+    '        End If
+    '    Catch ex As Exception
+    '        MsgBox("D2GS未能停止，请重试，多次重试仍然不行请重启计算机")
+    '    End Try
+    'End Sub
 
-    Public Sub run_d2gs_server()
-        Dim ssd2gs As New ServiceController("d2gs")
-        Try
-            ssd2gs.Start()
-            ssd2gs.WaitForStatus(ServiceControllerStatus.Running, outtime)
-        Catch When ssd2gs.Status = ServiceControllerStatus.Running
-            MessageBox.Show("D2GS正在运行，不能重复启动")
-            Exit Sub
-        Catch ex As Exception
-            MessageBox.Show("不能启动D2GS,请检查D2GS配置")
-            Exit Sub
-        End Try
-    End Sub
+    ''Public Sub run_d2gs_server()
+    ''    Dim ssd2gs As New ServiceController("d2gs")
+    ''    Try
+    ''        ssd2gs.Start()
+    ''        ssd2gs.WaitForStatus(ServiceControllerStatus.Running, outtime)
+    ''    Catch When ssd2gs.Status = ServiceControllerStatus.Running
+    ''        MessageBox.Show("D2GS正在运行，不能重复启动")
+    ''        Exit Sub
+    ''    Catch ex As Exception
+    ''        MessageBox.Show("不能启动D2GS,请检查D2GS配置")
+    ''        Exit Sub
+    ''    End Try
+    ''End Sub
 
-    Private Sub Button_restart_pvpgn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_restart_pvpgn.Click
-        stop_pvpgn_server()
-        run_pvpgn_server()
-        MessageBox.Show("重启指令执行完毕。")
+    Private Sub Button_restart_pvpgn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_pvpgn_restart.Click
+        Button_pvpgn_restart.Text = "正在重启"
+        Button_pvpgn_restart.Enabled = False
+
+        server_name = "pvpgn"
+        server_stop(server_name)
+        server_run(server_name)
+
+        'Label_server_pvpgn_status.Text = server_status
         shuaxin()
+
+        Button_pvpgn_restart.Enabled = Enabled
+        Button_pvpgn_restart.Text = "重启"
     End Sub
 
-    Private Sub Button_restart_d2cs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_restart_d2cs.Click
-        stop_d2cs_server()
-        run_d2cs_server()
-        MessageBox.Show("重启指令执行完毕。")
+    Private Sub Button_restart_d2cs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_d2cs_restart.Click
+        'stop_d2cs_server()
+        'run_d2cs_server()
+        'MessageBox.Show("重启指令执行完毕。")
+        'shuaxin()
+        Button_d2cs_restart.Text = "正在重启"
+        Button_d2cs_restart.Enabled = False
+
+        server_name = d2cs_server_string
+        server_stop(server_name)
+        server_run(server_name)
+
+        'Label_server_d2cs_status.Text = server_status
         shuaxin()
+
+        Button_d2cs_restart.Enabled = Enabled
+        Button_d2cs_restart.Text = "重启"
     End Sub
 
 
-    Private Sub Button_restart_d2dbs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_restart_d2dbs.Click
-        stop_d2dbs_server()
-        run_d2dbs_server()
-        MessageBox.Show("重启指令执行完毕。")
+    Private Sub Button_restart_d2dbs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_d2dbs_restart.Click
+        'stop_d2dbs_server()
+        'run_d2dbs_server()
+        'MessageBox.Show("重启指令执行完毕。")
+        'shuaxin()
+        Button_d2dbs_restart.Text = "正在重启"
+        Button_d2dbs_restart.Enabled = False
+
+        server_name = d2dbs_server_string
+        server_stop(server_name)
+        server_run(server_name)
+
+        'Label_server_d2dbs_status.Text = server_status
         shuaxin()
+
+        Button_d2dbs_restart.Enabled = Enabled
+        Button_d2dbs_restart.Text = "重启"
     End Sub
 
-    Private Sub Button_restart_d2gs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_restart_d2gs.Click
-        stop_d2gs_server()
-        run_d2gs_server()
-        MessageBox.Show("重启指令执行完毕。")
+    Private Sub Button_restart_d2gs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_d2gs_restart.Click
+        'stop_d2gs_server()
+        'run_d2gs_server()
+        'MessageBox.Show("重启指令执行完毕。")
+        'shuaxin()
+        Button_d2gs_restart.Text = "正在重启"
+        Button_d2gs_restart.Enabled = False
+
+
+        server_name = "d2gs"
+        server_stop(server_name)
+        server_run(server_name)
+
+        'Label_server_d2gs_status.Text = server_status
         shuaxin()
+
+        Button_d2gs_restart.Enabled = Enabled
+        Button_d2gs_restart.Text = "重启"
     End Sub
 
-    Private Sub Button_stop_pvpgn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_stop_pvpgn.Click
-        stop_pvpgn_server()
-        MessageBox.Show("停止指令执行完毕。")
+    Private Sub Button_stop_pvpgn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_pvpgn_stop.Click
+        'stop_pvpgn_server()
+        'MessageBox.Show("停止指令执行完毕。")
+        'shuaxin()
+        Button_pvpgn_stop.Text = "正在停止"
+        Button_pvpgn_stop.Enabled = False
+
+        server_name = "pvpgn"
+        server_stop(server_name)
+
+        'Label_server_pvpgn_status.Text = server_status
         shuaxin()
+
+        Button_pvpgn_restart.Enabled = Enabled
+        Button_pvpgn_restart.Text = "停止"
     End Sub
 
-    Private Sub Button_stop_d2cs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_stop_d2cs.Click
-        stop_d2cs_server()
-        MessageBox.Show("停止指令执行完毕。")
+    Private Sub Button_stop_d2cs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_d2cs_stop.Click
+        'stop_d2cs_server()
+        'MessageBox.Show("停止指令执行完毕。")
+        'shuaxin()
+        Button_d2cs_stop.Text = "正在停止"
+        Button_d2cs_stop.Enabled = False
+
+        server_name = d2cs_server_string
+        server_stop(server_name)
+
         shuaxin()
+
+        Button_d2cs_restart.Enabled = Enabled
+        Button_d2cs_restart.Text = "停止"
     End Sub
 
-    Private Sub Button_stop_d2dbs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_stop_d2dbs.Click
-        stop_d2dbs_server()
-        MessageBox.Show("停止指令执行完毕。")
+    Private Sub Button_stop_d2dbs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_d2dbs_stop.Click
+        'stop_d2dbs_server()
+        'MessageBox.Show("停止指令执行完毕。")
+        'shuaxin()
+        Button_d2dbs_stop.Text = "正在停止"
+        Button_d2dbs_stop.Enabled = False
+
+        server_name = d2dbs_server_string
+        server_stop(server_name)
+
         shuaxin()
+
+        Button_d2dbs_restart.Enabled = Enabled
+        Button_d2dbs_restart.Text = "停止"
     End Sub
 
-    Private Sub Button_stop_d2gs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_stop_d2gs.Click
-        stop_d2gs_server()
-        MessageBox.Show("停止指令执行完毕。")
+    Private Sub Button_stop_d2gs_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_d2gs_stop.Click
+        'stop_d2gs_server()
+        'MessageBox.Show("停止指令执行完毕。")
+        'shuaxin()
+        Button_d2gs_stop.Text = "正在停止"
+        Button_d2gs_stop.Enabled = False
+
+        server_name = "d2gs"
+        server_stop(server_name)
+
         shuaxin()
+
+        Button_d2gs_restart.Enabled = Enabled
+        Button_d2gs_restart.Text = "停止"
+
     End Sub
 
-    Private Sub Button_stop_select_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_stop_select.Click
+    Private Sub Button_stop_select_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_select_server_stop.Click
+        Button_select_server_stop.Text = "正在停止"
+        Button_select_server_stop.Enabled = False
         If CheckBox_pvpgn.Checked Then
-            stop_pvpgn_server()
+            'stop_pvpgn_server()
+
+            server_name = "pvpgn"
+            server_stop(server_name)
         End If
 
         If CheckBox_d2cs.Checked Then
-            stop_d2cs_server()
+            'stop_d2cs_server()
+            server_name = d2cs_server_string
+            server_stop(server_name)
         End If
 
         If CheckBox_d2dbs.Checked Then
-            stop_d2dbs_server()
+            'stop_d2dbs_server()
+            server_name = d2dbs_server_string
+            server_stop(server_name)
         End If
 
         If CheckBox_d2gs.Checked Then
-            stop_d2gs_server()
+            'stop_d2gs_server()
+            server_name = "d2gs"
+            server_stop(server_name)
         End If
 
-        MsgBox("停止指令执行完毕。")
+        'MsgBox("停止指令执行完毕。")
+        Button_select_server_stop.Enabled = Enabled
+        Button_select_server_stop.Text = "停止指定服务"
         shuaxin()
     End Sub
 
-    Private Sub Button_restart_select_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_restart_select.Click
+    Private Sub Button_restart_select_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_select_server_restart.Click
+        Button_select_server_restart.Text = "正在重启"
+        Button_select_server_restart.Enabled = False
         If CheckBox_pvpgn.Checked = True Then
-            stop_pvpgn_server()
-            run_pvpgn_server()
+            'stop_pvpgn_server()
+            'run_pvpgn_server()
+            server_name = "pvpgn"
+            server_stop(server_name)
+            server_run(server_name)
+
         End If
 
         If CheckBox_d2cs.Checked = True Then
-            stop_d2cs_server()
-            run_d2cs_server()
+            'stop_d2cs_server()
+            'run_d2cs_server()
+            server_name = d2cs_server_string
+            server_stop(server_name)
+            server_run(server_name)
         End If
 
         If CheckBox_d2dbs.Checked = True Then
-            stop_d2dbs_server()
-            run_d2dbs_server()
+            'stop_d2dbs_server()
+            'run_d2dbs_server()
+            server_name = d2dbs_server_string
+            server_stop(server_name)
+            server_run(server_name)
         End If
 
         If CheckBox_d2gs.Checked = True Then
-            stop_d2gs_server()
-            run_d2gs_server()
+            'stop_d2gs_server()
+            'run_d2gs_server()
+            server_name = "d2gs"
+            server_stop(server_name)
+            server_run(server_name)
         End If
-        MessageBox.Show("重启指令执行完毕。")
+        'MessageBox.Show("重启指令执行完毕。")
+
+        Button_select_server_restart.Enabled = Enabled
+        Button_select_server_restart.Text = "重启指定服务"
         shuaxin()
     End Sub
 
-    Private Sub Button_refurbish_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_refurbish.Click
+    Private Sub Button_refresh_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_refresh.Click
         shuaxin()
     End Sub
 
@@ -937,9 +1049,9 @@ Public Class Form_main
         Try
             Select Case sspvpgn.Status
                 Case ServiceControllerStatus.Running
-                    Label15.Text = "正在运行"
+                    Label_server_pvpgn_status.Text = "正在运行"
                 Case ServiceControllerStatus.Stopped
-                    Label15.Text = "已停止"
+                    Label_server_pvpgn_status.Text = "已停止"
             End Select
         Catch ex As Exception
 
@@ -948,9 +1060,9 @@ Public Class Form_main
         Try
             Select Case ssd2cs.Status
                 Case ServiceControllerStatus.Running
-                    Label16.Text = "正在运行"
+                    Label_server_d2cs_status.Text = "正在运行"
                 Case ServiceControllerStatus.Stopped
-                    Label16.Text = "已停止"
+                    Label_server_d2cs_status.Text = "已停止"
             End Select
         Catch ex As Exception
 
@@ -959,9 +1071,9 @@ Public Class Form_main
         Try
             Select Case ssd2dbs.Status
                 Case ServiceControllerStatus.Running
-                    Label17.Text = "正在运行"
+                    Label_server_d2dbs_status.Text = "正在运行"
                 Case ServiceControllerStatus.Stopped
-                    Label17.Text = "已停止"
+                    Label_server_d2dbs_status.Text = "已停止"
             End Select
         Catch ex As Exception
 
@@ -970,9 +1082,9 @@ Public Class Form_main
         Try
             Select Case ssd2gs.Status
                 Case ServiceControllerStatus.Running
-                    Label18.Text = "正在运行"
+                    Label_server_d2gs_status.Text = "正在运行"
                 Case ServiceControllerStatus.Stopped
-                    Label18.Text = "已停止"
+                    Label_server_d2gs_status.Text = "已停止"
             End Select
         Catch ex As Exception
 
@@ -1080,7 +1192,7 @@ Public Class Form_main
         MsgBox("设置成功")
     End Sub
 
-    Private Sub Button1_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+    Private Sub Button1_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_d2dir_brower.Click
         FolderBrowserDialog_diabloII_dir.ShowDialog()
         TextBox_d2_path.Text = FolderBrowserDialog_diabloII_dir.SelectedPath
 
@@ -1150,95 +1262,95 @@ Public Class Form_main
 
             TextBox_acc_username.Text = reg_config.GetValue("Textbox_acc_username", "")
 
-                'flag_no7.Text = reg_config.GetValue("ComboBox_flags", "0x0 职业形象")
-                'If reg_config.GetValue("CheckBox_0x20", "1") = "1" Then
-                'CheckBox_0x20.Checked = True
-                'Else
-                'CheckBox_0x20.Checked = False
-                'End If
+            'flag_no7.Text = reg_config.GetValue("ComboBox_flags", "0x0 职业形象")
+            'If reg_config.GetValue("CheckBox_0x20", "1") = "1" Then
+            'CheckBox_0x20.Checked = True
+            'Else
+            'CheckBox_0x20.Checked = False
+            'End If
 
-                If reg_config.GetValue("CheckBox_pvpgn", "1") = "1" Then
-                    CheckBox_pvpgn.Checked = True
-                Else
-                    CheckBox_pvpgn.Checked = False
-                End If
-
-                If reg_config.GetValue("CheckBox_d2cs", "1") = "1" Then
-                    CheckBox_d2cs.Checked = True
-                Else
-                    CheckBox_d2cs.Checked = False
-                End If
-
-                If reg_config.GetValue("CheckBox_d2dbs", "1") = "1" Then
-                    CheckBox_d2dbs.Checked = True
-                Else
-                    CheckBox_d2dbs.Checked = False
-                End If
-
-                If reg_config.GetValue("CheckBox_d2gs", "1") = "1" Then
-                    CheckBox_d2gs.Checked = True
-                Else
-                    CheckBox_d2gs.Checked = False
-                End If
-
-                If reg_config.GetValue("CheckBox_timer_backup", "0") = "1" Then
-                    CheckBox_timer_backup.Checked = True
-                Else
-                    CheckBox_timer_backup.Checked = False
-                End If
-
-                If reg_config.GetValue("CheckBox_timer_stop_pvpgn", "0") = "1" Then
-                    CheckBox_timer_stop_pvpgn.Checked = True
-                Else
-                    CheckBox_timer_stop_pvpgn.Checked = False
-                End If
-
-                If reg_config.GetValue("CheckBox_re_jisuanji", "0") = "1" Then
-                    CheckBox_re_jisuanji.Checked = True
-                Else
-                    CheckBox_re_jisuanji.Checked = False
-                End If
-
-                If reg_config.GetValue("CheckBox_timer_re_pvpgn", "0") = "1" Then
-                    CheckBox_timer_re_pvpgn.Checked = True
-                Else
-                    CheckBox_timer_re_pvpgn.Checked = False
-                End If
-
-                If reg_config.GetValue("CheckBox_timer_autolock", "0") = "1" Then
-                    CheckBox_timer_autolock.Checked = True
-                Else
-                    CheckBox_timer_autolock.Checked = False
-                End If
-
-                If reg_config.GetValue("CheckBox_save_password", "0") = "1" Then
-                    CheckBox_save_password.Checked = True
-                    TextBox_sql_password.Text = reg_config.GetValue("TextBox_sql_password", "")
-                Else
-                    CheckBox_save_password.Checked = False
-                End If
-
-                TextBox_d2_path.Text = reg_config.GetValue("TextBox_d2_path", "")
-                TextBox_sqlbak_name.Text = reg_config.GetValue("TextBox_sqlbak_name", "")
-                ComboBox_backup_h.Text = reg_config.GetValue("ComboBox_backup_h", "4")
-                ComboBox_backup_m.Text = reg_config.GetValue("ComboBox_backup_m", "5")
-                ComboBox_stop_pvpgn_houre.Text = reg_config.GetValue("ComboBox_stop_pvpgn_houre", "4")
-                ComboBox_stop_pvpgn_m.Text = reg_config.GetValue("ComboBox_stop_pvpgn_m", "0")
-                ComboBox_re_pvpgn_houre.Text = reg_config.GetValue("ComboBox_re_pvpgn_houre", "4")
-                ComboBox_re_pvpgn_m.Text = reg_config.GetValue("ComboBox_re_pvpgn_m", "15")
-                ComboBox_auto_lock_houre.Text = reg_config.GetValue("ComboBox_auto_lock_houre", "4")
-                ComboBox_auto_lock_m.Text = reg_config.GetValue("ComboBox_auto_lock_m", "10")
-                TextBox_auto_lock_day.Text = reg_config.GetValue("TextBox_auto_lock_day", "30")
-                'regVersion.SetValue("Version", intVersion)
-
+            If reg_config.GetValue("CheckBox_pvpgn", "1") = "1" Then
+                CheckBox_pvpgn.Checked = True
+            Else
+                CheckBox_pvpgn.Checked = False
             End If
-            reg_config.Close()
+
+            If reg_config.GetValue("CheckBox_d2cs", "1") = "1" Then
+                CheckBox_d2cs.Checked = True
+            Else
+                CheckBox_d2cs.Checked = False
+            End If
+
+            If reg_config.GetValue("CheckBox_d2dbs", "1") = "1" Then
+                CheckBox_d2dbs.Checked = True
+            Else
+                CheckBox_d2dbs.Checked = False
+            End If
+
+            If reg_config.GetValue("CheckBox_d2gs", "1") = "1" Then
+                CheckBox_d2gs.Checked = True
+            Else
+                CheckBox_d2gs.Checked = False
+            End If
+
+            If reg_config.GetValue("CheckBox_timer_backup", "0") = "1" Then
+                CheckBox_timer_backup.Checked = True
+            Else
+                CheckBox_timer_backup.Checked = False
+            End If
+
+            If reg_config.GetValue("CheckBox_timer_stop_pvpgn", "0") = "1" Then
+                CheckBox_timer_stop_pvpgn.Checked = True
+            Else
+                CheckBox_timer_stop_pvpgn.Checked = False
+            End If
+
+            If reg_config.GetValue("CheckBox_re_jisuanji", "0") = "1" Then
+                CheckBox_re_jisuanji.Checked = True
+            Else
+                CheckBox_re_jisuanji.Checked = False
+            End If
+
+            If reg_config.GetValue("CheckBox_timer_re_pvpgn", "0") = "1" Then
+                CheckBox_timer_re_pvpgn.Checked = True
+            Else
+                CheckBox_timer_re_pvpgn.Checked = False
+            End If
+
+            If reg_config.GetValue("CheckBox_timer_autolock", "0") = "1" Then
+                CheckBox_timer_autolock.Checked = True
+            Else
+                CheckBox_timer_autolock.Checked = False
+            End If
+
+            If reg_config.GetValue("CheckBox_save_password", "0") = "1" Then
+                CheckBox_save_password.Checked = True
+                TextBox_sql_password.Text = reg_config.GetValue("TextBox_sql_password", "")
+            Else
+                CheckBox_save_password.Checked = False
+            End If
+
+            TextBox_d2_path.Text = reg_config.GetValue("TextBox_d2_path", "")
+            TextBox_sqlbak_name.Text = reg_config.GetValue("TextBox_sqlbak_name", "")
+            ComboBox_backup_h.Text = reg_config.GetValue("ComboBox_backup_h", "4")
+            ComboBox_backup_m.Text = reg_config.GetValue("ComboBox_backup_m", "5")
+            ComboBox_stop_pvpgn_houre.Text = reg_config.GetValue("ComboBox_stop_pvpgn_houre", "4")
+            ComboBox_stop_pvpgn_m.Text = reg_config.GetValue("ComboBox_stop_pvpgn_m", "0")
+            ComboBox_re_pvpgn_houre.Text = reg_config.GetValue("ComboBox_re_pvpgn_houre", "4")
+            ComboBox_re_pvpgn_m.Text = reg_config.GetValue("ComboBox_re_pvpgn_m", "15")
+            ComboBox_auto_lock_houre.Text = reg_config.GetValue("ComboBox_auto_lock_houre", "4")
+            ComboBox_auto_lock_m.Text = reg_config.GetValue("ComboBox_auto_lock_m", "10")
+            TextBox_auto_lock_day.Text = reg_config.GetValue("TextBox_auto_lock_day", "30")
+            'regVersion.SetValue("Version", intVersion)
+
+        End If
+        reg_config.Close()
         DateTimePicker_jinyan.Value = DateAdd("m", 1, Date.Now)
         DateTimePicker_suoding.Value = DateAdd("m", 1, Date.Now)
         DateTimePicker_xingxiang.Value = DateAdd("m", 1, Date.Now)
     End Sub
 
-    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_glq_config_restart.Click
         Try
             Microsoft.Win32.Registry.LocalMachine.DeleteSubKeyTree("SOFTWARE\\PvPGN GLQ")
             load_config()
@@ -1256,7 +1368,7 @@ Public Class Form_main
 
 
 
-    Private Sub Button_bak_pvpgn_sql_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_bak_pvpgn_sql.Click
+    Private Sub Button_bak_pvpgn_sql_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_mysql_data_backup.Click
         Dim bakdatestr As String
         bakdatestr = Format(Now, "yyyy-MM-dd_HH.mm")
 
@@ -1624,21 +1736,6 @@ Public Class Form_main
         showbutton()
     End Sub
 
-    Private Sub Label11_Click(sender As Object, e As EventArgs) Handles Label11.Click
-
-    End Sub
-
-    Private Sub Label26_Click(sender As Object, e As EventArgs) Handles Label26.Click
-
-    End Sub
-
-    Private Sub Label47_Click(sender As Object, e As EventArgs) Handles Label47.Click
-
-    End Sub
-
-    Private Sub CheckBox_timer_stop_pvpgn_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_timer_stop_pvpgn.CheckedChanged
-
-    End Sub
 
     Private Sub Timer_exp_date_Tick(sender As Object, e As EventArgs) Handles Timer_exp_date.Tick
         '自动断开，再重连数据库，避免mysql判断超时断开连接。
@@ -1687,7 +1784,7 @@ Public Class Form_main
         set_del_flags.ExecuteNonQuery()
     End Sub
 
-    Private Sub Button_mysql_config_Click(sender As Object, e As EventArgs) Handles Button_mysql_config.Click
+    Private Sub Button_mysql_config_Click(sender As Object, e As EventArgs) Handles Button_mysql_password_modify.Click
         If Button_con_to_sql.Enabled = True Then
             MsgBox("请先连接数据库。")
         Else
@@ -1869,5 +1966,63 @@ Public Class Form_main
         Microsoft.Win32.Registry.SetValue(d2gsregname, "AdminPassword", gs_telnet_password_hash)
 
         MsgBox("请重启D2GS，使新设置生效")
+    End Sub
+
+    Private Function server_run(server_name)
+
+        Dim rs As New ServiceController(server_name)
+
+        Try
+            If rs.Status = ServiceControllerStatus.Running Then
+                server_status = "服务已在运行"
+            Else
+                rs.Start()
+                rs.WaitForStatus(ServiceControllerStatus.Running, outtime)
+                server_status = "服务启动成功"
+            End If
+        Catch ex As Exception
+            server_status = ex.Message
+        End Try
+
+        Return server_status
+
+    End Function
+
+    Private Function server_stop(server_name)
+
+        Dim ss As New ServiceController(server_name)
+
+        Try
+            If ss.Status = ServiceControllerStatus.Stopped Then
+                server_status = "服务没有运行"
+            Else
+                ss.Stop()
+                ss.WaitForStatus(ServiceControllerStatus.Stopped, outtime)
+                server_status = "服务停止成功"
+            End If
+        Catch ex As Exception
+            server_status = ex.Message
+        End Try
+        Return server_status
+    End Function
+
+
+
+
+    Private Sub Button_test_Click(sender As Object, e As EventArgs) Handles Button_test.Click
+        server_name = "d2gs"
+        server_stop(server_name)
+        MsgBox(server_status)
+        'Message.Create(server_status, server_status, "wparm", "lparam")
+
+
+    End Sub
+
+    Private Sub GroupBox_win_ver_Enter(sender As Object, e As EventArgs) Handles GroupBox_win_ver.Enter
+
+    End Sub
+
+    Private Sub Button_pvpgn_config_modify_Click(sender As Object, e As EventArgs) Handles Button_pvpgn_config_modify.Click
+        Shell("explorer.exe d:\pvpgn\conf\", AppWinStyle.MaximizedFocus)
     End Sub
 End Class
