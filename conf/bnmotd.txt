@@ -1,11 +1,11 @@
-%IПривет %l, добро пожаловать на %s!
-%IВерсия сервера %v.
-%IСервер расположен у %h (%H)
+﻿%IHello %l, welcome to %s!
+%IRunning version %v on %h.
+%IThis server is hosted by %H
 %I
-%IСейчас на сервере %a игроков.
-%IВ %G играх находятся %U игроков %N
-%Iиз них %u играют в %g играх и сидят на %c каналах.
-%I
-%IВведите /help для получения помощи по командам чата  
+%IThere are %a user accounts on this server.
+%IThere are currently %U users in %G games of %N,
+%Iand %u users playing %g games and chatting in %c channels.
+%IHaving trouble with a command?  Type   /help   to
+%Ilearn more about it.
 %I
 %I%m
