@@ -948,7 +948,7 @@ Public Class Form_main
     End Sub
 
     Private Sub Button_unset_to_admin_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_unset_to_admin.Click
-        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
+        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 30000", conn)
         Dim unsetadminstr As String
         Dim setcommandgroupsstr As String
         Dim setflagsstr As String
@@ -1098,7 +1098,7 @@ Public Class Form_main
 
 
     Private Sub Button_set_to_op_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_set_to_op.Click
-        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
+        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 30000", conn)
         Dim set_op_str As String
         Dim set_commandgroups_str As String
         Dim set_flags_str As String
@@ -1116,7 +1116,7 @@ Public Class Form_main
     End Sub
 
     Private Sub Button_unset_to_op_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_unset_to_op.Click
-        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
+        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 30000", conn)
         Dim unset_op_str As String
         Dim set_commandgroups_str As String
         Dim set_flags_str As String
@@ -1135,7 +1135,7 @@ Public Class Form_main
 
 
     Private Sub Button_lockk_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_set_lockk.Click
-        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
+        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 30000", conn)
         Dim set_lockk_str As String
         Dim set_lockk_exp_date_str As String
         set_lockk_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_lockk`='1' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
@@ -1156,7 +1156,7 @@ Public Class Form_main
     End Sub
 
     Private Sub Button_unlockk_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_unset_lockk.Click
-        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
+        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 30000", conn)
         Dim set_unlockk_str As String
         set_unlockk_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_lockk`='0' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
         Dim set_unlockk As New MySqlCommand(set_unlockk_str, conn)
@@ -1166,7 +1166,7 @@ Public Class Form_main
     End Sub
 
     Private Sub Button_mute_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_set_mute.Click
-        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
+        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 30000", conn)
         Dim set_mute_str As String
         Dim set_mute_exp_date_str As String
         set_mute_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_mute`='1' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
@@ -1188,7 +1188,7 @@ Public Class Form_main
     End Sub
 
     Private Sub Button_unmute_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_unset_mute.Click
-        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
+        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 30000", conn)
         Dim set_unmute_str As String
         set_unmute_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_mute`='0' WHERE (`username`='{0}') LIMIT 1", TextBox_acc_username.Text)
         Dim set_unmute As New MySqlCommand(set_unmute_str, conn)
@@ -1415,7 +1415,7 @@ Public Class Form_main
             iSeconds = (Now.Ticks - d1970.Ticks) / 10000000
             Dim lock_day_to_m As Long
             lock_day_to_m = Val(TextBox_auto_lock_day.Text) * 24 * 60 * 60
-            Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
+            Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 30000", conn)
             Dim set_lockk_str As String
             set_lockk_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_lockk`='1' WHERE ('{0}' - `acct_lastlogin_time` > '{1}') LIMIT 1000", iSeconds, lock_day_to_m)
             Dim set_lockk As New MySqlCommand(set_lockk_str, conn)
@@ -1770,7 +1770,7 @@ Public Class Form_main
         End Try
         '自动断开再重连结束
 
-        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 3000", conn)
+        Dim selectpvpgn As New MySqlCommand("SELECT * FROM `pvpgn_bnet` LIMIT 0, 30000", conn)
         '解除禁言
         Dim set_unmute_str As String
         set_unmute_str = String.Format("UPDATE `pvpgn_bnet` SET `auth_mute`='0' WHERE (`mute_exp_date` <= '{0}') LIMIT 3000", Date.Now)
