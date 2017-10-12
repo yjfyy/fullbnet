@@ -16,7 +16,6 @@ E:\Projects\pvpgn\fullbnet\glq\PvPGN管理器\PvPGN管理器\bin\Release\PvPGN�
 E:\Projects\pvpgn\fullbnet\glq\PvPGN管理器\PvPGN管理器\bin\Release\PvPGN管理器.exe
 E:\Projects\pvpgn\fullbnet\glq\PvPGN管理器\PvPGN管理器\bin\Release\PvPGN管理器.pdb
 E:\Projects\pvpgn\fullbnet\glq\PvPGN管理器\PvPGN管理器\bin\Release\PvPGN管理器.xml
-E:\Projects\pvpgn\fullbnet\glq\PvPGN管理器\PvPGN管理器\obj\Release\PvPGN管理器.vbprojResolveAssemblyReference.cache
 E:\Projects\pvpgn\fullbnet\glq\PvPGN管理器\PvPGN管理器\obj\Release\PvPGN管理器.Form_main.resources
 E:\Projects\pvpgn\fullbnet\glq\PvPGN管理器\PvPGN管理器\obj\Release\PvPGN管理器.Resources.resources
 E:\Projects\pvpgn\fullbnet\glq\PvPGN管理器\PvPGN管理器\obj\Release\PvPGN管理器.vbproj.GenerateResource.Cache

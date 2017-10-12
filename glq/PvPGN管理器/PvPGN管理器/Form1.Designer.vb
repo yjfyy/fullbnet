@@ -1060,6 +1060,7 @@ Partial Class Form_main
         '
         'TextBox_auto_lock_day
         '
+        Me.TextBox_auto_lock_day.Enabled = False
         Me.TextBox_auto_lock_day.Location = New System.Drawing.Point(296, 123)
         Me.TextBox_auto_lock_day.Name = "TextBox_auto_lock_day"
         Me.TextBox_auto_lock_day.Size = New System.Drawing.Size(25, 21)
@@ -1069,6 +1070,7 @@ Partial Class Form_main
         'Label43
         '
         Me.Label43.AutoSize = True
+        Me.Label43.Enabled = False
         Me.Label43.Location = New System.Drawing.Point(327, 127)
         Me.Label43.Name = "Label43"
         Me.Label43.Size = New System.Drawing.Size(89, 12)
@@ -1089,6 +1091,7 @@ Partial Class Form_main
         'Label40
         '
         Me.Label40.AutoSize = True
+        Me.Label40.Enabled = False
         Me.Label40.Location = New System.Drawing.Point(213, 127)
         Me.Label40.Name = "Label40"
         Me.Label40.Size = New System.Drawing.Size(77, 12)
@@ -1097,6 +1100,7 @@ Partial Class Form_main
         '
         'ComboBox_auto_lock_m
         '
+        Me.ComboBox_auto_lock_m.Enabled = False
         Me.ComboBox_auto_lock_m.FormattingEnabled = True
         Me.ComboBox_auto_lock_m.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
         Me.ComboBox_auto_lock_m.Location = New System.Drawing.Point(169, 123)
@@ -1108,6 +1112,7 @@ Partial Class Form_main
         'Label41
         '
         Me.Label41.AutoSize = True
+        Me.Label41.Enabled = False
         Me.Label41.Location = New System.Drawing.Point(146, 127)
         Me.Label41.Name = "Label41"
         Me.Label41.Size = New System.Drawing.Size(17, 12)
@@ -1116,6 +1121,7 @@ Partial Class Form_main
         '
         'ComboBox_auto_lock_houre
         '
+        Me.ComboBox_auto_lock_houre.Enabled = False
         Me.ComboBox_auto_lock_houre.FormattingEnabled = True
         Me.ComboBox_auto_lock_houre.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"})
         Me.ComboBox_auto_lock_houre.Location = New System.Drawing.Point(102, 123)
@@ -1127,6 +1133,7 @@ Partial Class Form_main
         'Label42
         '
         Me.Label42.AutoSize = True
+        Me.Label42.Enabled = False
         Me.Label42.Location = New System.Drawing.Point(67, 127)
         Me.Label42.Name = "Label42"
         Me.Label42.Size = New System.Drawing.Size(29, 12)
@@ -1154,6 +1161,7 @@ Partial Class Form_main
         'Label36
         '
         Me.Label36.AutoSize = True
+        Me.Label36.Enabled = False
         Me.Label36.Location = New System.Drawing.Point(213, 157)
         Me.Label36.Name = "Label36"
         Me.Label36.Size = New System.Drawing.Size(161, 12)
@@ -1162,6 +1170,7 @@ Partial Class Form_main
         '
         'ComboBox_re_pvpgn_m
         '
+        Me.ComboBox_re_pvpgn_m.Enabled = False
         Me.ComboBox_re_pvpgn_m.FormattingEnabled = True
         Me.ComboBox_re_pvpgn_m.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
         Me.ComboBox_re_pvpgn_m.Location = New System.Drawing.Point(169, 153)
@@ -1173,6 +1182,7 @@ Partial Class Form_main
         'Label37
         '
         Me.Label37.AutoSize = True
+        Me.Label37.Enabled = False
         Me.Label37.Location = New System.Drawing.Point(146, 157)
         Me.Label37.Name = "Label37"
         Me.Label37.Size = New System.Drawing.Size(17, 12)
@@ -1181,6 +1191,7 @@ Partial Class Form_main
         '
         'ComboBox_re_pvpgn_houre
         '
+        Me.ComboBox_re_pvpgn_houre.Enabled = False
         Me.ComboBox_re_pvpgn_houre.FormattingEnabled = True
         Me.ComboBox_re_pvpgn_houre.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"})
         Me.ComboBox_re_pvpgn_houre.Location = New System.Drawing.Point(102, 153)
@@ -1192,6 +1203,7 @@ Partial Class Form_main
         'Label38
         '
         Me.Label38.AutoSize = True
+        Me.Label38.Enabled = False
         Me.Label38.Location = New System.Drawing.Point(67, 157)
         Me.Label38.Name = "Label38"
         Me.Label38.Size = New System.Drawing.Size(29, 12)
@@ -1201,6 +1213,7 @@ Partial Class Form_main
         'CheckBox_timer_re_pvpgn
         '
         Me.CheckBox_timer_re_pvpgn.AutoSize = True
+        Me.CheckBox_timer_re_pvpgn.Enabled = False
         Me.CheckBox_timer_re_pvpgn.Location = New System.Drawing.Point(13, 155)
         Me.CheckBox_timer_re_pvpgn.Name = "CheckBox_timer_re_pvpgn"
         Me.CheckBox_timer_re_pvpgn.Size = New System.Drawing.Size(48, 16)
@@ -1211,6 +1224,7 @@ Partial Class Form_main
         'CheckBox_re_jisuanji
         '
         Me.CheckBox_re_jisuanji.AutoSize = True
+        Me.CheckBox_re_jisuanji.Enabled = False
         Me.CheckBox_re_jisuanji.Location = New System.Drawing.Point(36, 63)
         Me.CheckBox_re_jisuanji.Name = "CheckBox_re_jisuanji"
         Me.CheckBox_re_jisuanji.Size = New System.Drawing.Size(168, 16)
@@ -1221,6 +1235,7 @@ Partial Class Form_main
         'Label33
         '
         Me.Label33.AutoSize = True
+        Me.Label33.Enabled = False
         Me.Label33.Location = New System.Drawing.Point(213, 20)
         Me.Label33.Name = "Label33"
         Me.Label33.Size = New System.Drawing.Size(161, 12)
@@ -1229,6 +1244,7 @@ Partial Class Form_main
         '
         'ComboBox_stop_pvpgn_m
         '
+        Me.ComboBox_stop_pvpgn_m.Enabled = False
         Me.ComboBox_stop_pvpgn_m.FormattingEnabled = True
         Me.ComboBox_stop_pvpgn_m.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
         Me.ComboBox_stop_pvpgn_m.Location = New System.Drawing.Point(169, 16)
@@ -1240,6 +1256,7 @@ Partial Class Form_main
         'Label34
         '
         Me.Label34.AutoSize = True
+        Me.Label34.Enabled = False
         Me.Label34.Location = New System.Drawing.Point(146, 20)
         Me.Label34.Name = "Label34"
         Me.Label34.Size = New System.Drawing.Size(17, 12)
@@ -1248,6 +1265,7 @@ Partial Class Form_main
         '
         'ComboBox_stop_pvpgn_houre
         '
+        Me.ComboBox_stop_pvpgn_houre.Enabled = False
         Me.ComboBox_stop_pvpgn_houre.FormattingEnabled = True
         Me.ComboBox_stop_pvpgn_houre.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"})
         Me.ComboBox_stop_pvpgn_houre.Location = New System.Drawing.Point(102, 16)
@@ -1259,6 +1277,7 @@ Partial Class Form_main
         'Label35
         '
         Me.Label35.AutoSize = True
+        Me.Label35.Enabled = False
         Me.Label35.Location = New System.Drawing.Point(67, 20)
         Me.Label35.Name = "Label35"
         Me.Label35.Size = New System.Drawing.Size(29, 12)
@@ -1268,6 +1287,7 @@ Partial Class Form_main
         'CheckBox_timer_stop_pvpgn
         '
         Me.CheckBox_timer_stop_pvpgn.AutoSize = True
+        Me.CheckBox_timer_stop_pvpgn.Enabled = False
         Me.CheckBox_timer_stop_pvpgn.Location = New System.Drawing.Point(13, 18)
         Me.CheckBox_timer_stop_pvpgn.Name = "CheckBox_timer_stop_pvpgn"
         Me.CheckBox_timer_stop_pvpgn.Size = New System.Drawing.Size(48, 16)
@@ -1289,6 +1309,7 @@ Partial Class Form_main
         'Label32
         '
         Me.Label32.AutoSize = True
+        Me.Label32.Enabled = False
         Me.Label32.Location = New System.Drawing.Point(213, 97)
         Me.Label32.Name = "Label32"
         Me.Label32.Size = New System.Drawing.Size(125, 12)
@@ -1297,6 +1318,7 @@ Partial Class Form_main
         '
         'ComboBox_backup_m
         '
+        Me.ComboBox_backup_m.Enabled = False
         Me.ComboBox_backup_m.FormattingEnabled = True
         Me.ComboBox_backup_m.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
         Me.ComboBox_backup_m.Location = New System.Drawing.Point(169, 93)
@@ -1308,6 +1330,7 @@ Partial Class Form_main
         'Label31
         '
         Me.Label31.AutoSize = True
+        Me.Label31.Enabled = False
         Me.Label31.Location = New System.Drawing.Point(146, 97)
         Me.Label31.Name = "Label31"
         Me.Label31.Size = New System.Drawing.Size(17, 12)
@@ -1316,6 +1339,7 @@ Partial Class Form_main
         '
         'ComboBox_backup_h
         '
+        Me.ComboBox_backup_h.Enabled = False
         Me.ComboBox_backup_h.FormattingEnabled = True
         Me.ComboBox_backup_h.Items.AddRange(New Object() {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"})
         Me.ComboBox_backup_h.Location = New System.Drawing.Point(102, 93)
@@ -1327,6 +1351,7 @@ Partial Class Form_main
         'Label10
         '
         Me.Label10.AutoSize = True
+        Me.Label10.Enabled = False
         Me.Label10.Location = New System.Drawing.Point(67, 97)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(29, 12)
