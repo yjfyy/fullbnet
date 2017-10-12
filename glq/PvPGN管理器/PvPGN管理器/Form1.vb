@@ -418,13 +418,12 @@ Public Class Form_main
         ProgressBar1.Visible = True
         ProgressBar1.Value = 0
         Dim i
-        Dim d2gsneedfiles(4) As String
+        Dim d2gsneedfiles(3) As String
         d2gsneedfiles(0) = "d2data.mpq"
         d2gsneedfiles(1) = "d2exp.mpq"
         d2gsneedfiles(2) = "d2speech.mpq"
         d2gsneedfiles(3) = "d2sfx.mpq"
-        d2gsneedfiles(4) = "patch_d2.mpq"
-        For i = 0 To 4
+        For i = 0 To 3
             If System.IO.File.Exists(TextBox_d2_path.Text + "\" + d2gsneedfiles(i)) Then
                 ProgressBar1.Value = ProgressBar1.Value + 18
                 System.IO.File.Copy(TextBox_d2_path.Text + "\" + d2gsneedfiles(i), "d:\pvpgn\d2gs\" + d2ver + "\" + d2gsneedfiles(i), True)
@@ -444,13 +443,25 @@ Public Class Form_main
         If os_ver = "win2012" Then
             Dim jianrongxing As String = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers"
             Microsoft.Win32.Registry.SetValue(jianrongxing, "D:\pvpgn\d2gs\" & d2ver & "\D2GS.exe", "~ RUNASADMIN WIN7RTM")
-            'Microsoft.Win32.Registry.SetValue(jianrongxing, "D:\pvpgn\d2gs\1.13c\D2GS.exe", "~ RUNASADMIN WIN7RTM")
         Else
 
         End If
 
+        'Dim maxgames As Integer
+        'maxgames = CInt(TextBox10.Text)
+        '用bnpass.exe生成temp.txt文件，再把文件读取后截取hash，赋值给gs_telnet_password_hash变量
+        Dim gs_telnet_password_hash As String
+        Shell("cmd /c d:\pvpgn\bnpass.exe " & TextBox_d2gsconfig_telnet_password.Text & " >temp.txt", AppWinStyle.Hide, True)
+        gs_telnet_password_hash = Mid(My.Computer.FileSystem.ReadAllText("temp.txt"), 26, 40)
+        My.Computer.FileSystem.DeleteFile("temp.txt")
+
         '32位兼容
         Dim d2gsregname As String = "HKEY_LOCAL_MACHINE\SOFTWARE\D2Server\D2GS"
+        Microsoft.Win32.Registry.SetValue(d2gsregname, "D2CSIP", TextBox_d2gsconfig_d2csip.Text)
+        Microsoft.Win32.Registry.SetValue(d2gsregname, "D2DBSIP", TextBox_d2gsconfig_d2dbsip.Text)
+        Microsoft.Win32.Registry.SetValue(d2gsregname, "MaxGames", TextBox_d2gsconfig_maxgame.Text, Microsoft.Win32.RegistryValueKind.DWord)
+        Microsoft.Win32.Registry.SetValue(d2gsregname, "MaxGameLife", TextBox_d2gsconfig_MaxGameLife.Text)
+        Microsoft.Win32.Registry.SetValue(d2gsregname, "AdminPassword", gs_telnet_password_hash)
         Microsoft.Win32.Registry.SetValue(d2gsregname, "", """Diablo II Close Game Server""")
         Microsoft.Win32.Registry.SetValue(d2gsregname, "D2CSPort", 6113, Microsoft.Win32.RegistryValueKind.DWord)
         Microsoft.Win32.Registry.SetValue(d2gsregname, "D2DBSPort", 6114, Microsoft.Win32.RegistryValueKind.DWord)
@@ -482,6 +493,11 @@ Public Class Form_main
         Microsoft.Win32.Registry.SetValue(d2gsregname, "MaxPacketPerSecond", 1200, Microsoft.Win32.RegistryValueKind.DWord)
         '64位兼容
         d2gsregname = "HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\D2Server\D2GS"
+        Microsoft.Win32.Registry.SetValue(d2gsregname, "D2CSIP", TextBox_d2gsconfig_d2csip.Text)
+        Microsoft.Win32.Registry.SetValue(d2gsregname, "D2DBSIP", TextBox_d2gsconfig_d2dbsip.Text)
+        Microsoft.Win32.Registry.SetValue(d2gsregname, "MaxGames", TextBox_d2gsconfig_maxgame.Text, Microsoft.Win32.RegistryValueKind.DWord)
+        Microsoft.Win32.Registry.SetValue(d2gsregname, "MaxGameLife", TextBox_d2gsconfig_MaxGameLife.Text)
+        Microsoft.Win32.Registry.SetValue(d2gsregname, "AdminPassword", gs_telnet_password_hash)
         Microsoft.Win32.Registry.SetValue(d2gsregname, "", """Diablo II Close Game Server""")
         Microsoft.Win32.Registry.SetValue(d2gsregname, "D2CSPort", 6113, Microsoft.Win32.RegistryValueKind.DWord)
         Microsoft.Win32.Registry.SetValue(d2gsregname, "D2DBSPort", 6114, Microsoft.Win32.RegistryValueKind.DWord)
@@ -2086,4 +2102,5 @@ Public Class Form_main
         End Try
 
     End Sub
+
 End Class

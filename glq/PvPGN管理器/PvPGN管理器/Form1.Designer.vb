@@ -386,12 +386,12 @@ Partial Class Form_main
         '
         Me.RadioButton_win_ver_2012.AutoSize = True
         Me.RadioButton_win_ver_2012.Checked = True
-        Me.RadioButton_win_ver_2012.Location = New System.Drawing.Point(146, 20)
+        Me.RadioButton_win_ver_2012.Location = New System.Drawing.Point(116, 20)
         Me.RadioButton_win_ver_2012.Name = "RadioButton_win_ver_2012"
-        Me.RadioButton_win_ver_2012.Size = New System.Drawing.Size(65, 16)
+        Me.RadioButton_win_ver_2012.Size = New System.Drawing.Size(95, 16)
         Me.RadioButton_win_ver_2012.TabIndex = 32
         Me.RadioButton_win_ver_2012.TabStop = True
-        Me.RadioButton_win_ver_2012.Text = "Win2012"
+        Me.RadioButton_win_ver_2012.Text = "Win2008&&2012"
         Me.RadioButton_win_ver_2012.UseVisualStyleBackColor = True
         '
         'RadioButton_win_ver_2003
@@ -1716,15 +1716,16 @@ Partial Class Form_main
         '
         Me.Label19.AutoSize = True
         Me.Label19.ForeColor = System.Drawing.Color.Red
-        Me.Label19.Location = New System.Drawing.Point(43, 110)
+        Me.Label19.Location = New System.Drawing.Point(46, 103)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(461, 12)
+        Me.Label19.Size = New System.Drawing.Size(461, 36)
         Me.Label19.TabIndex = 11
-        Me.Label19.Text = "安装D2GS之前，注意选择正确的服务器系统，及D2GS版本，否将GS服务将工作不正常。"
+        Me.Label19.Text = "安装D2GS之前，注意选择正确的服务器系统，及D2GS版本，否将GS服务将工作不正常。" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "自动复制文件列表" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "d2data.mpq，d2exp.mpq，d2spe" &
+    "ech.mpq，d2sfx.mpq"
         '
         'Button_d2gs_uninstall
         '
-        Me.Button_d2gs_uninstall.Location = New System.Drawing.Point(304, 136)
+        Me.Button_d2gs_uninstall.Location = New System.Drawing.Point(304, 163)
         Me.Button_d2gs_uninstall.Name = "Button_d2gs_uninstall"
         Me.Button_d2gs_uninstall.Size = New System.Drawing.Size(75, 23)
         Me.Button_d2gs_uninstall.TabIndex = 10
@@ -1733,7 +1734,7 @@ Partial Class Form_main
         '
         'Button_d2gs_install
         '
-        Me.Button_d2gs_install.Location = New System.Drawing.Point(157, 136)
+        Me.Button_d2gs_install.Location = New System.Drawing.Point(157, 163)
         Me.Button_d2gs_install.Name = "Button_d2gs_install"
         Me.Button_d2gs_install.Size = New System.Drawing.Size(75, 23)
         Me.Button_d2gs_install.TabIndex = 9
@@ -1997,7 +1998,7 @@ Partial Class Form_main
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(155, 12)
         Me.Label8.TabIndex = 36
-        Me.Label8.Text = "Ver 0.28 Build 2016.08.27"
+        Me.Label8.Text = "Ver 0.29 Build 2017.10.12"
         '
         'timer_dingshirenwu
         '
