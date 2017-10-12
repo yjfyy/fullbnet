@@ -1076,7 +1076,7 @@ Public Class Form_main
                     Label_server_d2gs_status.Text = "已停止"
             End Select
         Catch ex As Exception
-            Label_server_pvpgn_status.Text = "状态未知"
+            Label_server_d2gs_status.Text = "状态未知"
         End Try
     End Sub
 
