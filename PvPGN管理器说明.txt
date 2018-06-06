@@ -12,7 +12,8 @@
 
 	2.1：Windows 2012所需插件；	1、vcredist_x86_2010sp1。
 
-	2.2：Windows 2008所需插件；
+	2.2：Windows 2008所需插件；	1、vcredist_x86_2010sp1。
+					2、dotNetFx40_Full(如果在线安装有问题可以去https://www.microsoft.com/zh-cn/download/details.aspx?id=17718这里下载完整版再安装）；
 
 	2.3：Windows 2003所需插件；	1、wic（视系统决定安装32或64位版）；
 					2、dotNetFx40_Full(如果在线安装有问题可以去https://www.microsoft.com/zh-cn/download/details.aspx?id=17718这里下载完整版再安装）；
@@ -81,6 +82,14 @@
 
 
 四：更新日志：
+
+2017.10.12	Ver0.30 Build
+1、程序启动将自动申请管理员权限，避免由于权限不足发生安装或操作失败。
+2、D2gs配置里面IP地址设置会自动保存了。
+3、系统选择Win2008&2012分为两个选项。
+4、增加暗黑1.13D游戏版本支持。
+5、只可以启动一个管理器进程了，避免冲突。
+
 
 2017.10.12	Ver0.29 Build 2017.10.12
 1、修正pvpgn服务状态显示错误的一个问题。

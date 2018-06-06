@@ -145,15 +145,19 @@ Public Class Form_main
             reg_config.SetValue("TextBox_sql_root", TextBox_sql_root.Text)
             reg_config.SetValue("TextBox_database_name.Text", TextBox_database_name.Text)
             If RadioButton_win_ver_2012.Checked = True Then
-                reg_config.SetValue("RadioButton_win_ver_2012.Checked", "1")
+                reg_config.SetValue("RadioButton_win_ver", "2012")
+            ElseIf RadioButton_win_ver_2008.Checked = True Then
+                reg_config.SetValue("RadioButton_win_ver", "2008")
             Else
-                reg_config.SetValue("RadioButton_win_ver_2012.Checked", "0")
+                reg_config.SetValue("RadioButton_win_ver", "2003")
             End If
 
-            If RadioButton_d2_113C.Checked = True Then
-                reg_config.SetValue("RadioButton_d2_113C.Checked", "1")
+            If RadioButton_d2_113D.Checked = True Then
+                reg_config.SetValue("RadioButton_d2_ver", "113d")
+            ElseIf RadioButton_d2_109.Checked = True Then
+                reg_config.SetValue("RadioButton_d2_ver", "109d")
             Else
-                reg_config.SetValue("RadioButton_d2_113C.Checked", "0")
+                reg_config.SetValue("RadioButton_d2_ver", "113c")
             End If
 
             reg_config.SetValue("TextBox_acc_username", TextBox_acc_username.Text)
@@ -237,6 +241,8 @@ Public Class Form_main
             reg_config.SetValue("ComboBox_auto_lock_houre", ComboBox_auto_lock_houre.Text)
             reg_config.SetValue("ComboBox_auto_lock_m", ComboBox_auto_lock_m.Text)
             reg_config.SetValue("TextBox_auto_lock_day", TextBox_auto_lock_day.Text)
+            reg_config.SetValue("TextBox_d2gsconfig_d2csip", TextBox_d2gsconfig_d2csip.Text)
+            reg_config.SetValue("TextBox_d2gsconfig_d2dbsip", TextBox_d2gsconfig_d2dbsip.Text)
             'regVersion.SetValue("Version", intVersion)
         End If
         reg_config.Close()
@@ -284,9 +290,9 @@ Public Class Form_main
         'End Select
         '     End If
 
-        If DateString > "2018-3-30" Then
-            Close()
-        End If
+        'If DateString > "2018-3-30" Then
+        'Close()
+        'End If
         load_config()
         d2gsver()
         shuaxin()
@@ -1220,11 +1226,15 @@ Public Class Form_main
             d2cs_server_string = "d2cs109"
             d2dbs_server_string = "d2dbs109"
             d2ver = "1.09d"
+        ElseIf RadioButton_d2_113C.Checked = True Then
 
-        Else
             d2cs_server_string = "d2cs"
             d2dbs_server_string = "d2dbs"
             d2ver = "1.13c"
+        Else
+            d2cs_server_string = "d2cs"
+            d2dbs_server_string = "d2dbs"
+            d2ver = "1.13d"
         End If
     End Sub
 
@@ -1245,24 +1255,32 @@ Public Class Form_main
             TextBox_sql_root.Text = reg_config.GetValue("TextBox_sql_root", "root")
             TextBox_database_name.Text = reg_config.GetValue("TextBox_database_name.Text", "pvpgn")
 
-            If reg_config.GetValue("RadioButton_win_ver_2012.Checked", "1") = "1" Then
+            If reg_config.GetValue("RadioButton_win_ver", "2012") = "2012" Then
                 RadioButton_win_ver_2012.Checked = True
                 os_ver = "win2012"
+            ElseIf reg_config.GetValue("RadioButton_win_ver", "2008") = "2008" Then
+                RadioButton_win_ver_2008.Checked = True
+                os_ver = "win2008"
             Else
                 RadioButton_win_ver_2003.Checked = True
                 os_ver = "win2003"
             End If
 
-            If reg_config.GetValue("RadioButton_d2_113C.Checked", "1") = "1" Then
-                RadioButton_d2_113C.Checked = True
+            If reg_config.GetValue("RadioButton_d2_ver", "113d") = "113d" Then
+                RadioButton_d2_113D.Checked = True
                 d2cs_server_string = "d2cs"
                 d2dbs_server_string = "d2dbs"
-                d2ver = "1.13c"
-            Else
+                d2ver = "1.13d"
+            ElseIf reg_config.GetValue("RadioButton_d2_ver", "109d") = "109d" Then
                 RadioButton_d2_109.Checked = True
                 d2cs_server_string = "d2cs109"
                 d2dbs_server_string = "d2dbs109"
                 d2ver = "1.09d"
+            Else
+                RadioButton_d2_113C.Checked = True
+                d2cs_server_string = "d2cs"
+                d2dbs_server_string = "d2dbs"
+                d2ver = "1.13c"
             End If
 
             TextBox_acc_username.Text = reg_config.GetValue("Textbox_acc_username", "")
@@ -1346,6 +1364,8 @@ Public Class Form_main
             ComboBox_auto_lock_houre.Text = reg_config.GetValue("ComboBox_auto_lock_houre", "4")
             ComboBox_auto_lock_m.Text = reg_config.GetValue("ComboBox_auto_lock_m", "10")
             TextBox_auto_lock_day.Text = reg_config.GetValue("TextBox_auto_lock_day", "30")
+            TextBox_d2gsconfig_d2csip.Text = reg_config.GetValue("TextBox_d2gsconfig_d2csip", "192.168.1.100")
+            TextBox_d2gsconfig_d2dbsip.Text = reg_config.GetValue("TextBox_d2gsconfig_d2dbsip", "192.168.1.100")
             'regVersion.SetValue("Version", intVersion)
 
         End If
@@ -1378,7 +1398,7 @@ Public Class Form_main
         bakdatestr = Format(Now, "yyyy-MM-dd_HH.mm")
 
         Try
-            Shell("cmd /c d:\pvpgn\mysql\bin\mysqldump.exe --host=" + TextBox_sql_serverip.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " --databases pvpgn --result-file=d:\pvpgn\databak\sqlbak" + bakdatestr + ".sql", AppWinStyle.Hide, True)
+            Shell("cmd /c d: \pvpgn\mysql\bin\mysqldump.exe --host=" + TextBox_sql_serverip.Text + " --user=" + TextBox_sql_root.Text + " --password=" + TextBox_sql_password.Text + " --databases pvpgn --result-file=d:\pvpgn\databak\sqlbak" + bakdatestr + ".sql", AppWinStyle.Hide, True)
             MessageBox.Show("备份数据成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Catch ex As Exception
             MessageBox.Show(ex.Message)

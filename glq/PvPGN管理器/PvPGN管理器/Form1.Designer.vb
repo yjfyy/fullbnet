@@ -23,6 +23,7 @@ Partial Class Form_main
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form_main))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.CheckBox_save_password = New System.Windows.Forms.CheckBox()
         Me.Button_close_sql = New System.Windows.Forms.Button()
@@ -37,9 +38,11 @@ Partial Class Form_main
         Me.Button_con_to_sql = New System.Windows.Forms.Button()
         Me.Button_glq_config_restart = New System.Windows.Forms.Button()
         Me.GroupBox_d2_ver = New System.Windows.Forms.GroupBox()
+        Me.RadioButton_d2_113D = New System.Windows.Forms.RadioButton()
         Me.RadioButton_d2_113C = New System.Windows.Forms.RadioButton()
         Me.RadioButton_d2_109 = New System.Windows.Forms.RadioButton()
         Me.GroupBox_win_ver = New System.Windows.Forms.GroupBox()
+        Me.RadioButton_win_ver_2008 = New System.Windows.Forms.RadioButton()
         Me.RadioButton_win_ver_2012 = New System.Windows.Forms.RadioButton()
         Me.RadioButton_win_ver_2003 = New System.Windows.Forms.RadioButton()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
@@ -340,6 +343,7 @@ Partial Class Form_main
         '
         'GroupBox_d2_ver
         '
+        Me.GroupBox_d2_ver.Controls.Add(Me.RadioButton_d2_113D)
         Me.GroupBox_d2_ver.Controls.Add(Me.RadioButton_d2_113C)
         Me.GroupBox_d2_ver.Controls.Add(Me.RadioButton_d2_109)
         Me.GroupBox_d2_ver.Location = New System.Drawing.Point(347, 130)
@@ -349,10 +353,20 @@ Partial Class Form_main
         Me.GroupBox_d2_ver.TabStop = False
         Me.GroupBox_d2_ver.Text = "暗黑版本"
         '
+        'RadioButton_d2_113D
+        '
+        Me.RadioButton_d2_113D.AutoSize = True
+        Me.RadioButton_d2_113D.Location = New System.Drawing.Point(153, 20)
+        Me.RadioButton_d2_113D.Name = "RadioButton_d2_113D"
+        Me.RadioButton_d2_113D.Size = New System.Drawing.Size(53, 16)
+        Me.RadioButton_d2_113D.TabIndex = 2
+        Me.RadioButton_d2_113D.Text = "1.13D"
+        Me.RadioButton_d2_113D.UseVisualStyleBackColor = True
+        '
         'RadioButton_d2_113C
         '
         Me.RadioButton_d2_113C.AutoSize = True
-        Me.RadioButton_d2_113C.Location = New System.Drawing.Point(141, 20)
+        Me.RadioButton_d2_113C.Location = New System.Drawing.Point(80, 20)
         Me.RadioButton_d2_113C.Name = "RadioButton_d2_113C"
         Me.RadioButton_d2_113C.Size = New System.Drawing.Size(53, 16)
         Me.RadioButton_d2_113C.TabIndex = 1
@@ -363,7 +377,7 @@ Partial Class Form_main
         '
         Me.RadioButton_d2_109.AutoSize = True
         Me.RadioButton_d2_109.Checked = True
-        Me.RadioButton_d2_109.Location = New System.Drawing.Point(42, 20)
+        Me.RadioButton_d2_109.Location = New System.Drawing.Point(11, 20)
         Me.RadioButton_d2_109.Name = "RadioButton_d2_109"
         Me.RadioButton_d2_109.Size = New System.Drawing.Size(53, 16)
         Me.RadioButton_d2_109.TabIndex = 0
@@ -373,6 +387,7 @@ Partial Class Form_main
         '
         'GroupBox_win_ver
         '
+        Me.GroupBox_win_ver.Controls.Add(Me.RadioButton_win_ver_2008)
         Me.GroupBox_win_ver.Controls.Add(Me.RadioButton_win_ver_2012)
         Me.GroupBox_win_ver.Controls.Add(Me.RadioButton_win_ver_2003)
         Me.GroupBox_win_ver.Location = New System.Drawing.Point(12, 130)
@@ -382,16 +397,26 @@ Partial Class Form_main
         Me.GroupBox_win_ver.TabStop = False
         Me.GroupBox_win_ver.Text = "服务器系统"
         '
+        'RadioButton_win_ver_2008
+        '
+        Me.RadioButton_win_ver_2008.AutoSize = True
+        Me.RadioButton_win_ver_2008.Location = New System.Drawing.Point(75, 20)
+        Me.RadioButton_win_ver_2008.Name = "RadioButton_win_ver_2008"
+        Me.RadioButton_win_ver_2008.Size = New System.Drawing.Size(65, 16)
+        Me.RadioButton_win_ver_2008.TabIndex = 33
+        Me.RadioButton_win_ver_2008.Text = "Win2008"
+        Me.RadioButton_win_ver_2008.UseVisualStyleBackColor = True
+        '
         'RadioButton_win_ver_2012
         '
         Me.RadioButton_win_ver_2012.AutoSize = True
         Me.RadioButton_win_ver_2012.Checked = True
-        Me.RadioButton_win_ver_2012.Location = New System.Drawing.Point(116, 20)
+        Me.RadioButton_win_ver_2012.Location = New System.Drawing.Point(146, 20)
         Me.RadioButton_win_ver_2012.Name = "RadioButton_win_ver_2012"
-        Me.RadioButton_win_ver_2012.Size = New System.Drawing.Size(95, 16)
+        Me.RadioButton_win_ver_2012.Size = New System.Drawing.Size(65, 16)
         Me.RadioButton_win_ver_2012.TabIndex = 32
         Me.RadioButton_win_ver_2012.TabStop = True
-        Me.RadioButton_win_ver_2012.Text = "Win2008&&2012"
+        Me.RadioButton_win_ver_2012.Text = "Win2012"
         Me.RadioButton_win_ver_2012.UseVisualStyleBackColor = True
         '
         'RadioButton_win_ver_2003
@@ -1996,9 +2021,9 @@ Partial Class Form_main
         Me.Label8.AutoSize = True
         Me.Label8.Location = New System.Drawing.Point(417, 437)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(155, 12)
+        Me.Label8.Size = New System.Drawing.Size(125, 12)
         Me.Label8.TabIndex = 36
-        Me.Label8.Text = "Ver 0.29 Build 2017.10.12"
+        Me.Label8.Text = "Ver 0.30 Build 2018."
         '
         'timer_dingshirenwu
         '
@@ -2056,7 +2081,9 @@ Partial Class Form_main
         Me.Controls.Add(Me.GroupBox_d2_ver)
         Me.Controls.Add(Me.GroupBox_win_ver)
         Me.Controls.Add(Me.GroupBox1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Form_main"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "PvPGN管理器"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
@@ -2260,4 +2287,6 @@ Partial Class Form_main
     Friend WithEvents Label50 As Label
     Friend WithEvents Button_mysql_uninstall As Button
     Friend WithEvents Button_test As Button
+    Friend WithEvents RadioButton_win_ver_2008 As RadioButton
+    Friend WithEvents RadioButton_d2_113D As RadioButton
 End Class
